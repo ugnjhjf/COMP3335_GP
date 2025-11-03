@@ -19,3 +19,8 @@ volumes:
   percona-data:
   percona-logs:
   percona-backups:
+
+networks:
+  hostnet:
+    external: true
+    name: host
