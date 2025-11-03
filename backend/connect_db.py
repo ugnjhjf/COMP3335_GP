@@ -39,16 +39,14 @@ def connect_to_database():
         return None
 
 
-def query_courses(connection):
-    """
-    Query all courses from the courses table
-
-    """
+def query_courses(connection, course_id=None):
     try:
+        
         with connection.cursor() as cursor:
-            # Execute SQL query
-            sql = "SELECT CID, course_name FROM courses"
-            cursor.execute(sql)
+            # Use parameterized query to prevent SQL injection
+            if course_id is not None:
+                sql = "SELECT CID, course_name FROM courses WHERE CID = %s"
+                cursor.execute(sql, (course_id,))
             
             # Fetch all results
             results = cursor.fetchall()
