@@ -1,0 +1,21 @@
+services:
+  mysql:
+    image: percona/percona-server:8.0
+    container_name: percona-server
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - percona-data:/var/lib/mysql              # Database data
+      - percona-logs:/var/log/mysql              # MySQL logs
+      - percona-backups:/backups                 # XtraBackup output (optional, for future use)
+    restart: unless-stopped
+
+volumes:
+  percona-data:
+  percona-logs:
+  percona-backups:
