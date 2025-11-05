@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>University Data Explorer</title>
+    <style>
+        html, body{
+            width: 100%;
+            height: 100%;
+            margin: 0;
+        }
+        #loginView {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            background-color: #f0f2f5;
+            justify-content: center;
+            align-items: center;
+        }
+        .card {
+            display: flex;
+            flex-direction: column;
+        }
+        #appView { 
+            display: none; 
+            flex-direction: column;
+        }
+        .topbar {
+            width: 100%;
+            height: 50px;
+            background-color: #2c3e50;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-sizing: border-box;
+            padding: 10px 10px;
+        }
+
+        #topbar_right {
+            display: flex;
+            gap: 10px;
+        }
+
+        #contentArea {
+            display: flex;
+            flex-direction: column;
+            padding: 0px 20px;
+        }
+        #queryPanel {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .toolbar {
+            display: flex;
+            justify-self: right;
+            gap: 10px;
+        }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            text-align: center;
+            padding: 10px;
+        }
+        .isEditable {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Login View (UI only, no logic) -->
+    <div id="loginView">
+        <div class="card">
+            <h1>Welcome to University Portal</h1>
+            <div class="muted">Sign in to manage and view records.</div>
+            <form id="loginForm" class="field">
+                <div class="field">
+                    <label class="label" for="username">Username</label>
+                    <input class="input" id="username" name="username" placeholder="Enter username" autocomplete="username" required />
+                </div>
+                <div class="field">
+                    <label class="label" for="password">Password</label>
+                    <input class="input" id="password" name="password" type="password" placeholder="Enter password" autocomplete="current-password" required />
+                    </div>
+                <button type="submit">Login</button>
+        </form>
+        </div>
+    </div>
+
+    <div id="appView">
+        <div class="topbar">
+            <div id="topbar_right">
+                Welcome to University Data Explorer, <span id="usernameDisplay"></span>
+            </div>
+            <div id="topbar_right">
+                <div id="userRole"></div>
+                <button onclick="logout()">Logout</button>
+            </div>
+        </div>
+        <div id="contentArea">
+            <!-- Main app content goes here -->
+            <div id="queryPanel">
+                <div class="area">
+                    <div class="instruction">
+                        Select the table you want to see or edit.
+                    </div>
+                    <div>
+                        <span>Table:</span>
+                        <select id="tableSelect"></select>
+                    </div>
+                </div>
+                <div class="area">
+                    <div class="instruction">
+                        Add the filter you want to apply.
+                    </div>
+                    <div>
+                        <span>Filters:</span>
+                    </div>
+                    <div id="filtersContainer"></div>
+                    <div style="margin-top:8px">
+                        <button onclick="addFilterRow()">Add filter</button>
+                    </div>
+                </div>
+                <div class="area">
+                    <div class="instruction">
+                        Add the filter you want to apply.
+                    </div>
+                    <div>
+                        <span>Filters:</span>
+                    </div>
+                    <div id="ordersContainer"></div>
+                    <div style="margin-top:8px">
+                        <button onclick="addOrderRow()">Add new order</button>
+                    </div>
+                </div>
+                <div class="toolbar">
+                    <button id="perfromQuerybtn">Perform Query</button>
+                </div>
+            </div>
+            <div id="dataPanel">
+                <div>
+                    <h3>Data Results:</h3>
+                </div>
+                <table id="resultTable">
+                    <thead id="resultHeader"></thead>
+                    <tbody id="resultBody"></tbody>
+                </table>
+                <div id="insertActions" style="display:none;">
+                    <button id="addNewRowBtn">Add new row</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        const API_BASE = "http://localhost:8000"; // e.g., "http://localhost:8000"
+        let auth = {
+        token: null,
+        user: { id: null, role: null, person_id: null }
+        };
+        let tables = [];
+        let tableColumns = {};
+        let privileges = {};
+        let currentTable = null;
+        const pendingEdits = {}; // key: rowIndex -> { colName: newValue }
+
+        
+        const TEST = true
+        let role = "aro"  // change role here for testing: "student", "guardian", "aro", "dro"
+        let id = 505 // change id here for testing
+
+        function init(){
+            console.log("Initializing app");
+            document.getElementById('loginView').addEventListener('submit', function(e){
+                e.preventDefault();
+                Login(e);
+            })
+            document.getElementById('tableSelect').addEventListener('change', function(e){
+                currentTable = e.target.value;
+                loadColumnsForTable();
+            });
+            document.getElementById('perfromQuerybtn').addEventListener('click', performQuery);
+            document.getElementById('addNewRowBtn').addEventListener('click', appendInsertRow);
+        }
+
+        function setRole(input){
+            auth.user.role = input;
+        }
+
+        function setId(input){
+            auth.user.id = input;
+        }
+
+        function Login(e){
+            // need to add login logic here
+
+            // back door for testing, delete in the future
+            if (TEST){
+                setRole(role);
+                setId(id);
+                loadApp();
+                console.log("Login successful (test mode)");
+                return
+            }
+        }
+        function logout(){
+            console.log("Logging out");
+            document.getElementById('appView').style.display = 'none';
+            document.getElementById('loginView').style.display = 'flex';
+            // set for possible future use
+        }
+
+        async function handleGet(path) {
+            try {
+                const response = await fetch(`${API_BASE}/${path}`, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-User-Role": auth.user.role, // may update after real login
+                        "X-User-ID": auth.user.id,               // for testing
+                    },
+                });
+
+                if (!response.ok) {
+                    const errBody = await response.text().catch(() => "");
+                    throw new Error(`Server error (${response.status}): ${errBody || response.statusText}`);
+                }
+
+                const data = await response.json();
+                return data;
+            } catch (err) {
+                console.error("Error fetching:", err);
+                throw err;
+            }
+        }
+
+        async function handlePost(path,bodyData) {
+            try {
+                const response = await fetch(`${API_BASE}/${path}`, {
+                    method: "Post",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-User-Role": auth.user.role, // may update after real login
+                        "X-User-ID": auth.user.id,                // for testing
+                    },
+                    body: JSON.stringify(bodyData),
+                });
+
+                if (!response.ok) {
+                    const errBody = await response.text().catch(() => "");
+                    throw new Error(`Server error (${response.status}): ${errBody || response.statusText}`);
+                }
+
+                const data = await response.json();
+                return data;
+            } catch (err) {
+                console.error("Error fetching:", err);
+                throw err;
+            }
+        }
+
+        async function loadApp(){
+            document.getElementById('loginView').style.display = 'none';
+            document.getElementById('appView').style.display = 'flex';
+            document.getElementById('usernameDisplay').innerText = "Test User"; // replace with actual username
+            document.getElementById('userRole').innerText = auth.user.role;
+            await loadTables();  // load table data here
+        }
+
+        async function loadTables(){
+            console.log("Loading tables for role:", auth.user.role);
+
+            const path = "retrieveTablesColumns"
+            
+            await handleGet(path).then(data=>{
+                tables = data.tables;
+                tableColumns = data.tableColumns;
+                privileges = data.rolePrivileges;
+                currentTable = tables.length > 0 ? tables[0] : null;
+
+                const tableSelect = document.getElementById("tableSelect");
+                tableSelect.innerHTML = "";
+                data.tables.forEach(t=>{
+                    const option = document.createElement("option");
+                    option.value = t;
+                    option.textContent = t;
+                    tableSelect.appendChild(option);
+                });
+            }).catch(err=>{
+                console.error("Error loading tables:", err);
+            });
+        }
+
+        function loadColumnsForTable(){
+            console.log("Loading columns for table:", currentTable);
+            let colSelect = document.querySelectorAll(".select-col");
+            
+            colSelect.forEach(sel=>{
+                createColumnSelect(sel);
+            });
+        }
+
+        function createColumnSelect(sel){
+            sel.innerHTML = "";
+            if (currentTable == null){
+                return;
+            }
+            const columns = tableColumns[currentTable].map(col => col.Field);
+            columns.forEach(c=>{
+                const opt = document.createElement("option");
+                opt.value = c;
+                opt.textContent = c;
+                sel.appendChild(opt);
+            });
+        }
+
+        function addFilterRow(){
+            console.log("Adding filter row");
+            const container = document.getElementById("filtersContainer");
+
+            const row = document.createElement("div");
+            row.className = "order-row";
+
+            const colSel = document.createElement("select");
+            colSel.className = "select-col";
+            createColumnSelect(colSel);
+
+            const opSel = document.createElement("select");
+            opSel.className = "select";
+            ["eq","ne","lt","lte","gt","gte","like","in","is_null", "is_not_null","between"].forEach(op=>{
+                const option = document.createElement("option"); 
+                option.value=op; 
+                option.textContent=op; 
+                opSel.appendChild(option);
+            });
+            opSel.addEventListener("change", (e)=>{
+                console.log("Operator changed to:", e.target.value);
+                if (e.target.value === "is_null" || e.target.value === "is_not_null"){
+                    row.querySelector(".input-area").innerHTML = "";
+                } else if (e.target.value === "between"){
+                    const inputArea = row.querySelector(".input-area");
+                    inputArea.innerHTML = "";
+
+                    const valInput1 = document.createElement("input");
+                    valInput1.className = "input";
+                    valInput1.style.marginRight = "4px";
+
+                    const valInput2 = document.createElement("input");
+                    valInput2.className = "input";
+                    inputArea.appendChild(valInput1);
+                    inputArea.appendChild(valInput2);
+                }
+            });
+
+            const inputArea = document.createElement("div");
+            inputArea.className = "input-area";
+
+            const valInput = document.createElement("input");
+            valInput.className = "input";
+
+            inputArea.appendChild(valInput);
+
+            const rmBtn = document.createElement("button");
+            rmBtn.className = "chip-btn";
+            rmBtn.type="button";
+            rmBtn.textContent = "Remove";
+            rmBtn.onclick = () => row.remove();
+            row.append(colSel, opSel, inputArea, rmBtn);
+            container.appendChild(row);
+        }
+
+        function addOrderRow(){
+            console.log("Adding order row");
+            const container = document.getElementById("ordersContainer");
+
+            const row = document.createElement("div");
+            row.className = "order-row";
+
+            const colSel = document.createElement("select");
+            colSel.className = "select-col";
+            createColumnSelect(colSel);
+
+            const dirSel = document.createElement("select");
+            dirSel.className = "select-dir";
+            ["asc","desc"].forEach(d=>{
+                const o=document.createElement("option"); o.value=d; o.textContent=d; dirSel.appendChild(o);
+            });
+
+            const rmBtn = document.createElement("button");
+            rmBtn.className = "chip-btn";
+            rmBtn.type="button";
+            rmBtn.textContent = "Remove";
+            rmBtn.onclick = () => row.remove();
+            row.append(colSel, dirSel, rmBtn);
+            container.appendChild(row);
+        }
+
+        function canInsertForCurrentTable() {
+            if (!currentTable) return false;
+            if (privileges[currentTable].insert.length === 0) return false;
+            return true;
+        }
+
+        function renderInsertActions() {
+            const bar = document.getElementById('insertActions');
+            if (canInsertForCurrentTable()) {
+                bar.style.display = 'flex';
+            } else {
+                bar.style.display = 'none';
+            }
+        }
+
+        function appendInsertRow() {
+            const tbody = document.getElementById('resultBody');
+            const cols = privileges[currentTable].insert;
+
+            // Prevent multiple pending insert rows
+            if (tbody.querySelector('tr.insertRow')) {
+                return;
+            }
+
+            const row = document.createElement('tr');
+            row.className = 'insertRow';
+
+            let renderOrder = [];
+            const headerCells = Array.from(document.querySelectorAll('#resultHeader th'));
+            if (headerCells.length > 1) {
+                renderOrder = headerCells.slice(0, -1).map(th => th.textContent);
+            } else {
+                renderOrder = cols;
+            }
+
+            renderOrder.forEach(colName => {
+                const td = document.createElement('td');
+                td.headers = colName;
+
+                if (cols.includes(colName)) {
+                    const input = document.createElement('input');
+                    if (colName.includes('date')) input.type = 'date';
+                    td.appendChild(input);
+                } else {
+                    td.textContent = 'not insertable';
+                }
+
+                row.appendChild(td);
+            });
+
+            // Actions
+            const actions = document.createElement('td');
+            const saveBtn = document.createElement('button');
+            saveBtn.textContent = 'Save';
+            saveBtn.onclick = () => saveInsertRow(row);
+            const cancelBtn = document.createElement('button');
+            cancelBtn.textContent = 'Cancel';
+            cancelBtn.style.marginLeft = '6px';
+            cancelBtn.onclick = () => row.remove();
+            actions.append(saveBtn, cancelBtn);
+            row.appendChild(actions);
+
+            tbody.appendChild(row);
+        }
+
+        async function saveInsertRow(tr) {
+            const inputs = tr.querySelectorAll('input');
+            const updatedValue = {};
+            inputs.forEach(ele => {
+                updatedValue[ele.parentNode.headers] = ele.value;
+            });
+
+            try {
+                const res = await handlePost('data/insert', {
+                    table: currentTable,
+                    insertValues: updatedValue
+                });
+                if (!res.ok) {
+                    alert("Insert failed");
+                    throw new Error(res.error || 'Insert failed');
+                }
+                await performQuery();
+            } catch (err) {
+                console.error('Insert error:', err);
+                alert("Insert failed");
+            }
+        }
+
+        function collectQueryData(){
+            console.log("Collecting query data");
+            let filters = [];
+            let orders = [];
+
+            document.querySelectorAll("#filtersContainer .order-row").forEach(row=>{
+                const col = row.querySelector(".select-col").value;
+                const op = row.querySelectorAll("select")[1].value;
+                let val = null;
+                if (op === "is_null" || op === "is_not_null"){
+                    val = null;
+                } else if (op === "between"){
+                    const inputs = row.querySelectorAll(".input-area .input");
+                    val = [inputs[0].value, inputs[1].value];
+                } else {
+                    val = row.querySelector(".input-area .input").value;
+                }
+                filters.push({column: col, operator: op, value: val});
+            });
+
+            document.querySelectorAll("#ordersContainer .order-row").forEach(row=>{
+                const col = row.querySelector(".select-col").value;
+                const dir = row.querySelector(".select-dir").value;
+                orders.push({column: col, direction: dir});
+            });
+
+            return {currentTable, filters, orders};
+        }
+
+        async function performQuery(){
+            console.log("Performing query on table:", currentTable);
+            // collect query data and send to backend
+
+            const path = "performQuery";
+            const queryData = collectQueryData();
+            console.log("Query Data:", queryData);
+
+            await handlePost(path, queryData).then(data=>{
+                console.log("Query result:", data);
+                renderResult(data);
+            }).catch(err=>{
+                console.error("Error performing query:", err);
+            });
+        }
+
+        function renderResult(data){
+            buildTableHeader(data);
+            renderRows(data);
+            renderInsertActions();
+        }
+
+        function buildTableHeader(data){
+            const thead = document.getElementById("resultHeader");
+            thead.innerHTML = "";
+            headersRow = document.createElement("tr");
+
+            if (data.results.length === 0){
+                tableColumns[currentTable].forEach(c=>{
+                    const th = document.createElement("th");
+                    th.textContent = c.Field;
+                    headersRow.appendChild(th);
+                });
+            } else{
+                Object.keys(data.results[0]).forEach(c=>{
+                    const th = document.createElement("th");
+                    th.textContent = c;
+                    headersRow.appendChild(th);
+                });
+            }
+            
+            const thActions = document.createElement("th");
+            thActions.textContent = "Actions";
+            headersRow.appendChild(thActions);
+
+            thead.appendChild(headersRow);
+        }
+
+        function renderRows(data){
+            const tbody = document.getElementById("resultBody");
+            tbody.innerHTML = "";
+
+            const currentRows = data.results;
+
+            currentRows.forEach((row, idx)=>{
+                const tr = document.createElement("tr");
+                Object.keys(data.results[0]).forEach(key=>{
+                    const td = document.createElement("td");
+                    const val = row[key];
+
+                    if (privileges[currentTable].update.includes(key)){
+                        td.contentEditable = "true";
+                        td.className = "isEditable";
+                        td.textContent = val || "";
+                        td.headers = key;
+                        td.addEventListener("input", function(e){
+                            onCellChange(e);
+                        });
+                    } else {
+                        td.textContent = val || "";
+                        td.headers = key;
+                    }
+                    tr.appendChild(td);
+                });
+
+                // Actions cell
+                const actions = document.createElement("td");
+
+                if (privileges[currentTable].update.length !== 0) {
+                    // Save button saves this row's changes (if any were made)
+                    const saveBtn = document.createElement("button");
+                    saveBtn.textContent = "Save";
+                    saveBtn.onclick = () => saveRow(idx);
+                    actions.append(saveBtn);
+                }
+                if (privileges[currentTable].delete.toString().toLowerCase() !== "False".toLowerCase()) {
+                    // create Delete button
+                    const delBtn = document.createElement("button");
+                    delBtn.textContent = "Delete";
+                    delBtn.onclick = () => deleteRow(idx);
+                    actions.append(delBtn);
+                }
+                
+                tr.appendChild(actions);
+
+                tbody.appendChild(tr);
+            });
+        }
+        
+        function onCellChange(e){
+            const rowIndex = Number(e.target.parentNode.rowIndex) - 1;  // adjust for header row
+            const colName = e.target.headers;
+            if (!pendingEdits.hasOwnProperty(rowIndex)) 
+                pendingEdits[rowIndex] = {};
+            pendingEdits[rowIndex][colName] = e.target.textContent;
+        }
+
+        async function saveRow(rowIndex){
+            if (rowIndex < 0 && rowIndex > document.getElementById("resultBody").length-1){
+                return;
+            }
+
+            const path = "data/update";
+            const row = document.getElementById("resultBody").rows[rowIndex];
+            const edits = pendingEdits[rowIndex];
+            if (!edits || Object.keys(edits).length === 0){
+                return;
+            }
+
+            const primaryKey = {};
+            const updateValues = {};
+
+            tableColumns[currentTable].forEach(col=>{
+                if (col.Key === "PRI"){
+                    primaryKey[col.Field] = row.querySelector(`td[headers="${col.Field}"]`).textContent;
+                }
+            });
+
+            // Only send writable fields present in edits
+            for (const col of tableColumns[currentTable]){
+                if (privileges[currentTable].update.includes(col.Field) && edits.hasOwnProperty(col.Field)){
+                    updateValues[col.Field] = edits[col.Field];
+                }
+            }
+            if (Object.keys(updateValues).length === 0){
+                return;
+            }
+            try{
+                const data = await handlePost(path, {
+                    table: currentTable,
+                    key: primaryKey,
+                    updateValues: updateValues
+                });
+                if (!data.ok){
+                    const text = await data.text();
+                    throw new Error(text || "Update failed");
+                }
+                
+                pendingEdits[rowIndex] = {}; // clear pending edits for this row
+                await performQuery();
+            }catch(err){
+                console.error(err);
+            }
+        }
+
+        async function deleteRow(rowIndex) {
+            if (rowIndex < 0 || rowIndex >= document.getElementById("resultBody").length) {
+                console.warn("Invalid row index:", rowIndex);
+                return;
+            }
+
+            const path = "data/delete";
+            const row = document.getElementById("resultBody").rows[rowIndex];
+
+            // Get primary key for the row
+            const primaryKey = {};
+            for (const col of tableColumns[currentTable]) {
+                if (col.Key === "PRI") {
+                    const cell = row.querySelector(`td[headers="${col.Field}"]`);
+                    if (cell) {
+                        primaryKey[col.Field] = cell.textContent.trim();
+                    }
+                }
+            }
+
+            // Confirm user wants to delete
+            const confirmed = confirm("Are you sure you want to delete this row?");
+            if (!confirmed) return;
+
+            try {
+                const res = await handlePost(path, {
+                    table: currentTable,
+                    key: primaryKey
+                });
+
+                if (!res.ok) {
+                    const text = await res.text();
+                    throw new Error(text || "Delete failed");
+                }
+
+                // Refresh table data
+                await performQuery();
+            } catch (err) {
+                console.error("Delete error:", err);
+                alert("Failed to delete row");
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', init);
+
+    </script>
+</body>
+</html>

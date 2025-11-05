@@ -13,6 +13,7 @@ services:
       - percona-data:/var/lib/mysql              # Database data
       - percona-logs:/var/log/mysql              # MySQL logs
       - percona-backups:/backups                 # XtraBackup output (optional, for future use)
+      - ../load_sql:/docker-entrypoint-initdb.d
     restart: unless-stopped
 
 volumes:
