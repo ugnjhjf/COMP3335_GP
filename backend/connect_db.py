@@ -150,10 +150,14 @@ FKLink = {
 }
 
 def parse_bearer_role(headers):
-    role = headers.get("X-User-Role").lower()
+    role_header = headers.get("X-User-Role")
+    if not role_header:
+        return None
+    role = role_header.lower()
     personId = headers.get("X-User-ID")
     if role in VALID_ROLES:
         return {"role": role, "personId": personId}
+    return None
 
 def json_response(handler, status, data, headers=None):
     body = json.dumps(data, ensure_ascii=False, default=str).encode("utf-8")
@@ -298,6 +302,17 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
         try:
             url = urllib.parse.urlparse(self.path)
             path = url.path
+            self.log_message(f"GET {path}")
+            
+            if path == "/" or path == "":
+                return json_response(self, 200, {
+                    "message": "University Data API Server",
+                    "version": "1.0",
+                    "endpoints": {
+                        "GET": ["/retrieveTablesColumns"],
+                        "POST": ["/auth/login", "/performQuery", "/data/update", "/data/delete", "/data/insert"]
+                    }
+                })
             
             if path == "/retrieveTablesColumns":
                 auth = parse_bearer_role(self.headers)
@@ -322,6 +337,7 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
         try:
             url = urllib.parse.urlparse(self.path)
             path = url.path
+            self.log_message(f"POST {path}")
 
             if path == "/auth/login":
                 # implement later
@@ -637,7 +653,28 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
             self.log_date_time_string(),
             format % args))
 
+def test_db_connection():
+    """测试数据库连接是否成功"""
+    try:
+        conn = get_db_connection()
+        with conn.cursor() as cur:
+            cur.execute("SELECT 1")
+            cur.fetchone()
+        conn.close()
+        return True, "数据库连接成功"
+    except Exception as e:
+        return False, f"数据库连接失败: {str(e)}"
+
 def run(host="127.0.0.1", port=8000):
+    # 测试数据库连接
+    print("正在测试数据库连接...")
+    success, message = test_db_connection()
+    if success:
+        print(f"✓ {message}")
+    else:
+        print(f"✗ {message}")
+        print("警告: 服务器将继续启动，但数据库操作可能会失败")
+    
     httpd = HTTPServer((host, port), SimpleAPIServer)
     print(f"Serving on http://{host}:{port}")
     httpd.serve_forever()
