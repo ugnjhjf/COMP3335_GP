@@ -175,7 +175,23 @@ FKLink = {
 }
 
 def parse_bearer_role(headers):
-    """Parse user role and ID from HTTP headers"""
+    """
+    Parse user role and ID from HTTP headers
+    Supports both token-based auth and direct header auth (for backward compatibility)
+    """
+    # Try token-based authentication first
+    auth_header = headers.get("Authorization", "")
+    if auth_header.startswith("Bearer "):
+        from auth import validate_session
+        token = auth_header.replace("Bearer ", "")
+        session_info = validate_session(token)
+        if session_info:
+            return {
+                "role": session_info["role"],
+                "personId": session_info["user_id"]
+            }
+    
+    # Fallback to direct header authentication (for backward compatibility)
     role_header = headers.get("X-User-Role")
     if not role_header:
         return None

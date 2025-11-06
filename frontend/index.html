@@ -90,9 +90,9 @@
             <div class="muted">Sign in to manage and view records.</div>
             <form id="loginForm" class="field">
                 <div class="field">
-                    <label class="label" for="username">Username</label>
-                    <input class="input" id="username" name="username" placeholder="Enter username"
-                        autocomplete="username" required />
+                    <label class="label" for="email">Email</label>
+                    <input class="input" id="email" name="email" type="email" placeholder="Enter email address"
+                        autocomplete="email" required />
                 </div>
                 <div class="field">
                     <label class="label" for="password">Password</label>
@@ -189,10 +189,33 @@
 
         function init() {
             console.log("Initializing app");
-            document.getElementById('loginView').addEventListener('submit', function (e) {
+            
+            // Check for existing session in localStorage
+            const savedToken = localStorage.getItem('auth_token');
+            const savedRole = localStorage.getItem('user_role');
+            const savedId = localStorage.getItem('user_id');
+            const savedName = localStorage.getItem('user_name');
+            
+            if (savedToken && savedRole && savedId) {
+                // Restore session
+                auth.token = savedToken;
+                auth.user.role = savedRole;
+                auth.user.id = savedId;
+                auth.user.person_id = savedId;
+                auth.user.name = savedName;
+                
+                // Auto-load app if session exists
+                loadApp();
+            } else {
+                // Show login view
+                document.getElementById('loginView').style.display = 'flex';
+                document.getElementById('appView').style.display = 'none';
+            }
+            
+            document.getElementById('loginForm').addEventListener('submit', function (e) {
                 e.preventDefault();
                 Login(e);
-            })
+            });
             document.getElementById('tableSelect').addEventListener('change', function (e) {
                 currentTable = e.target.value;
                 loadColumnsForTable();
@@ -209,34 +232,107 @@
             auth.user.id = input;
         }
 
-        function Login(e) {
-            // need to add login logic here
-
-            // back door for testing, delete in the future
-            if (TEST) {
-                setRole(role);
-                setId(id);
-                loadApp();
-                console.log("Login successful (test mode)");
-                return
+        async function Login(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            
+            if (!email || !password) {
+                alert("Please enter both email and password");
+                return;
+            }
+            
+            try {
+                const response = await fetch(`${API_BASE}/auth/login`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        password: password
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.ok) {
+                    // Store token and user info
+                    auth.token = data.token;
+                    auth.user.id = data.user.id;
+                    auth.user.role = data.user.role;
+                    auth.user.person_id = data.user.id;
+                    
+                    // Update localStorage for persistence
+                    localStorage.setItem('auth_token', data.token);
+                    localStorage.setItem('user_role', data.user.role);
+                    localStorage.setItem('user_id', data.user.id);
+                    localStorage.setItem('user_name', data.user.name);
+                    
+                    console.log("Login successful:", data.user);
+                    loadApp();
+                } else {
+                    alert("Login failed: " + (data.error || "Invalid credentials"));
+                }
+            } catch (err) {
+                console.error("Login error:", err);
+                alert("Login failed: Network error. Please check if the server is running.");
             }
         }
-        function logout() {
+        async function logout() {
             console.log("Logging out");
+            
+            // Call logout API if token exists
+            if (auth.token) {
+                try {
+                    await fetch(`${API_BASE}/auth/logout`, {
+                        method: "POST",
+                        headers: {
+                            "Authorization": `Bearer ${auth.token}`
+                        }
+                    });
+                } catch (err) {
+                    console.error("Logout API error:", err);
+                }
+            }
+            
+            // Clear local storage
+            localStorage.removeItem('auth_token');
+            localStorage.removeItem('user_role');
+            localStorage.removeItem('user_id');
+            localStorage.removeItem('user_name');
+            
+            // Clear auth object
+            auth.token = null;
+            auth.user.id = null;
+            auth.user.role = null;
+            auth.user.person_id = null;
+            
+            // Show login view
             document.getElementById('appView').style.display = 'none';
             document.getElementById('loginView').style.display = 'flex';
-            // set for possible future use
         }
 
         async function handleGet(path) {
             try {
+                const headers = {
+                    "Content-Type": "application/json"
+                };
+                
+                // Use token if available, otherwise fallback to direct headers
+                const token = auth.token || localStorage.getItem('auth_token');
+                if (token) {
+                    headers["Authorization"] = `Bearer ${token}`;
+                } else {
+                    // Fallback to direct header auth (for backward compatibility)
+                    headers["X-User-Role"] = auth.user.role;
+                    headers["X-User-ID"] = auth.user.id;
+                }
+                
                 const response = await fetch(`${API_BASE}/${path}`, {
                     method: "GET",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "X-User-Role": auth.user.role, // may update after real login
-                        "X-User-ID": auth.user.id,               // for testing
-                    },
+                    headers: headers,
                 });
 
                 if (!response.ok) {
@@ -254,13 +350,23 @@
 
         async function handlePost(path, bodyData) {
             try {
+                const headers = {
+                    "Content-Type": "application/json"
+                };
+                
+                // Use token if available, otherwise fallback to direct headers
+                const token = auth.token || localStorage.getItem('auth_token');
+                if (token) {
+                    headers["Authorization"] = `Bearer ${token}`;
+                } else {
+                    // Fallback to direct header auth (for backward compatibility)
+                    headers["X-User-Role"] = auth.user.role;
+                    headers["X-User-ID"] = auth.user.id;
+                }
+                
                 const response = await fetch(`${API_BASE}/${path}`, {
-                    method: "Post",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "X-User-Role": auth.user.role, // may update after real login
-                        "X-User-ID": auth.user.id,                // for testing
-                    },
+                    method: "POST",
+                    headers: headers,
                     body: JSON.stringify(bodyData),
                 });
 
@@ -280,8 +386,12 @@
         async function loadApp() {
             document.getElementById('loginView').style.display = 'none';
             document.getElementById('appView').style.display = 'flex';
-            document.getElementById('usernameDisplay').innerText = "Test User"; // replace with actual username
-            document.getElementById('userRole').innerText = auth.user.role;
+            
+            // Get user name from localStorage or use default
+            const userName = localStorage.getItem('user_name') || auth.user.name || "User";
+            document.getElementById('usernameDisplay').innerText = userName;
+            document.getElementById('userRole').innerText = auth.user.role || "Unknown";
+            
             await loadTables();  // load table data here
         }
 

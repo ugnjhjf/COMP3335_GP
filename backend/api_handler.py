@@ -10,6 +10,7 @@ from privilege_controller import (
 )
 from db_query import db_query, db_execute, getTableColumns, checkPrimaryKey, checkUpdatableColumns
 from logger import logDataUpdate
+from auth import authenticate_user, create_session, validate_session, logout
 
 class SimpleAPIServer(BaseHTTPRequestHandler):
     server_version = "SimpleAPIServer/0.1"
@@ -64,8 +65,39 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
             self.log_message(f"POST {path}")
 
             if path == "/auth/login":
-                # implement later
-                pass
+                data = read_json(self) or {}
+                email = data.get("email", "").strip()
+                password = data.get("password", "")
+                
+                if not email or not password:
+                    return json_response(self, 400, {"ok": False, "error": "Email and password required"})
+                
+                # Authenticate user
+                user_info = authenticate_user(email, password)
+                
+                if user_info:
+                    # Create session
+                    token = create_session(user_info)
+                    return json_response(self, 200, {
+                        "ok": True,
+                        "token": token,
+                        "user": {
+                            "id": user_info["user_id"],
+                            "role": user_info["role"],
+                            "name": user_info["name"],
+                            "user_type": user_info.get("user_type", "")
+                        }
+                    })
+                else:
+                    return json_response(self, 401, {"ok": False, "error": "Invalid email or password"})
+            
+            elif path == "/auth/logout":
+                auth_header = self.headers.get("Authorization", "")
+                token = auth_header.replace("Bearer ", "") if auth_header.startswith("Bearer ") else ""
+                if logout(token):
+                    return json_response(self, 200, {"ok": True, "message": "Logged out successfully"})
+                else:
+                    return json_response(self, 400, {"ok": False, "error": "Invalid token"})
             elif path == "/performQuery":
                 auth = parse_bearer_role(self.headers)
                 if not auth:
