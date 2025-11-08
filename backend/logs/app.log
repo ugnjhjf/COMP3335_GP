@@ -11,3 +11,52 @@
 2025-11-08 14:23:42 - app - INFO - [db_connector.py:63] - Connection pool initialized with 0 connections
 2025-11-08 14:23:47 - app - WARNING - [db_connector.py:90] - Connection pool exhausted, creating new connection
 2025-11-08 14:24:20 - app - INFO - [db_connector.py:63] - Connection pool initialized with 10 connections
+2025-11-08 14:37:55 - app - INFO - [db_connector.py:63] - Connection pool initialized with 10 connections
+2025-11-08 14:48:13 - app - INFO - [auth.py:207] - Session created for user 100 with role student
+2025-11-08 15:11:30 - app - INFO - [auth.py:286] - Session logged out: G5qK_IBE...
+2025-11-08 15:13:07 - app - INFO - [auth.py:207] - Session created for user 100 with role student
+2025-11-08 15:13:11 - app - INFO - [auth.py:286] - Session logged out: tNYKs8dT...
+2025-11-08 15:13:48 - app - INFO - [auth.py:207] - Session created for user 5001 with role aro
+2025-11-08 15:13:53 - app - INFO - [auth.py:286] - Session logged out: wgzGT_iM...
+2025-11-08 15:14:26 - app - INFO - [auth.py:207] - Session created for user 1000 with role guardian
+2025-11-08 15:14:29 - app - INFO - [auth.py:286] - Session logged out: jr6Yw2p_...
+2025-11-08 15:20:16 - app - INFO - [auth.py:207] - Session created for user 1000 with role guardian
+2025-11-08 15:20:18 - app - INFO - [auth.py:286] - Session logged out: HqF_58yv...
+2025-11-08 15:21:04 - app - INFO - [auth.py:207] - Session created for user 5001 with role aro
+2025-11-08 15:21:06 - app - INFO - [auth.py:286] - Session logged out: POHn8ylJ...
+2025-11-08 15:21:25 - app - INFO - [auth.py:207] - Session created for user 100 with role student
+2025-11-08 15:21:28 - app - INFO - [auth.py:286] - Session logged out: XaiM7dqK...
+2025-11-08 18:04:23 - app - INFO - [db_connector.py:63] - Connection pool initialized with 10 connections
+2025-11-08 18:15:22 - app - INFO - [db_connector.py:63] - Connection pool initialized with 10 connections
+2025-11-08 18:15:45 - app - INFO - [auth.py:207] - Session created for user 100 with role student
+2025-11-08 18:15:45 - app - ERROR - [db_query.py:42] - Database execute error: (1292, "Truncated incorrect DOUBLE value: '1' OR '1'='1'"), SQL: UPDATE `students` target SET target.`email` = %s WHERE target.`StuID` = %s AND target.`StuID` = %s
+2025-11-08 18:15:45 - app - ERROR - [db_query.py:42] - Database execute error: (1292, "Truncated incorrect DOUBLE value: '1' OR '1'='1'"), SQL: DELETE target FROM `students` target WHERE target.`StuID` = %s AND target.`StuID` = %s
+2025-11-08 18:15:45 - app - ERROR - [db_query.py:42] - Database execute error: (1292, "Truncated incorrect DOUBLE value: '1' --'"), SQL: DELETE target FROM `students` target WHERE target.`StuID` = %s AND target.`StuID` = %s
+2025-11-08 18:15:45 - app - ERROR - [db_query.py:42] - Database execute error: (1292, "Truncated incorrect DOUBLE value: '1'; DROP TABLE students; --'"), SQL: DELETE target FROM `students` target WHERE target.`StuID` = %s AND target.`StuID` = %s
+2025-11-08 18:41:42 - app - INFO - [auth.py:207] - Session created for user 100 with role student
+2025-11-08 18:41:45 - app - INFO - [auth.py:286] - Session logged out: xpJD20Y2...
+2025-11-08 18:45:39 - app - INFO - [db_connector.py:63] - Connection pool initialized with 10 connections
+2025-11-08 18:46:37 - app - INFO - [auth.py:207] - Session created for user 100 with role student
+2025-11-08 18:46:37 - app - ERROR - [db_query.py:42] - Database execute error: (1292, "Truncated incorrect DOUBLE value: '1' OR '1'='1'"), SQL: UPDATE `students` target SET target.`email` = %s WHERE target.`StuID` = %s AND target.`StuID` = %s
+2025-11-08 18:46:37 - app - ERROR - [db_query.py:42] - Database execute error: (1292, "Truncated incorrect DOUBLE value: '1' OR '1'='1'"), SQL: DELETE target FROM `students` target WHERE target.`StuID` = %s AND target.`StuID` = %s
+2025-11-08 18:46:37 - app - ERROR - [db_query.py:42] - Database execute error: (1292, "Truncated incorrect DOUBLE value: '1' --'"), SQL: DELETE target FROM `students` target WHERE target.`StuID` = %s AND target.`StuID` = %s
+2025-11-08 18:46:37 - app - ERROR - [db_query.py:42] - Database execute error: (1292, "Truncated incorrect DOUBLE value: '1'; DROP TABLE students; --'"), SQL: DELETE target FROM `students` target WHERE target.`StuID` = %s AND target.`StuID` = %s
+2025-11-08 18:59:28 - app - INFO - [db_connector.py:63] - Connection pool initialized with 10 connections
+2025-11-08 19:00:10 - app - INFO - [db_connector.py:63] - Connection pool initialized with 10 connections
+2025-11-08 19:00:26 - app - INFO - [auth.py:207] - Session created for user 100 with role student
+2025-11-08 19:00:33 - app - ERROR - [db_query.py:42] - Database execute error: (1292, "Truncated incorrect DOUBLE value: '1' OR '1'='1'"), SQL: UPDATE `students` target SET target.`email` = %s WHERE target.`StuID` = %s AND target.`StuID` = %s
+2025-11-08 19:00:34 - app - ERROR - [db_query.py:42] - Database execute error: (1292, "Truncated incorrect DOUBLE value: '1' OR '1'='1'"), SQL: DELETE target FROM `students` target WHERE target.`StuID` = %s AND target.`StuID` = %s
+2025-11-08 19:00:34 - app - ERROR - [db_query.py:42] - Database execute error: (1292, "Truncated incorrect DOUBLE value: '1' --'"), SQL: DELETE target FROM `students` target WHERE target.`StuID` = %s AND target.`StuID` = %s
+2025-11-08 19:00:35 - app - ERROR - [db_query.py:42] - Database execute error: (1292, "Truncated incorrect DOUBLE value: '1'; DROP TABLE students; --'"), SQL: DELETE target FROM `students` target WHERE target.`StuID` = %s AND target.`StuID` = %s
+2025-11-08 19:29:16 - app - INFO - [auth.py:207] - Session created for user 1000 with role guardian
+2025-11-08 19:29:16 - app - INFO - [auth.py:207] - Session created for user 1000 with role guardian
+2025-11-08 19:29:18 - app - INFO - [auth.py:286] - Session logged out: M8AdTxAD...
+2025-11-08 19:29:37 - app - INFO - [auth.py:207] - Session created for user 5001 with role aro
+2025-11-08 19:29:39 - app - INFO - [auth.py:286] - Session logged out: P8LcbwN5...
+2025-11-08 19:38:27 - app - INFO - [auth.py:207] - Session created for user 100 with role student
+2025-11-08 19:38:28 - app - INFO - [db_connector.py:63] - Connection pool initialized with 10 connections
+2025-11-08 19:38:54 - app - INFO - [auth.py:207] - Session created for user 100 with role student
+2025-11-08 19:38:54 - app - ERROR - [db_query.py:42] - Database execute error: (1292, "Truncated incorrect DOUBLE value: '1' OR '1'='1'"), SQL: UPDATE `students` target SET target.`email` = %s WHERE target.`StuID` = %s AND target.`StuID` = %s
+2025-11-08 19:38:55 - app - ERROR - [db_query.py:42] - Database execute error: (1292, "Truncated incorrect DOUBLE value: '1' OR '1'='1'"), SQL: DELETE target FROM `students` target WHERE target.`StuID` = %s AND target.`StuID` = %s
+2025-11-08 19:38:55 - app - ERROR - [db_query.py:42] - Database execute error: (1292, "Truncated incorrect DOUBLE value: '1' --'"), SQL: DELETE target FROM `students` target WHERE target.`StuID` = %s AND target.`StuID` = %s
+2025-11-08 19:38:55 - app - ERROR - [db_query.py:42] - Database execute error: (1292, "Truncated incorrect DOUBLE value: '1'; DROP TABLE students; --'"), SQL: DELETE target FROM `students` target WHERE target.`StuID` = %s AND target.`StuID` = %s
