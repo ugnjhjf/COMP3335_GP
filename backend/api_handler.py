@@ -4,6 +4,7 @@ import urllib.parse
 import traceback
 from http.server import BaseHTTPRequestHandler
 
+import os
 from communicator import json_response, read_json
 from privilege_controller import (
     parse_bearer_role, ROLE_TABLES, RolePrivileges, FKLink, buildRangeFilter
@@ -11,16 +12,27 @@ from privilege_controller import (
 from db_query import db_query, db_execute, getTableColumns, checkPrimaryKey, checkUpdatableColumns
 from logger import logDataUpdate
 from auth import authenticate_user, create_session, validate_session, logout
+# Security enhancements - 安全增强模块
+from security import (
+    decrypt_password, validate_email, validate_password, 
+    sanitize_input, validate_table_name, validate_column_name,
+    validate_table_name_whitelist, escape_identifier
+)
 
 class SimpleAPIServer(BaseHTTPRequestHandler):
     server_version = "SimpleAPIServer/0.1"
 
     def do_OPTIONS(self):
-        # CORS preflight
+        # CORS preflight - CORS预检请求
+        from security import get_allowed_origins, is_origin_allowed
+        origin = self.headers.get("Origin", "")
+        allowed_origins = get_allowed_origins()
         self.send_response(204)
-        self.send_header("Access-Control-Allow-Origin", "*")
-        self.send_header("Access-Control-Allow-Headers", "Content-Type, Authorization, X-User-Role, X-User-ID")
+        if '*' in allowed_origins or is_origin_allowed(origin):
+            self.send_header("Access-Control-Allow-Origin", origin if origin else "*")
+        self.send_header("Access-Control-Allow-Headers", "Content-Type, Authorization, X-User-Role, X-User-ID, X-Key-Id")
         self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+        self.send_header("Access-Control-Allow-Credentials", "true")
         self.end_headers()
 
     def do_GET(self):
@@ -52,11 +64,27 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
 
                 roleRrivileges = RolePrivileges.get(auth["role"], {})
                 return json_response(self, 200, {"tables": tables, "tableColumns": tableColumns, "rolePrivileges": roleRrivileges})
+            
+            # Public key endpoint for frontend encryption - 前端加密用的公钥端点
+            if path == "/auth/public-key":
+                from security import get_public_key_pem
+                public_key = get_public_key_pem()
+                if public_key:
+                    return json_response(self, 200, {
+                        "publicKey": public_key,
+                        "keyId": os.getenv("RSA_KEY_ID", "default")
+                    })
+                else:
+                    return json_response(self, 503, {"error": "Public key not available"})
 
             return json_response(self, 404, {"error": "Not found"})
         except Exception as e:
-            traceback.print_exc()
-            return json_response(self, 500, {"error": "Server error", "detail": str(e)})
+            # Log error details but don't expose to client - 记录错误详情但不暴露给客户端
+            import logging
+            logging.error(f"GET request error: {str(e)}", exc_info=True)
+            traceback.print_exc()  # Keep for development - 开发环境保留
+            # Return generic error message - 返回通用错误信息
+            return json_response(self, 500, {"error": "Server error occurred"})
 
     def do_POST(self):
         try:
@@ -68,9 +96,38 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                 data = read_json(self) or {}
                 email = data.get("email", "").strip()
                 password = data.get("password", "")
+                encrypted_password = data.get("encryptedPassword", "")  # Support encrypted password - 支持加密密码
+                
+                # Input validation - 输入验证
+                if not email:
+                    return json_response(self, 400, {"ok": False, "error": "Email is required"})
+                if not password and not encrypted_password:
+                    return json_response(self, 400, {"ok": False, "error": "Password is required"})
+                
+                # Validate email format - 验证邮箱格式
+                if not validate_email(email):
+                    return json_response(self, 400, {"ok": False, "error": "Invalid email format"})
+                
+                # Decrypt password if encrypted - 如果密码已加密则解密
+                if encrypted_password:
+                    decrypted = decrypt_password(encrypted_password)
+                    if decrypted:
+                        password = decrypted
+                    # If decryption fails, fall back to plain password (backward compatibility)
+                    # 如果解密失败，回退到明文密码（向后兼容）
+                
+                # Validate password - 验证密码
+                if password:
+                    is_valid, error_msg = validate_password(password)
+                    if not is_valid:
+                        return json_response(self, 400, {"ok": False, "error": error_msg})
+                
+                # Sanitize inputs - 清理输入
+                email = sanitize_input(email, max_length=255)
+                password = sanitize_input(password, max_length=128)
                 
                 if not email or not password:
-                    return json_response(self, 400, {"ok": False, "error": "Email and password required"})
+                    return json_response(self, 400, {"ok": False, "error": "Invalid input"})
                 
                 # Authenticate user
                 user_info = authenticate_user(email, password)
@@ -112,8 +169,13 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                 limit = max(1, min(limit, 500))   # cap
                 offset = max(0, offset)
 
+                # Validate table name with whitelist - 使用白名单验证表名（更安全）
+                allowed_tables = ROLE_TABLES.get(auth["role"], [])
+                if not validate_table_name_whitelist(table, allowed_tables):
+                    return json_response(self, 400, {"error": "Invalid table name"})
+
                 # check if the table is allowed for the role
-                if table not in ROLE_TABLES.get(auth["role"], []):
+                if table not in allowed_tables:
                     return json_response(self, 403, {"error": "Forbidden"})
 
                 # check if the table contain the columns
@@ -194,6 +256,9 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                     val = f.get("value", None)
                     if not targetColumn or operator not in OP:
                         continue
+                    # Validate column name - 验证列名
+                    if not validate_column_name(targetColumn):
+                        continue
                     try:
                         col = checkColumn(targetColumn)
                     except ValueError:
@@ -243,6 +308,9 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                     targetColumn = o.get("column")
                     if not targetColumn:
                         continue
+                    # Validate column name - 验证列名
+                    if not validate_column_name(targetColumn):
+                        continue
                     try:
                         col = checkColumn(targetColumn)
                     except ValueError:
@@ -268,6 +336,10 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                 table = str(data.get("table") or "")
                 key = data.get("key", {})
                 updateValues = data.get("updateValues", {})
+                
+                # Validate table name - 验证表名
+                if not validate_table_name(table):
+                    return json_response(self, 400, {"ok": False, "error": "Invalid table name"})
 
                 setColumnSql = []
                 params = []
@@ -313,8 +385,12 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                     db_execute(sql, params)
                     return json_response(self, 200, {"ok": True, "updated": updateValues})
                 except Exception as e:
-                    traceback.print_exc()
-                    return json_response(self, 500, {"ok": False, "error": "Server error", "detail": str(e)})
+                    # Log error details but don't expose to client - 记录错误详情但不暴露给客户端
+                    import logging
+                    logging.error(f"Update error: {str(e)}", exc_info=True)
+                    traceback.print_exc()  # Keep for development - 开发环境保留
+                    # Return generic error message - 返回通用错误信息
+                    return json_response(self, 500, {"ok": False, "error": "Server error occurred"})
             elif path == "/data/delete":
                 auth = parse_bearer_role(self.headers)
                 if not auth:
@@ -324,9 +400,14 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                 data = read_json(self) or {}
                 table = str(data.get("table") or "")
                 key = data.get("key", {})
+                
+                # Validate table name with whitelist - 使用白名单验证表名（更安全）
+                allowed_tables = ROLE_TABLES.get(auth["role"], [])
+                if not validate_table_name_whitelist(table, allowed_tables):
+                    return json_response(self, 400, {"ok": False, "error": "Invalid table name"})
 
                  # check if the table is allowed for the role
-                if table not in ROLE_TABLES.get(auth["role"], []):
+                if table not in allowed_tables:
                     return json_response(self, 403, {"error": "Forbidden"})
                 
                 columnData = getTableColumns(table)
@@ -358,8 +439,12 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                     db_execute(sql, params)
                     return json_response(self, 200, {"ok": True, "deleted": key})
                 except Exception as e:
-                    traceback.print_exc()
-                    return json_response(self, 500, {"ok": False, "error": "Server error", "detail": str(e)})
+                    # Log error details but don't expose to client - 记录错误详情但不暴露给客户端
+                    import logging
+                    logging.error(f"Delete error: {str(e)}", exc_info=True)
+                    traceback.print_exc()  # Keep for development - 开发环境保留
+                    # Return generic error message - 返回通用错误信息
+                    return json_response(self, 500, {"ok": False, "error": "Server error occurred"})
             elif path == "/data/insert":
                 auth = parse_bearer_role(self.headers)
                 if not auth:
@@ -370,20 +455,34 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                 table = str(data.get("table") or "")
                 updateValues = data.get("insertValues", {})
                 params = []
+                
+                # Validate table name with whitelist - 使用白名单验证表名（更安全）
+                allowed_tables = ROLE_TABLES.get(auth["role"], [])
+                if not validate_table_name_whitelist(table, allowed_tables):
+                    return json_response(self, 400, {"ok": False, "error": "Invalid table name"})
 
                  # check if the table is allowed for the role
-                if table not in ROLE_TABLES.get(auth["role"], []):
+                if table not in allowed_tables:
                     return json_response(self, 403, {"error": "Forbidden"})
                 
                 columnData = getTableColumns(table)
-                print(set(updateValues.keys()))
-                print(set(RolePrivileges.get(auth["role"], {}).get(table, {}).get("insert", [])))
+                # Removed debug print statements - 移除调试打印语句
                 if (set(updateValues.keys()) != set(RolePrivileges.get(auth["role"], {}).get(table, {}).get("insert", []))):
                     return json_response(self, 401, {"ok": False, "error": "Unauthorized"})
                 
                 updateValueColumns = list(updateValues.keys())
+                # Validate and escape column names - 验证并转义列名
+                escaped_columns = []
+                for col in updateValueColumns:
+                    if not validate_column_name(col):
+                        return json_response(self, 400, {"ok": False, "error": f"Invalid column name: {col}"})
+                    escaped_col = escape_identifier(col)
+                    if not escaped_col:
+                        return json_response(self, 400, {"ok": False, "error": f"Invalid column name: {col}"})
+                    escaped_columns.append(escaped_col)
+                
                 placeholders = ', '.join(['%s'] * len(updateValueColumns))
-                ColumnsStr = ', '.join(f"`{c}`" for c in updateValueColumns)
+                ColumnsStr = ', '.join(escaped_columns)
 
                 sql = f"INSERT INTO `{table}` ({ColumnsStr}) VALUES ({placeholders})"
                 params = [updateValues[c] for c in updateValueColumns]
@@ -394,13 +493,21 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                     db_execute(sql, params)
                     return json_response(self, 200, {"ok": True, "insert": updateValueColumns})
                 except Exception as e:
-                    traceback.print_exc()
-                    return json_response(self, 500, {"ok": False, "error": "Server error", "detail": str(e)})
+                    # Log error details but don't expose to client - 记录错误详情但不暴露给客户端
+                    import logging
+                    logging.error(f"Insert error: {str(e)}", exc_info=True)
+                    traceback.print_exc()  # Keep for development - 开发环境保留
+                    # Return generic error message - 返回通用错误信息
+                    return json_response(self, 500, {"ok": False, "error": "Server error occurred"})
                 
             return json_response(self, 404, {"error": "Not found"})
         except Exception as e:
-            traceback.print_exc()
-            return json_response(self, 500, {"error": "Server error", "detail": str(e)})
+            # Log error details but don't expose to client - 记录错误详情但不暴露给客户端
+            import logging
+            logging.error(f"POST request error: {str(e)}", exc_info=True)
+            traceback.print_exc()  # Keep for development - 开发环境保留
+            # Return generic error message - 返回通用错误信息
+            return json_response(self, 500, {"error": "Server error occurred"})
 
     def log_message(self, format, *args):
         print("%s - - [%s] %s" % (self.address_string(),

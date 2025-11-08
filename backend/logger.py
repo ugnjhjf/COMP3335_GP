@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from db_connector import get_db_connection
+from db_connector import get_db_connection, return_db_connection
 
 def logDataUpdate(user_id, role, sql_text):
     """Log data update operations to log table"""
@@ -14,5 +14,5 @@ def logDataUpdate(user_id, role, sql_text):
                 (user_id, role, sql_text)
             )
     finally:
-        conn.close()
+        return_db_connection(conn)
 

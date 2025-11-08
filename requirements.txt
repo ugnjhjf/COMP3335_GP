@@ -7,3 +7,7 @@ cryptography>=3.0.0
 # 环境变量管理 (可选)
 python-dotenv==1.0.0
 
+# Password hashing - bcrypt for secure password storage
+# 密码哈希 - bcrypt用于安全密码存储
+bcrypt>=4.0.0
+

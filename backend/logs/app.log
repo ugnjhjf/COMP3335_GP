@@ -1,0 +1,13 @@
+2025-11-08 14:23:24 - app - ERROR - [db_connector.py:62] - Failed to create connection for pool: (2003, "Can't connect to MySQL server on '127.0.0.1' ([WinError 10061] 無法連線，因為目標電腦拒絕連線。)")
+2025-11-08 14:23:26 - app - ERROR - [db_connector.py:62] - Failed to create connection for pool: (2003, "Can't connect to MySQL server on '127.0.0.1' ([WinError 10061] 無法連線，因為目標電腦拒絕連線。)")
+2025-11-08 14:23:28 - app - ERROR - [db_connector.py:62] - Failed to create connection for pool: (2003, "Can't connect to MySQL server on '127.0.0.1' ([WinError 10061] 無法連線，因為目標電腦拒絕連線。)")
+2025-11-08 14:23:30 - app - ERROR - [db_connector.py:62] - Failed to create connection for pool: (2003, "Can't connect to MySQL server on '127.0.0.1' ([WinError 10061] 無法連線，因為目標電腦拒絕連線。)")
+2025-11-08 14:23:32 - app - ERROR - [db_connector.py:62] - Failed to create connection for pool: (2003, "Can't connect to MySQL server on '127.0.0.1' ([WinError 10061] 無法連線，因為目標電腦拒絕連線。)")
+2025-11-08 14:23:34 - app - ERROR - [db_connector.py:62] - Failed to create connection for pool: (2003, "Can't connect to MySQL server on '127.0.0.1' ([WinError 10061] 無法連線，因為目標電腦拒絕連線。)")
+2025-11-08 14:23:36 - app - ERROR - [db_connector.py:62] - Failed to create connection for pool: (2003, "Can't connect to MySQL server on '127.0.0.1' ([WinError 10061] 無法連線，因為目標電腦拒絕連線。)")
+2025-11-08 14:23:38 - app - ERROR - [db_connector.py:62] - Failed to create connection for pool: (2003, "Can't connect to MySQL server on '127.0.0.1' ([WinError 10061] 無法連線，因為目標電腦拒絕連線。)")
+2025-11-08 14:23:40 - app - ERROR - [db_connector.py:62] - Failed to create connection for pool: (2003, "Can't connect to MySQL server on '127.0.0.1' ([WinError 10061] 無法連線，因為目標電腦拒絕連線。)")
+2025-11-08 14:23:42 - app - ERROR - [db_connector.py:62] - Failed to create connection for pool: (2003, "Can't connect to MySQL server on '127.0.0.1' ([WinError 10061] 無法連線，因為目標電腦拒絕連線。)")
+2025-11-08 14:23:42 - app - INFO - [db_connector.py:63] - Connection pool initialized with 0 connections
+2025-11-08 14:23:47 - app - WARNING - [db_connector.py:90] - Connection pool exhausted, creating new connection
+2025-11-08 14:24:20 - app - INFO - [db_connector.py:63] - Connection pool initialized with 10 connections
