@@ -8,7 +8,9 @@ import time
 import os
 import bcrypt
 from db_query import db_query
-from logger_config import app_logger
+from logger_config import app_logger, log_security_event
+from audit_logger import log_audit_event
+from logger import logAccountOperation
 
 # Session storage - supports both in-memory and database
 # 会话存储 - 支持内存和数据库两种方式
@@ -67,7 +69,7 @@ def generate_token():
     """Generate a secure random token for session"""
     return secrets.token_urlsafe(32)
 
-def authenticate_user(email, password):
+def authenticate_user(email, password, ip_address=None):
     """
     Authenticate user based on email and password
     Searches in students, guardians, and staffs tables
@@ -75,6 +77,7 @@ def authenticate_user(email, password):
     Args:
         email: User email address
         password: Plain text password
+        ip_address: IP address of the client (optional)
     
     Returns:
         dict with user info if successful, None if failed
@@ -82,6 +85,11 @@ def authenticate_user(email, password):
     """
     try:
         email = str(email).strip().lower()
+        
+        # Log login attempt
+        app_logger.info(f"Login attempt: email={email}, ip={ip_address}")
+        log_security_event('login_attempt', {'email': email}, None, ip_address)
+        logAccountOperation(ip_address or 'unknown', None, None, f"Login request sent: email={email}")
         
         # Try students table first
         result = db_query(
@@ -95,12 +103,18 @@ def authenticate_user(email, password):
             
             # Verify password
             if verify_password(password, salt, stored_password):
-                return {
+                user_info = {
                     "user_id": str(user["StuID"]),
                     "role": "student",
                     "name": f"{user['first_name']} {user['last_name']}",
                     "user_type": "student"
                 }
+                # Log successful login
+                app_logger.info(f"Login successful: user_id={user_info['user_id']}, role={user_info['role']}, email={email}, ip={ip_address}")
+                log_audit_event('login_success', {'email': email, 'user_type': 'student'}, user_info['user_id'], user_info['role'], ip_address)
+                log_security_event('login_success', {'email': email}, user_info['user_id'], ip_address)
+                logAccountOperation(ip_address or 'unknown', user_info['user_id'], user_info['role'], f"Login successful: email={email}, user_type=student")
+                return user_info
         
         # Try guardians table
         result = db_query(
@@ -114,12 +128,18 @@ def authenticate_user(email, password):
             
             # Verify password
             if verify_password(password, salt, stored_password):
-                return {
+                user_info = {
                     "user_id": str(user["GuaID"]),
                     "role": "guardian",
                     "name": f"{user['first_name']} {user['last_name']}",
                     "user_type": "guardian"
                 }
+                # Log successful login
+                app_logger.info(f"Login successful: user_id={user_info['user_id']}, role={user_info['role']}, email={email}, ip={ip_address}")
+                log_audit_event('login_success', {'email': email, 'user_type': 'guardian'}, user_info['user_id'], user_info['role'], ip_address)
+                log_security_event('login_success', {'email': email}, user_info['user_id'], ip_address)
+                logAccountOperation(ip_address or 'unknown', user_info['user_id'], user_info['role'], f"Login successful: email={email}, user_type=guardian")
+                return user_info
         
         # Try staffs table
         result = db_query(
@@ -154,15 +174,30 @@ def authenticate_user(email, password):
                     # This includes: Human Resources, IT Support, etc.
                     system_role = "root"
                 
-                return {
+                user_info = {
                     "user_id": str(user["StfID"]),
                     "role": system_role,
                     "name": f"{user['first_name']} {user['last_name']}",
                     "user_type": "staff"
                 }
+                # Log successful login
+                app_logger.info(f"Login successful: user_id={user_info['user_id']}, role={user_info['role']}, email={email}, ip={ip_address}")
+                log_audit_event('login_success', {'email': email, 'user_type': 'staff'}, user_info['user_id'], user_info['role'], ip_address)
+                log_security_event('login_success', {'email': email}, user_info['user_id'], ip_address)
+                logAccountOperation(ip_address or 'unknown', user_info['user_id'], user_info['role'], f"Login successful: email={email}, user_type=staff")
+                return user_info
         
+        # Log failed login
+        app_logger.warning(f"Login failed: email={email}, reason=invalid_credentials, ip={ip_address}")
+        log_audit_event('login_failed', {'email': email, 'reason': 'invalid_credentials'}, None, None, ip_address)
+        log_security_event('login_failed', {'email': email, 'reason': 'invalid_credentials'}, None, ip_address)
+        logAccountOperation(ip_address or 'unknown', None, None, f"Login failed: email={email}, reason=Invalid email or password")
         return None
     except Exception as e:
+        # Log authentication error
+        app_logger.error(f"Authentication error: email={email}, error={e}, ip={ip_address}")
+        log_security_event('login_error', {'email': email, 'error': str(e)}, None, ip_address)
+        logAccountOperation(ip_address or 'unknown', None, None, f"Login error: email={email}, error={str(e)}")
         print(f"Authentication error: {e}")
         import traceback
         traceback.print_exc()

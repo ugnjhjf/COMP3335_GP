@@ -10,8 +10,11 @@ from privilege_controller import (
     parse_bearer_role, ROLE_TABLES, RolePrivileges, FKLink, buildRangeFilter
 )
 from db_query import db_query, db_execute, getTableColumns, checkPrimaryKey, checkUpdatableColumns
-from logger import logDataUpdate
+from logger import logDataUpdate, logAccountOperation
 from auth import authenticate_user, create_session, validate_session, logout
+from logger_config import app_logger, log_security_event
+from audit_logger import log_audit_event, log_sql_execution, log_unauthorized_access
+from security_monitor import detect_sql_injection, log_sql_injection_attempt, detect_policy_violation, log_policy_violation
 # Security enhancements - 安全增强模块
 from security import (
     decrypt_password, validate_email, validate_password, 
@@ -93,19 +96,35 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
             self.log_message(f"POST {path}")
 
             if path == "/auth/login":
+                # Get client IP address
+                client_ip = self.client_address[0] if hasattr(self, 'client_address') else self.headers.get('X-Forwarded-For', '').split(',')[0].strip() or 'unknown'
+                
                 data = read_json(self) or {}
                 email = data.get("email", "").strip()
                 password = data.get("password", "")
                 encrypted_password = data.get("encryptedPassword", "")  # Support encrypted password - 支持加密密码
                 
+                # Log login request
+                app_logger.info(f"Login request received: email={email}, ip={client_ip}")
+                logAccountOperation(client_ip, None, None, f"Login request sent: email={email}")
+                
                 # Input validation - 输入验证
                 if not email:
+                    app_logger.warning(f"Login rejected: email missing, ip={client_ip}")
+                    log_security_event('login_rejected', {'reason': 'email_missing'}, None, client_ip)
+                    logAccountOperation(client_ip, None, None, f"Login rejected: reason=Email missing")
                     return json_response(self, 400, {"ok": False, "error": "Email is required"})
                 if not password and not encrypted_password:
+                    app_logger.warning(f"Login rejected: password missing, email={email}, ip={client_ip}")
+                    log_security_event('login_rejected', {'email': email, 'reason': 'password_missing'}, None, client_ip)
+                    logAccountOperation(client_ip, None, None, f"Login rejected: email={email}, reason=Password missing")
                     return json_response(self, 400, {"ok": False, "error": "Password is required"})
                 
                 # Validate email format - 验证邮箱格式
                 if not validate_email(email):
+                    app_logger.warning(f"Login rejected: invalid email format, email={email}, ip={client_ip}")
+                    log_security_event('login_rejected', {'email': email, 'reason': 'invalid_email_format'}, None, client_ip)
+                    logAccountOperation(client_ip, None, None, f"Login rejected: email={email}, reason=Invalid email format")
                     return json_response(self, 400, {"ok": False, "error": "Invalid email format"})
                 
                 # Decrypt password if encrypted - 如果密码已加密则解密
@@ -116,10 +135,21 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                     # If decryption fails, fall back to plain password (backward compatibility)
                     # 如果解密失败，回退到明文密码（向后兼容）
                 
+                # Check for SQL injection attempts in email
+                if detect_sql_injection(email):
+                    app_logger.warning(f"SQL injection attempt detected in login: email={email}, ip={client_ip}")
+                    log_sql_injection_attempt(email, None, client_ip)
+                    log_security_event('sql_injection_attempt', {'email': email, 'location': 'login'}, None, client_ip)
+                    logAccountOperation(client_ip, None, None, f"SQL injection attempt: email={email}, location=login")
+                    return json_response(self, 400, {"ok": False, "error": "Invalid input"})
+                
                 # Validate password - 验证密码
                 if password:
                     is_valid, error_msg = validate_password(password)
                     if not is_valid:
+                        app_logger.warning(f"Login rejected: invalid password format, email={email}, ip={client_ip}")
+                        log_security_event('login_rejected', {'email': email, 'reason': 'invalid_password_format'}, None, client_ip)
+                        logAccountOperation(client_ip, None, None, f"Login rejected: email={email}, reason=Invalid password format")
                         return json_response(self, 400, {"ok": False, "error": error_msg})
                 
                 # Sanitize inputs - 清理输入
@@ -127,14 +157,19 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                 password = sanitize_input(password, max_length=128)
                 
                 if not email or not password:
+                    app_logger.warning(f"Login rejected: sanitization failed, email={email}, ip={client_ip}")
+                    log_security_event('login_rejected', {'email': email, 'reason': 'sanitization_failed'}, None, client_ip)
+                    logAccountOperation(client_ip, None, None, f"Login rejected: email={email}, reason=Input sanitization failed")
                     return json_response(self, 400, {"ok": False, "error": "Invalid input"})
                 
                 # Authenticate user
-                user_info = authenticate_user(email, password)
+                user_info = authenticate_user(email, password, client_ip)
                 
                 if user_info:
                     # Create session
                     token = create_session(user_info)
+                    app_logger.info(f"Session created for login: user_id={user_info['user_id']}, role={user_info['role']}, ip={client_ip}")
+                    logAccountOperation(client_ip, user_info['user_id'], user_info['role'], f"Session created successfully: user_id={user_info['user_id']}, role={user_info['role']}")
                     return json_response(self, 200, {
                         "ok": True,
                         "token": token,
@@ -146,6 +181,7 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                         }
                     })
                 else:
+                    # Login failed - already logged in authenticate_user
                     return json_response(self, 401, {"ok": False, "error": "Invalid email or password"})
             
             elif path == "/auth/logout":
@@ -156,8 +192,14 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                 else:
                     return json_response(self, 400, {"ok": False, "error": "Invalid token"})
             elif path == "/performQuery":
+                # Get client IP address
+                client_ip = self.client_address[0] if hasattr(self, 'client_address') else self.headers.get('X-Forwarded-For', '').split(',')[0].strip() or 'unknown'
+                
                 auth = parse_bearer_role(self.headers)
                 if not auth:
+                    app_logger.warning(f"Unauthorized query attempt: ip={client_ip}")
+                    log_security_event('unauthorized_access', {'action': 'query', 'reason': 'no_auth'}, None, client_ip)
+                    logAccountOperation(client_ip, None, None, f"Unauthorized access: action=query, reason=Token error or missing")
                     return json_response(self, 401, {"error": "Unauthorized"})
 
                 data = read_json(self) or {}
@@ -169,13 +211,24 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                 limit = max(1, min(limit, 500))   # cap
                 offset = max(0, offset)
 
+                # Log query request
+                app_logger.info(f"Query request: user_id={auth.get('personId')}, role={auth.get('role')}, table={table}, ip={client_ip}")
+                logAccountOperation(client_ip, auth.get('personId'), auth.get('role'), f"Database query request: table={table}")
+
                 # Validate table name with whitelist - 使用白名单验证表名（更安全）
                 allowed_tables = ROLE_TABLES.get(auth["role"], [])
                 if not validate_table_name_whitelist(table, allowed_tables):
+                    app_logger.warning(f"Invalid table name in query: user_id={auth.get('personId')}, role={auth.get('role')}, table={table}, ip={client_ip}")
+                    log_security_event('policy_violation', {'action': 'query', 'resource': table, 'reason': 'invalid_table_name'}, auth.get('personId'), client_ip)
+                    logAccountOperation(client_ip, auth.get('personId'), auth.get('role'), f"Policy violation: action=query, table={table}, reason=Invalid table name")
                     return json_response(self, 400, {"error": "Invalid table name"})
 
                 # check if the table is allowed for the role
                 if table not in allowed_tables:
+                    app_logger.warning(f"Access denied to table: user_id={auth.get('personId')}, role={auth.get('role')}, table={table}, ip={client_ip}")
+                    log_policy_violation('read', auth.get('role'), table, auth.get('personId'), client_ip)
+                    log_unauthorized_access('query', auth.get('personId'), auth.get('role'), client_ip, table)
+                    logAccountOperation(client_ip, auth.get('personId'), auth.get('role'), f"Inappropriate access: action=query, table={table}, reason=Access denied")
                     return json_response(self, 403, {"error": "Forbidden"})
 
                 # check if the table contain the columns
@@ -324,11 +377,23 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
 
                 sql = " ".join(sqlComponents)
 
+                # Log database query access
+                log_sql_execution('SELECT', table, auth.get('personId'), auth.get('role'), sql, client_ip, True)
+                log_audit_event('query', {'table': table, 'filters': len(filters), 'limit': limit}, auth.get('personId'), auth.get('role'), client_ip, sql)
+
                 results = db_query(sql, params)
+                app_logger.info(f"Query executed successfully: user_id={auth.get('personId')}, role={auth.get('role')}, table={table}, rows={len(results)}, ip={client_ip}")
+                logAccountOperation(client_ip, auth.get('personId'), auth.get('role'), f"Database query successful: table={table}, rows_returned={len(results)}")
                 return json_response(self, 200, {"results": results})
             elif path == "/data/update":
+                # Get client IP address
+                client_ip = self.client_address[0] if hasattr(self, 'client_address') else self.headers.get('X-Forwarded-For', '').split(',')[0].strip() or 'unknown'
+                
                 auth = parse_bearer_role(self.headers)
                 if not auth:
+                    app_logger.warning(f"Unauthorized update attempt: ip={client_ip}")
+                    log_security_event('unauthorized_access', {'action': 'update', 'reason': 'no_auth'}, None, client_ip)
+                    logAccountOperation(client_ip, None, None, f"Unauthorized access: action=update, reason=Token error or missing")
                     return json_response(self, 401, {"ok": False, "error": "Unauthorized"})
                 
                 rolePrivileges = RolePrivileges.get(auth["role"], {})
@@ -337,8 +402,15 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                 key = data.get("key", {})
                 updateValues = data.get("updateValues", {})
                 
+                # Log update request
+                app_logger.info(f"Update request: user_id={auth.get('personId')}, role={auth.get('role')}, table={table}, ip={client_ip}")
+                logAccountOperation(client_ip, auth.get('personId'), auth.get('role'), f"Data update request: table={table}")
+                
                 # Validate table name - 验证表名
                 if not validate_table_name(table):
+                    app_logger.warning(f"Invalid table name in update: user_id={auth.get('personId')}, role={auth.get('role')}, table={table}, ip={client_ip}")
+                    log_security_event('policy_violation', {'action': 'update', 'resource': table, 'reason': 'invalid_table_name'}, auth.get('personId'), client_ip)
+                    logAccountOperation(client_ip, auth.get('personId'), auth.get('role'), f"Policy violation: action=update, table={table}, reason=Invalid table name")
                     return json_response(self, 400, {"ok": False, "error": "Invalid table name"})
 
                 setColumnSql = []
@@ -346,6 +418,10 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
 
                  # check if the table is allowed for the role
                 if table not in ROLE_TABLES.get(auth["role"], []):
+                    app_logger.warning(f"Access denied to table for update: user_id={auth.get('personId')}, role={auth.get('role')}, table={table}, ip={client_ip}")
+                    log_policy_violation('write', auth.get('role'), table, auth.get('personId'), client_ip)
+                    log_unauthorized_access('update', auth.get('personId'), auth.get('role'), client_ip, table)
+                    logAccountOperation(client_ip, auth.get('personId'), auth.get('role'), f"Inappropriate access: action=update, table={table}, reason=Access denied")
                     return json_response(self, 403, {"error": "Forbidden"})
                 
                 columnData = getTableColumns(table)
@@ -379,21 +455,35 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
 
                 sql = " ".join(parts) + " WHERE " + " AND ".join(where_parts)
 
+                # Log data modification
                 logDataUpdate(auth["personId"], auth["role"], sql)
+                log_sql_execution('UPDATE', table, auth.get('personId'), auth.get('role'), sql, client_ip, True)
+                log_audit_event('update', {'table': table, 'key': key, 'updateValues': list(updateValues.keys())}, auth.get('personId'), auth.get('role'), client_ip, sql)
 
                 try:
-                    db_execute(sql, params)
+                    rows_affected = db_execute(sql, params)
+                    app_logger.info(f"Update executed successfully: user_id={auth.get('personId')}, role={auth.get('role')}, table={table}, rows_affected={rows_affected}, ip={client_ip}")
+                    logAccountOperation(client_ip, auth.get('personId'), auth.get('role'), f"Data update successful: table={table}, rows_affected={rows_affected}")
                     return json_response(self, 200, {"ok": True, "updated": updateValues})
                 except Exception as e:
                     # Log error details but don't expose to client - 记录错误详情但不暴露给客户端
+                    app_logger.error(f"Update error: user_id={auth.get('personId')}, role={auth.get('role')}, table={table}, error={e}, ip={client_ip}")
+                    log_sql_execution('UPDATE', table, auth.get('personId'), auth.get('role'), sql, client_ip, False)
+                    logAccountOperation(client_ip, auth.get('personId'), auth.get('role'), f"Data update failed: table={table}, error={str(e)}")
                     import logging
                     logging.error(f"Update error: {str(e)}", exc_info=True)
                     traceback.print_exc()  # Keep for development - 开发环境保留
                     # Return generic error message - 返回通用错误信息
                     return json_response(self, 500, {"ok": False, "error": "Server error occurred"})
             elif path == "/data/delete":
+                # Get client IP address
+                client_ip = self.client_address[0] if hasattr(self, 'client_address') else self.headers.get('X-Forwarded-For', '').split(',')[0].strip() or 'unknown'
+                
                 auth = parse_bearer_role(self.headers)
                 if not auth:
+                    app_logger.warning(f"Unauthorized delete attempt: ip={client_ip}")
+                    log_security_event('unauthorized_access', {'action': 'delete', 'reason': 'no_auth'}, None, client_ip)
+                    logAccountOperation(client_ip, None, None, f"Unauthorized access: action=delete, reason=Token error or missing")
                     return json_response(self, 401, {"ok": False, "error": "Unauthorized"})
                 
                 rolePrivileges = RolePrivileges.get(auth["role"], {})
@@ -401,13 +491,24 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                 table = str(data.get("table") or "")
                 key = data.get("key", {})
                 
+                # Log delete request
+                app_logger.info(f"Delete request: user_id={auth.get('personId')}, role={auth.get('role')}, table={table}, ip={client_ip}")
+                logAccountOperation(client_ip, auth.get('personId'), auth.get('role'), f"Data delete request: table={table}")
+                
                 # Validate table name with whitelist - 使用白名单验证表名（更安全）
                 allowed_tables = ROLE_TABLES.get(auth["role"], [])
                 if not validate_table_name_whitelist(table, allowed_tables):
+                    app_logger.warning(f"Invalid table name in delete: user_id={auth.get('personId')}, role={auth.get('role')}, table={table}, ip={client_ip}")
+                    log_security_event('policy_violation', {'action': 'delete', 'resource': table, 'reason': 'invalid_table_name'}, auth.get('personId'), client_ip)
+                    logAccountOperation(client_ip, auth.get('personId'), auth.get('role'), f"Policy violation: action=delete, table={table}, reason=Invalid table name")
                     return json_response(self, 400, {"ok": False, "error": "Invalid table name"})
 
                  # check if the table is allowed for the role
                 if table not in allowed_tables:
+                    app_logger.warning(f"Access denied to table for delete: user_id={auth.get('personId')}, role={auth.get('role')}, table={table}, ip={client_ip}")
+                    log_policy_violation('delete', auth.get('role'), table, auth.get('personId'), client_ip)
+                    log_unauthorized_access('delete', auth.get('personId'), auth.get('role'), client_ip, table)
+                    logAccountOperation(client_ip, auth.get('personId'), auth.get('role'), f"Inappropriate access: action=delete, table={table}, reason=Access denied")
                     return json_response(self, 403, {"error": "Forbidden"})
                 
                 columnData = getTableColumns(table)
@@ -433,21 +534,35 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
 
                 sql = " ".join(parts) + " WHERE " + " AND ".join(where_parts)
 
+                # Log data modification
                 logDataUpdate(auth["personId"], auth["role"], sql)
+                log_sql_execution('DELETE', table, auth.get('personId'), auth.get('role'), sql, client_ip, True)
+                log_audit_event('delete', {'table': table, 'key': key}, auth.get('personId'), auth.get('role'), client_ip, sql)
 
                 try:
-                    db_execute(sql, params)
+                    rows_affected = db_execute(sql, params)
+                    app_logger.info(f"Delete executed successfully: user_id={auth.get('personId')}, role={auth.get('role')}, table={table}, rows_affected={rows_affected}, ip={client_ip}")
+                    logAccountOperation(client_ip, auth.get('personId'), auth.get('role'), f"Data delete successful: table={table}, rows_affected={rows_affected}")
                     return json_response(self, 200, {"ok": True, "deleted": key})
                 except Exception as e:
                     # Log error details but don't expose to client - 记录错误详情但不暴露给客户端
+                    app_logger.error(f"Delete error: user_id={auth.get('personId')}, role={auth.get('role')}, table={table}, error={e}, ip={client_ip}")
+                    log_sql_execution('DELETE', table, auth.get('personId'), auth.get('role'), sql, client_ip, False)
+                    logAccountOperation(client_ip, auth.get('personId'), auth.get('role'), f"Data delete failed: table={table}, error={str(e)}")
                     import logging
                     logging.error(f"Delete error: {str(e)}", exc_info=True)
                     traceback.print_exc()  # Keep for development - 开发环境保留
                     # Return generic error message - 返回通用错误信息
                     return json_response(self, 500, {"ok": False, "error": "Server error occurred"})
             elif path == "/data/insert":
+                # Get client IP address
+                client_ip = self.client_address[0] if hasattr(self, 'client_address') else self.headers.get('X-Forwarded-For', '').split(',')[0].strip() or 'unknown'
+                
                 auth = parse_bearer_role(self.headers)
                 if not auth:
+                    app_logger.warning(f"Unauthorized insert attempt: ip={client_ip}")
+                    log_security_event('unauthorized_access', {'action': 'insert', 'reason': 'no_auth'}, None, client_ip)
+                    logAccountOperation(client_ip, None, None, f"Unauthorized access: action=insert, reason=Token error or missing")
                     return json_response(self, 401, {"ok": False, "error": "Unauthorized"})
                 
                 rolePrivileges = RolePrivileges.get(auth["role"], {})
@@ -456,13 +571,24 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                 updateValues = data.get("insertValues", {})
                 params = []
                 
+                # Log insert request
+                app_logger.info(f"Insert request: user_id={auth.get('personId')}, role={auth.get('role')}, table={table}, ip={client_ip}")
+                logAccountOperation(client_ip, auth.get('personId'), auth.get('role'), f"Data insert request: table={table}")
+                
                 # Validate table name with whitelist - 使用白名单验证表名（更安全）
                 allowed_tables = ROLE_TABLES.get(auth["role"], [])
                 if not validate_table_name_whitelist(table, allowed_tables):
+                    app_logger.warning(f"Invalid table name in insert: user_id={auth.get('personId')}, role={auth.get('role')}, table={table}, ip={client_ip}")
+                    log_security_event('policy_violation', {'action': 'insert', 'resource': table, 'reason': 'invalid_table_name'}, auth.get('personId'), client_ip)
+                    logAccountOperation(client_ip, auth.get('personId'), auth.get('role'), f"Policy violation: action=insert, table={table}, reason=Invalid table name")
                     return json_response(self, 400, {"ok": False, "error": "Invalid table name"})
 
                  # check if the table is allowed for the role
                 if table not in allowed_tables:
+                    app_logger.warning(f"Access denied to table for insert: user_id={auth.get('personId')}, role={auth.get('role')}, table={table}, ip={client_ip}")
+                    log_policy_violation('write', auth.get('role'), table, auth.get('personId'), client_ip)
+                    log_unauthorized_access('insert', auth.get('personId'), auth.get('role'), client_ip, table)
+                    logAccountOperation(client_ip, auth.get('personId'), auth.get('role'), f"Inappropriate access: action=insert, table={table}, reason=Access denied")
                     return json_response(self, 403, {"error": "Forbidden"})
                 
                 columnData = getTableColumns(table)
@@ -487,13 +613,21 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                 sql = f"INSERT INTO `{table}` ({ColumnsStr}) VALUES ({placeholders})"
                 params = [updateValues[c] for c in updateValueColumns]
 
+                # Log data modification
                 logDataUpdate(auth["personId"], auth["role"], sql)
+                log_sql_execution('INSERT', table, auth.get('personId'), auth.get('role'), sql, client_ip, True)
+                log_audit_event('insert', {'table': table, 'columns': updateValueColumns}, auth.get('personId'), auth.get('role'), client_ip, sql)
 
                 try:
-                    db_execute(sql, params)
+                    rows_affected = db_execute(sql, params)
+                    app_logger.info(f"Insert executed successfully: user_id={auth.get('personId')}, role={auth.get('role')}, table={table}, rows_affected={rows_affected}, ip={client_ip}")
+                    logAccountOperation(client_ip, auth.get('personId'), auth.get('role'), f"Data insert successful: table={table}, rows_affected={rows_affected}")
                     return json_response(self, 200, {"ok": True, "insert": updateValueColumns})
                 except Exception as e:
                     # Log error details but don't expose to client - 记录错误详情但不暴露给客户端
+                    app_logger.error(f"Insert error: user_id={auth.get('personId')}, role={auth.get('role')}, table={table}, error={e}, ip={client_ip}")
+                    log_sql_execution('INSERT', table, auth.get('personId'), auth.get('role'), sql, client_ip, False)
+                    logAccountOperation(client_ip, auth.get('personId'), auth.get('role'), f"Data insert failed: table={table}, error={str(e)}")
                     import logging
                     logging.error(f"Insert error: {str(e)}", exc_info=True)
                     traceback.print_exc()  # Keep for development - 开发环境保留

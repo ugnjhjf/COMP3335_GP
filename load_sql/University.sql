@@ -12,7 +12,7 @@ CREATE TABLE guardians (
 GuaID int NOT NULL AUTO_INCREMENT,
 last_name varchar(50) NOT NULL,
 first_name varchar(50) NOT NULL,
-email varchar(100) NOT NULL,
+email varchar(100) NOT NULL UNIQUE,
 phone varchar(20) NOT NULL,
 password varchar(255) NOT NULL,
 salt varchar(64) NOT NULL,
@@ -62,7 +62,7 @@ first_name varchar(50) NOT NULL,
 gender char(1) NOT NULL,
 Id_No varchar(20) NOT NULL,
 address text,
-email varchar(100) NOT NULL,
+email varchar(100) NOT NULL UNIQUE,
 phone varchar(20) NOT NULL,
 department varchar(50) NOT NULL,
 role varchar(50) NOT NULL,
@@ -92,7 +92,7 @@ first_name varchar(50) NOT NULL,
 gender char(1) NOT NULL,
 Id_No varchar(20) NOT NULL,
 address text,
-email varchar(100) NOT NULL,
+email varchar(100) NOT NULL UNIQUE,
 phone char(8) NOT NULL,
 enrollment_year year NOT NULL,
 GuaID int DEFAULT NULL,
@@ -222,6 +222,21 @@ CREATE TABLE dataUpdateLog (
   user_role        VARCHAR(64) NOT NULL,
   sql_text    TEXT NOT NULL,
   PRIMARY KEY (LogID)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+DROP TABLE IF EXISTS accountLog;
+CREATE TABLE accountLog (
+  logID       INT NOT NULL AUTO_INCREMENT,
+  timestamp   DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  ip          VARCHAR(45) NOT NULL,
+  user_id     VARCHAR(64),
+  user_role   VARCHAR(64),
+  logContent  TEXT NOT NULL,
+  PRIMARY KEY (logID),
+  INDEX idx_timestamp (timestamp),
+  INDEX idx_user_id (user_id),
+  INDEX idx_user_role (user_role),
+  INDEX idx_ip (ip)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 SET TIME_ZONE=@OLD_TIME_ZONE;
