@@ -19,7 +19,8 @@ ROLE_TABLES = {
 RolePrivileges = {
     "student": {
         "students": {
-            "read": True, 
+            "read": ["StuID", "last_name", "first_name", "gender", "Id_No",
+                "address", "phone", "email", "guardian_relation"],
             "range": "self",
             "insert": [], # no insert allowed
             "update": ["last_name", "first_name", "gender", "Id_No", "address", "phone", "email", "guardian_relation"],
@@ -42,7 +43,7 @@ RolePrivileges = {
     },
     "guardian": {
         "guardians": {
-            "read": True, 
+            "read": ["GuaID", "last_name", "first_name", "phone", "email"],
             "range": "self",
             "insert": [], # no insert allowed
             "update": ["last_name","first_name","email","phone"],
@@ -74,7 +75,8 @@ RolePrivileges = {
     },
     "dro": {
         "disciplinary_records": {
-            "read": True, 
+            "read": ["StfID", "last_name", "first_name", "gender", "Id_No",
+                "address", "phone", "email", "guardian_relation"], 
             "range": "All",
             "insert": ['StuID', 'date', 'StfID', 'descriptions'],
             "update": ["date", "description"],
@@ -245,3 +247,17 @@ def buildRangeFilter(auth, table_name, currentTableName="target"):
             whereSql, params = join_and_restrict_student_guardian()
 
     return joinSql, whereSql, params
+
+def retrieveReadableColumns(table_priv, available_columns):
+    read_perm = table_priv.get("read")
+    if read_perm is True:
+        return set(available_columns)
+    if isinstance(read_perm, (list, tuple, set)):
+        lowermap = {col.lower(): col for col in available_columns}
+        allowed = set()
+        for col_name in read_perm:
+            key = str(col_name).lower()
+            if key in lowermap:
+                allowed.add(lowermap[key])
+        return allowed
+    return set()
