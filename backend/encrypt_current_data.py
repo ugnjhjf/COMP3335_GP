@@ -9,7 +9,7 @@ from encryption import (
 )
 
 
-def alter_column_type(conn, table: str, column: str) -> None:
+def alterColumnType(conn, table: str, column: str) -> None:
     column_type = getColumnTypeDefinition(table, column)
     nullable = isNullableColumn(table, column)
     null_clause = "NULL" if nullable else "NOT NULL"
@@ -22,7 +22,7 @@ def alter_column_type(conn, table: str, column: str) -> None:
             print(f"! Skipped altering {table}.{column}: {exc}")
 
 
-def encrypt_column(conn, table: str, column: str, key: str) -> None:
+def encryptColumn(conn, table: str, column: str, key: str) -> None:
     sql = f"""
         UPDATE `{table}`
            SET `{column}` = AES_ENCRYPT(CONVERT(`{column}` USING utf8mb4), %s)
@@ -35,25 +35,18 @@ def encrypt_column(conn, table: str, column: str, key: str) -> None:
         print(f"✓ Encrypted {cur.rowcount} row(s) in {table}.{column}")
 
 
-def process_table(conn, table: str, columns: Tuple[str, ...], key: str) -> None:
+def processTable(conn, table: str, columns: Tuple[str, ...], key: str) -> None:
     for column in columns:
-        alter_column_type(conn, table, column)
-        encrypt_column(conn, table, column, key)
+        alterColumnType(conn, table, column)
+        encryptColumn(conn, table, column, key)
 
 
 def main() -> None:
-    """
-    Main function to encrypt existing data
-    Note: This script may require admin-level DBMS user permissions for ALTER TABLE operations
-    """
     key = getEncryptionKey()
-    # Use 'aro' role as default (has broader permissions)
-    # For ALTER TABLE operations, may need to run with admin DBMS user separately
-    role = 'aro'
-    conn = get_db_connection(role)
+    conn = get_db_connection()
     try:
         for table, columns_meta in ENCRYPTED_COLUMNS.items():
-            process_table(conn, table, tuple(columns_meta.keys()), key)
+            processTable(conn, table, tuple(columns_meta.keys()), key)
     finally:
         conn.close()
 

@@ -1240,3 +1240,64 @@
 2025-11-15 15:45:57 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
 2025-11-15 15:45:57 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
 2025-11-15 15:45:57 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=students, rows=0, ip=127.0.0.1
+2025-11-15 17:29:20 - app - ERROR - [db_connector.py:72] - Error creating database connection for role aro: (2003, "Can't connect to MySQL server on '127.0.0.1' ([WinError 10061] 無法連線，因為目標電腦拒絕連線。)")
+2025-11-15 17:29:40 - app - ERROR - [db_connector.py:72] - Error creating database connection for role aro: (2003, "Can't connect to MySQL server on '127.0.0.1' ([WinError 10061] 無法連線，因為目標電腦拒絕連線。)")
+2025-11-15 18:27:02 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 18:27:02 - app - ERROR - [db_connector.py:72] - Error creating database connection for role auth: (1045, "Access denied for user 'auth_user'@'172.18.0.1' (using password: YES)")
+2025-11-15 18:27:28 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 18:27:28 - app - ERROR - [db_connector.py:72] - Error creating database connection for role auth: (1045, "Access denied for user 'auth_user'@'172.18.0.1' (using password: YES)")
+2025-11-15 18:46:26 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 18:46:27 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 18:46:27 - app - INFO - [auth.py:115] - Login successful: user_id=100, role=student, email=test_student@example.com, ip=127.0.0.1
+2025-11-15 18:46:27 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 18:46:27 - app - INFO - [audit_logger.py:48] - AUDIT: login_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 18:46:28 - app - INFO - [auth.py:250] - Session created for user 100 with role student
+2025-11-15 18:46:28 - app - INFO - [api_handler.py:202] - Session created for login: user_id=100, role=student, ip=127.0.0.1
+2025-11-15 18:46:41 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 18:46:42 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 18:46:42 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 18:46:42 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 18:46:42 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-15 18:46:42 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=students, rows=1, ip=127.0.0.1
+2025-11-15 18:47:20 - app - INFO - [api_handler.py:497] - Update request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 18:47:21 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 18:47:21 - app - INFO - [audit_logger.py:48] - AUDIT: sql_update_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 18:47:21 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 18:47:22 - app - INFO - [audit_logger.py:48] - AUDIT: update - user=100, role=student, ip=127.0.0.1
+2025-11-15 18:47:22 - app - INFO - [api_handler.py:571] - Update executed successfully: user_id=100, role=student, table=students, rows_affected=1, ip=127.0.0.1
+2025-11-15 18:47:22 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 18:47:23 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 18:47:23 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 18:47:23 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 18:47:23 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-15 18:47:23 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=students, rows=1, ip=127.0.0.1
+2025-11-15 18:47:25 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=grades, ip=127.0.0.1
+2025-11-15 18:47:25 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 18:47:25 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 18:47:25 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 18:47:26 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-15 18:47:26 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=grades, rows=3, ip=127.0.0.1
+2025-11-15 18:47:26 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=grades, ip=127.0.0.1
+2025-11-15 18:47:26 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 18:47:27 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 18:47:27 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 18:47:27 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-15 18:47:27 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=grades, rows=3, ip=127.0.0.1
+2025-11-15 18:47:27 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=grades, ip=127.0.0.1
+2025-11-15 18:47:27 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 18:47:28 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 18:47:28 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 18:47:28 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-15 18:47:28 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=grades, rows=3, ip=127.0.0.1
+2025-11-15 18:47:29 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 18:47:29 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 18:47:29 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 18:47:29 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 18:47:29 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-15 18:47:30 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=students, rows=1, ip=127.0.0.1
+2025-11-15 18:47:30 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 18:47:30 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 18:47:31 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 18:47:31 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 18:47:31 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-15 18:47:31 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=students, rows=1, ip=127.0.0.1
