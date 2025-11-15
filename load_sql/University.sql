@@ -1,5 +1,63 @@
+DROP DATABASE IF EXISTS ComputingU;  
 CREATE DATABASE ComputingU;
 USE ComputingU;
+
+-- Create DBMS users for role-based access control
+-- 创建基于角色的数据库访问控制用户
+DROP USER IF EXISTS 'student'@'localhost';
+DROP USER IF EXISTS 'guardian'@'localhost';
+DROP USER IF EXISTS 'aro'@'localhost';
+DROP USER IF EXISTS 'dro'@'localhost';
+
+CREATE USER 'student'@'localhost' IDENTIFIED BY 'student_password';
+CREATE USER 'guardian'@'localhost' IDENTIFIED BY 'guardian_password';
+CREATE USER 'aro'@'localhost' IDENTIFIED BY 'aro_password';
+CREATE USER 'dro'@'localhost' IDENTIFIED BY 'dro_password';
+
+-- Grant permissions to student user
+-- Student can SELECT and UPDATE on students table (self range enforced by application)
+-- Student can SELECT on grades and disciplinary_records (self range enforced by application)
+GRANT SELECT ON ComputingU.students TO 'student'@'localhost';
+GRANT UPDATE (last_name, first_name, gender, Id_No, address, phone, email, guardian_relation) ON ComputingU.students TO 'student'@'localhost';
+GRANT SELECT ON ComputingU.grades TO 'student'@'localhost';
+GRANT SELECT ON ComputingU.disciplinary_records TO 'student'@'localhost';
+
+-- Grant permissions to guardian user
+-- Guardian can SELECT and UPDATE on guardians table (self range enforced by application)
+-- Guardian can SELECT on grades and disciplinary_records (children range enforced by application)
+GRANT SELECT ON ComputingU.guardians TO 'guardian'@'localhost';
+GRANT UPDATE (last_name, first_name, email, phone) ON ComputingU.guardians TO 'guardian'@'localhost';
+GRANT SELECT ON ComputingU.grades TO 'guardian'@'localhost';
+GRANT SELECT ON ComputingU.disciplinary_records TO 'guardian'@'localhost';
+
+-- Grant permissions to aro user (Academic Records Officer)
+-- ARO has full access to grades table
+GRANT SELECT, INSERT, UPDATE, DELETE ON ComputingU.grades TO 'aro'@'localhost';
+-- ARO needs to read students and courses for foreign key relationships
+GRANT SELECT ON ComputingU.students TO 'aro'@'localhost';
+GRANT SELECT ON ComputingU.courses TO 'aro'@'localhost';
+
+-- Grant permissions to dro user (Disciplinary Records Officer)
+-- DRO has full access to disciplinary_records table
+GRANT SELECT, INSERT, UPDATE, DELETE ON ComputingU.disciplinary_records TO 'dro'@'localhost';
+-- DRO needs to read students and staffs for foreign key relationships
+GRANT SELECT ON ComputingU.students TO 'dro'@'localhost';
+GRANT SELECT ON ComputingU.staffs TO 'dro'@'localhost';
+
+-- Grant INSERT permission on audit/log tables to all users
+-- All users need to log their operations
+GRANT INSERT ON ComputingU.audit_log TO 'student'@'localhost', 'guardian'@'localhost', 'aro'@'localhost', 'dro'@'localhost';
+GRANT INSERT ON ComputingU.security_events TO 'student'@'localhost', 'guardian'@'localhost', 'aro'@'localhost', 'dro'@'localhost';
+GRANT INSERT ON ComputingU.access_violations TO 'student'@'localhost', 'guardian'@'localhost', 'aro'@'localhost', 'dro'@'localhost';
+GRANT INSERT ON ComputingU.dataUpdateLog TO 'student'@'localhost', 'guardian'@'localhost', 'aro'@'localhost', 'dro'@'localhost';
+GRANT INSERT ON ComputingU.accountLog TO 'student'@'localhost', 'guardian'@'localhost', 'aro'@'localhost', 'dro'@'localhost';
+
+-- Grant session management permissions to all users
+-- All users need to manage their own sessions
+GRANT SELECT, INSERT, UPDATE, DELETE ON ComputingU.sessions TO 'student'@'localhost', 'guardian'@'localhost', 'aro'@'localhost', 'dro'@'localhost';
+
+-- Flush privileges to apply changes
+FLUSH PRIVILEGES;
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;

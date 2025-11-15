@@ -19,12 +19,11 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 # Import test functions
 # 导入测试函数
-from attack.test_login_injection import test_login_sql_injection
-from attack.test_query_injection import test_query_sql_injection
-from attack.test_update_injection import test_update_sql_injection
-from attack.test_insert_injection import test_insert_sql_injection
-from attack.test_delete_injection import test_delete_sql_injection
-from attack.test_security_monitoring import test_security_monitoring
+from attack.sql.test_query_injection import test_query_sql_injection
+from attack.sql.test_update_injection import test_update_sql_injection
+from attack.sql.test_insert_injection import test_insert_sql_injection
+from attack.sql.test_delete_injection import test_delete_sql_injection
+from attack.sql.test_security_monitoring import test_security_monitoring
 
 def get_auth_token(base_url: str, email: str = None, password: str = None) -> str:
     """
@@ -103,7 +102,7 @@ def get_auth_token(base_url: str, email: str = None, password: str = None) -> st
     print("          --email test_student@example.com \\")
     print("          --password StudentTest123")
     print("\n⚠️  Some tests will be skipped without authentication")
-    print("   (Login injection tests will still run)")
+    print("   (Login injection tests are in auth/auth_sql_injection_attack.py)")
     
     return None
 
@@ -149,80 +148,73 @@ def run_all_tests(base_url: str = "http://127.0.0.1:8000",
         "tests": {}
     }
     
-    # Test 1: Login injection
-    # 测试1: 登录注入
-    print("Test 1: Testing login endpoint SQL injection...")
-    print("测试1: 测试登录端点SQL注入...")
-    login_results = test_login_sql_injection(base_url)
-    all_results["tests"]["login_injection"] = login_results
-    print(f"  Completed: {len(login_results)} tests")
-    print(f"  完成: {len(login_results)} 个测试")
-    print()
+    # Note: Login injection tests are now in auth/auth_sql_injection_attack.py
+    # 注意：登录注入测试现在在 auth/auth_sql_injection_attack.py 中
     
-    # Test 2: Query injection
-    # 测试2: 查询注入
+    # Test 1: Query injection
+    # 测试1: 查询注入
     if auth_token:
-        print("Test 2: Testing query endpoint SQL injection...")
-        print("测试2: 测试查询端点SQL注入...")
+        print("Test 1: Testing query endpoint SQL injection...")
+        print("测试1: 测试查询端点SQL注入...")
         query_results = test_query_sql_injection(base_url, auth_token)
         all_results["tests"]["query_injection"] = query_results
         print(f"  Completed: {len(query_results)} tests")
         print(f"  完成: {len(query_results)} 个测试")
     else:
-        print("Test 2: Skipped (no auth token)")
-        print("测试2: 已跳过（无认证令牌）")
+        print("Test 1: Skipped (no auth token)")
+        print("测试1: 已跳过（无认证令牌）")
         all_results["tests"]["query_injection"] = []
     print()
     
-    # Test 3: Update injection
-    # 测试3: 更新注入
+    # Test 2: Update injection
+    # 测试2: 更新注入
     if auth_token:
-        print("Test 3: Testing update endpoint SQL injection...")
-        print("测试3: 测试更新端点SQL注入...")
+        print("Test 2: Testing update endpoint SQL injection...")
+        print("测试2: 测试更新端点SQL注入...")
         update_results = test_update_sql_injection(base_url, auth_token)
         all_results["tests"]["update_injection"] = update_results
         print(f"  Completed: {len(update_results)} tests")
         print(f"  完成: {len(update_results)} 个测试")
     else:
-        print("Test 3: Skipped (no auth token)")
-        print("测试3: 已跳过（无认证令牌）")
+        print("Test 2: Skipped (no auth token)")
+        print("测试2: 已跳过（无认证令牌）")
         all_results["tests"]["update_injection"] = []
     print()
     
-    # Test 4: Insert injection
-    # 测试4: 插入注入
+    # Test 3: Insert injection
+    # 测试3: 插入注入
     if auth_token:
-        print("Test 4: Testing insert endpoint SQL injection...")
-        print("测试4: 测试插入端点SQL注入...")
+        print("Test 3: Testing insert endpoint SQL injection...")
+        print("测试3: 测试插入端点SQL注入...")
         insert_results = test_insert_sql_injection(base_url, auth_token)
         all_results["tests"]["insert_injection"] = insert_results
         print(f"  Completed: {len(insert_results)} tests")
         print(f"  完成: {len(insert_results)} 个测试")
     else:
-        print("Test 4: Skipped (no auth token)")
-        print("测试4: 已跳过（无认证令牌）")
+        print("Test 3: Skipped (no auth token)")
+        print("测试3: 已跳过（无认证令牌）")
         all_results["tests"]["insert_injection"] = []
     print()
     
-    # Test 5: Delete injection
-    # 测试5: 删除注入
+    # Test 4: Delete injection
+    # 测试4: 删除注入
     if auth_token:
-        print("Test 5: Testing delete endpoint SQL injection...")
-        print("测试5: 测试删除端点SQL注入...")
+        print("Test 4: Testing delete endpoint SQL injection...")
+        print("测试4: 测试删除端点SQL注入...")
         delete_results = test_delete_sql_injection(base_url, auth_token)
         all_results["tests"]["delete_injection"] = delete_results
         print(f"  Completed: {len(delete_results)} tests")
         print(f"  完成: {len(delete_results)} 个测试")
     else:
-        print("Test 5: Skipped (no auth token)")
-        print("测试5: 已跳过（无认证令牌）")
+        print("Test 4: Skipped (no auth token)")
+        print("测试4: 已跳过（无认证令牌）")
         all_results["tests"]["delete_injection"] = []
     print()
     
-    # Test 6: Security monitoring
-    # 测试6: 安全监控
-    print("Test 6: Testing security monitoring...")
-    print("测试6: 测试安全监控...")
+    # Test 5: Security monitoring
+    # 测试5: 安全监控
+    print("Test 5: Testing security monitoring...")
+    print("测试5: 测试安全监控...")
     monitoring_results = test_security_monitoring(base_url, auth_token)
     all_results["tests"]["security_monitoring"] = monitoring_results
     print(f"  Completed: {len(monitoring_results)} tests")

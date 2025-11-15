@@ -11,6 +11,39 @@ from typing import List, Tuple
 # Target URL for testing
 BASE_URL = "http://127.0.0.1:8000"
 
+# Test user credentials from setup_test_user.py
+TEST_STUDENT_EMAIL = "test_student@example.com"
+TEST_STUDENT_PASSWORD = "StudentTest123"
+
+def get_valid_token() -> str:
+    """
+    Get a valid authentication token for testing
+    Uses test user credentials from setup_test_user.py
+    
+    Returns:
+        Valid token string or None if login fails
+    """
+    try:
+        response = requests.post(
+            f"{BASE_URL}/auth/login",
+            json={
+                "email": TEST_STUDENT_EMAIL,
+                "password": TEST_STUDENT_PASSWORD
+            },
+            timeout=5
+        )
+        
+        if response.status_code == 200:
+            data = response.json()
+            if data.get("ok") and data.get("token"):
+                print(f"[Info] Successfully obtained valid token for {TEST_STUDENT_EMAIL}")
+                return data["token"]
+    except Exception as e:
+        print(f"[Warning] Could not get valid token: {e}")
+        print(f"[Info] Session replay test will be skipped")
+    
+    return None
+
 def generate_fake_token(length: int = 32) -> str:
     """Generate fake token"""
     characters = string.ascii_letters + string.digits + "-_"
@@ -215,18 +248,30 @@ def test_session_attacks():
     expired_success = expired_session_attack()
     
     # Test 3: Session replay attack (if valid token available)
-    # Note: This test requires a valid token first
-    # In actual testing, you can login first to get a valid token
-    print("\n[Note] Session replay attack test requires a valid token")
-    print("       You can login first to get a valid token, then run the test")
+    # Get a valid token using test user credentials
+    print("\n[Info] Attempting to get valid token for session replay test...")
+    valid_token = get_valid_token()
+    
+    if valid_token:
+        replay_success = session_replay_attack(valid_token)
+    else:
+        print("\n[Skip] Session replay attack test skipped - could not obtain valid token")
+        print("       Make sure test users are set up: python backend/setup_test_user.py")
+        replay_success = False
     
     # Summary
     print("\n" + "=" * 60)
     print("[Test Summary]")
     print(f"  Session fixation attack: {'Vulnerable' if fixation_success else 'Secure'}")
     print(f"  Expired session attack: {'Vulnerable' if expired_success else 'Secure'}")
+    if valid_token:
+        print(f"  Session replay attack: {'Vulnerable' if replay_success else 'Secure'}")
     
-    if fixation_success or expired_success:
+    vulnerabilities = [fixation_success, expired_success]
+    if valid_token:
+        vulnerabilities.append(replay_success)
+    
+    if any(vulnerabilities):
         print("\n[Security Warning] System has session management vulnerabilities!")
         print("Recommendations:")
         print("  1. Use secure random token generation (implemented)")

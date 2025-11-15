@@ -2,9 +2,10 @@
 """
 Safe Test User Setup Script
 Only modifies specific test accounts, does not affect other users or system functionality
+Note: This script may require admin-level DBMS user permissions for UPDATE operations
 """
 import hashlib
-from db_connector import get_db_connection, return_db_connection
+from db_connector import get_db_connection
 
 
 def hash_password(password, salt):
@@ -16,8 +17,12 @@ def setup_safe_test_users():
     """
     Safely setup test users - only modifies specific test accounts
     Will not affect other users or system functionality
+    Note: Uses 'student' role as default, but UPDATE operations may require admin permissions
     """
-    conn = get_db_connection()
+    # Use 'student' role as default
+    # For UPDATE operations on students/staffs/guardians, may need admin DBMS user
+    role = 'student'
+    conn = get_db_connection(role)
     try:
         with conn.cursor() as cur:
             print("Starting test account setup...")
@@ -121,7 +126,9 @@ def setup_safe_test_users():
 def verify_test_accounts():
     """Verify test accounts were set up successfully"""
     print("\nVerifying test accounts...")
-    conn = get_db_connection()
+    # Use 'student' role for verification (read-only operations)
+    role = 'student'
+    conn = get_db_connection(role)
     try:
         with conn.cursor() as cur:
             # Verify student account
@@ -129,7 +136,7 @@ def verify_test_accounts():
             student = cur.fetchone()
             if student:
                 print(
-                    f"✓ Student account verified: ID={student[0]}, Email={student[1]}"
+                    f"✓ Student account verified: ID={student['StuID']}, Email={student['email']}"
                 )
             else:
                 print("⚠ Student account verification failed")
@@ -138,7 +145,7 @@ def verify_test_accounts():
             cur.execute("SELECT StfID, email FROM staffs WHERE StfID = 5001")
             staff = cur.fetchone()
             if staff:
-                print(f"✓ Staff account verified: ID={staff[0]}, Email={staff[1]}")
+                print(f"✓ Staff account verified: ID={staff['StfID']}, Email={staff['email']}")
             else:
                 print("⚠ Staff account verification failed")
 
@@ -147,7 +154,7 @@ def verify_test_accounts():
             guardian = cur.fetchone()
             if guardian:
                 print(
-                    f"✓ Guardian account verified: ID={guardian[0]}, Email={guardian[1]}"
+                    f"✓ Guardian account verified: ID={guardian['GuaID']}, Email={guardian['email']}"
                 )
             else:
                 print("⚠ Guardian account verification failed")
@@ -155,44 +162,8 @@ def verify_test_accounts():
     except Exception as e:
         print(f"Error during verification: {e}")
     finally:
-        return_db_connection(conn)
-        print("\n数据库连接已安全关闭")
-
-
-def verify_test_accounts():
-    """验证测试账户是否设置成功"""
-    print("\n正在验证测试账户...")
-    conn = get_db_connection()
-    try:
-        with conn.cursor() as cur:
-            # 验证学生账户
-            cur.execute("SELECT StuID, email FROM students WHERE StuID = 100")
-            student = cur.fetchone()
-            if student:
-                print(f"✓ 学生账户验证成功: ID={student[0]}, 邮箱={student[1]}")
-            else:
-                print("⚠ 学生账户验证失败")
-
-            # 验证教职工账户
-            cur.execute("SELECT StfID, email FROM staffs WHERE StfID = 5001")
-            staff = cur.fetchone()
-            if staff:
-                print(f"✓ 教职工账户验证成功: ID={staff[0]}, 邮箱={staff[1]}")
-            else:
-                print("⚠ 教职工账户验证失败")
-
-            # 验证监护人账户
-            cur.execute("SELECT GuaID, email FROM guardians WHERE GuaID = 1000")
-            guardian = cur.fetchone()
-            if guardian:
-                print(f"✓ 监护人账户验证成功: ID={guardian[0]}, 邮箱={guardian[1]}")
-            else:
-                print("⚠ 监护人账户验证失败")
-
-    except Exception as e:
-        print(f"验证过程中发生错误: {e}")
-    finally:
-        return_db_connection(conn)
+        conn.close()
+        print("\nDatabase connection safely closed")
 
 
 if __name__ == "__main__":

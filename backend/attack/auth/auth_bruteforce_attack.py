@@ -118,8 +118,13 @@ def test_common_passwords():
         "test123"
     ]
     
-    # Test email (modify according to actual situation)
-    test_email = "alice.student@university.edu"
+    # Test email - using test user from setup_test_user.py
+    test_email = "test_student@example.com"
+    test_password = "StudentTest123"  # Expected password from setup_test_user.py
+    
+    # Add the expected password to the list if not already present
+    if test_password not in common_passwords:
+        common_passwords.append(test_password)
     
     success, token = brute_force_attack(test_email, common_passwords)
     

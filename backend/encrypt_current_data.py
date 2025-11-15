@@ -42,8 +42,15 @@ def process_table(conn, table: str, columns: Tuple[str, ...], key: str) -> None:
 
 
 def main() -> None:
+    """
+    Main function to encrypt existing data
+    Note: This script may require admin-level DBMS user permissions for ALTER TABLE operations
+    """
     key = getEncryptionKey()
-    conn = get_db_connection()
+    # Use 'aro' role as default (has broader permissions)
+    # For ALTER TABLE operations, may need to run with admin DBMS user separately
+    role = 'aro'
+    conn = get_db_connection(role)
     try:
         for table, columns_meta in ENCRYPTED_COLUMNS.items():
             process_table(conn, table, tuple(columns_meta.keys()), key)

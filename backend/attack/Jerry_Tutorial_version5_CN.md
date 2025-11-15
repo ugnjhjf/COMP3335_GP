@@ -297,12 +297,13 @@ python backend/attack/run_sql_security_tests.py \
 
 测试报告包含以下部分：
 
-1. **LOGIN INJECTION** - 登录端点测试
-2. **QUERY INJECTION** - 查询端点测试
-3. **UPDATE INJECTION** - 更新端点测试
-4. **INSERT INJECTION** - 插入端点测试
-5. **DELETE INJECTION** - 删除端点测试
-6. **SECURITY MONITORING** - 安全监控测试
+1. **QUERY INJECTION** - 查询端点测试
+2. **UPDATE INJECTION** - 更新端点测试
+3. **INSERT INJECTION** - 插入端点测试
+4. **DELETE INJECTION** - 删除端点测试
+5. **SECURITY MONITORING** - 安全监控测试
+
+**注意:** 登录端点SQL注入测试现在在 `auth/auth_sql_injection_attack.py` 中，可以单独运行。
 
 ### 6.2 摘要部分
 
@@ -721,33 +722,43 @@ Errors/Skipped: 0-3 ⚠️
 
 测试套件会测试：
 
-1. **登录端点** (`/auth/login`)
+### Auth模块测试 (auth/)
+1. **登录端点** (`/auth/login`) - `auth/auth_sql_injection_attack.py`
    - OR注入
    - 注释注入
    - 联合查询注入
    - 布尔注入
    - 时间盲注
    - 堆叠查询
-   - 双引号注入
+   - 编码绕过等
 
-2. **查询端点** (`/performQuery`)
+2. **暴力破解攻击** - `auth/auth_bruteforce_attack.py`
+   - 常见弱密码列表测试
+
+3. **会话攻击** - `auth/auth_session_attack.py`
+   - 会话固定攻击
+   - 会话重放攻击
+   - 过期会话攻击
+
+### 端点SQL注入测试 (run_sql_security_tests.py)
+4. **查询端点** (`/performQuery`)
    - 过滤器值注入
    - 表名注入
    - 列名注入
    - 操作符注入
 
-3. **更新端点** (`/data/update`)
+5. **更新端点** (`/data/update`)
    - 更新值注入
    - 主键注入
 
-4. **插入端点** (`/data/insert`)
+6. **插入端点** (`/data/insert`)
    - 插入值注入
    - 列名注入
 
-5. **删除端点** (`/data/delete`)
+7. **删除端点** (`/data/delete`)
    - 主键注入
 
-6. **安全监控**
+8. **安全监控**
    - 验证SQL注入尝试是否被记录
 
 ---

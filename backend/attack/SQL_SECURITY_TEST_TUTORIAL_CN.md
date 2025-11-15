@@ -64,40 +64,54 @@ pip install requests
 
 ```
 backend/attack/
-├── test_login_injection.py          # 登录端点测试
-├── test_query_injection.py           # 查询端点测试
-├── test_update_injection.py         # 更新端点测试
-├── test_insert_injection.py         # 插入端点测试
-├── test_delete_injection.py         # 删除端点测试
-├── test_security_monitoring.py      # 安全监控测试
-├── run_sql_security_tests.py        # 主测试运行程序
-├── SQL_SECURITY_TEST_CHANGELOG.md   # 变更日志
-└── SQL_SECURITY_TEST_TUTORIAL_CN.md # 本教程
+├── auth/
+│   ├── auth_bruteforce_attack.py      # 暴力破解攻击测试
+│   ├── auth_session_attack.py         # 会话攻击测试
+│   ├── auth_sql_injection_attack.py   # 登录端点SQL注入测试
+│   └── README.md                      # Auth模块文档
+├── sql/
+│   ├── test_query_injection.py        # 查询端点测试
+│   ├── test_update_injection.py       # 更新端点测试
+│   ├── test_insert_injection.py       # 插入端点测试
+│   ├── test_delete_injection.py       # 删除端点测试
+│   └── test_security_monitoring.py     # 安全监控测试
+├── run_sql_security_tests.py          # 主测试运行程序
+├── SQL_SECURITY_TEST_CHANGELOG.md     # 变更日志
+├── SQL_SECURITY_TEST_TUTORIAL_CN.md   # 本教程
+└── Jerry_Tutorial_version5_CN.md     # 完整教程
 ```
 
 ### 每个测试文件的功能
 
-1. **test_login_injection.py**
+1. **auth/auth_sql_injection_attack.py**
    - 测试登录端点的SQL注入
-   - 包括：OR注入、注释注入、联合查询注入等
+   - 包括：OR注入、注释注入、联合查询注入、时间盲注等
 
-2. **test_query_injection.py**
+2. **auth/auth_bruteforce_attack.py**
+   - 测试暴力破解攻击防护
+   - 测试常见弱密码列表
+
+3. **auth/auth_session_attack.py**
+   - 测试会话管理安全性
+   - 包括：会话固定、会话重放、过期会话攻击
+
+4. **sql/test_query_injection.py**
    - 测试查询端点的SQL注入
    - 包括：过滤器注入、表名注入、列名注入等
 
-3. **test_update_injection.py**
+5. **sql/test_update_injection.py**
    - 测试更新端点的SQL注入
    - 包括：更新值注入、主键注入等
 
-4. **test_insert_injection.py**
+6. **sql/test_insert_injection.py**
    - 测试插入端点的SQL注入
    - 包括：插入值注入、列名注入等
 
-5. **test_delete_injection.py**
+7. **sql/test_delete_injection.py**
    - 测试删除端点的SQL注入
    - 包括：主键注入、表名注入等
 
-6. **test_security_monitoring.py**
+8. **sql/test_security_monitoring.py**
    - 测试安全监控是否正常工作
    - 检查日志文件是否记录安全事件
 
@@ -128,10 +142,13 @@ python backend/attack/run_sql_security_tests.py \
 ### 方法2: 单独运行特定测试
 
 ```python
-# 示例：只测试登录端点
-from attack.test_login_injection import test_login_sql_injection
+# 示例：只测试登录端点SQL注入
+from attack.auth.auth_sql_injection_attack import test_sql_injection_payloads
+test_sql_injection_payloads()
 
-results = test_login_sql_injection("http://127.0.0.1:8000")
+# 示例：测试查询端点
+from attack.sql.test_query_injection import test_query_sql_injection
+results = test_query_sql_injection("http://127.0.0.1:8000", auth_token)
 for result in results:
     print(f"{result['test_name']}: {result['status']}")
 ```

@@ -11,16 +11,22 @@ This directory contains comprehensive SQL injection security tests for the Compu
 
 ```
 backend/attack/
-├── test_login_injection.py          # Login endpoint SQL injection tests
-├── test_query_injection.py           # Query endpoint SQL injection tests
-├── test_update_injection.py         # Update endpoint SQL injection tests
-├── test_insert_injection.py         # Insert endpoint SQL injection tests
-├── test_delete_injection.py         # Delete endpoint SQL injection tests
-├── test_security_monitoring.py      # Security monitoring tests
-├── run_sql_security_tests.py        # Main test runner
-├── SQL_SECURITY_TEST_CHANGELOG.md   # Change log (变更日志)
-├── SQL_SECURITY_TEST_TUTORIAL_CN.md # Tutorial in Chinese (中文教程)
-└── README.md                        # This file
+├── auth/
+│   ├── auth_bruteforce_attack.py      # Brute force attack tests
+│   ├── auth_session_attack.py         # Session attack tests
+│   ├── auth_sql_injection_attack.py   # Login endpoint SQL injection tests
+│   └── README.md                      # Auth module documentation
+├── sql/
+│   ├── test_query_injection.py        # Query endpoint SQL injection tests
+│   ├── test_update_injection.py       # Update endpoint SQL injection tests
+│   ├── test_insert_injection.py       # Insert endpoint SQL injection tests
+│   ├── test_delete_injection.py       # Delete endpoint SQL injection tests
+│   └── test_security_monitoring.py     # Security monitoring tests
+├── run_sql_security_tests.py          # Main test runner
+├── SQL_SECURITY_TEST_CHANGELOG.md     # Change log (变更日志)
+├── SQL_SECURITY_TEST_TUTORIAL_CN.md   # Tutorial in Chinese (中文教程)
+├── Jerry_Tutorial_version5_CN.md      # Complete tutorial (完整教程)
+└── README.md                          # This file
 ```
 
 ## 快速开始 (Quick Start)
@@ -34,9 +40,13 @@ python backend/attack/run_sql_security_tests.py
 ### 运行特定测试 (Run Specific Test)
 
 ```python
-from attack.test_login_injection import test_login_sql_injection
+# Login endpoint SQL injection test
+from attack.auth.auth_sql_injection_attack import test_sql_injection_payloads
+test_sql_injection_payloads()
 
-results = test_login_sql_injection("http://127.0.0.1:8000")
+# Query endpoint test
+from attack.sql.test_query_injection import test_query_sql_injection
+results = test_query_sql_injection("http://127.0.0.1:8000", auth_token)
 ```
 
 ## 设计原则 (Design Principles)
@@ -52,12 +62,19 @@ results = test_login_sql_injection("http://127.0.0.1:8000")
 
 ## 测试覆盖 (Test Coverage)
 
-- ✅ Login endpoint (`/auth/login`)
-- ✅ Query endpoint (`/performQuery`)
-- ✅ Update endpoint (`/data/update`)
-- ✅ Insert endpoint (`/data/insert`)
-- ✅ Delete endpoint (`/data/delete`)
-- ✅ Security monitoring
+### Auth Module Tests (auth/)
+- ✅ Brute force attacks (`auth_bruteforce_attack.py`)
+- ✅ Session attacks (`auth_session_attack.py`)
+- ✅ Login SQL injection (`auth_sql_injection_attack.py`)
+
+### Endpoint SQL Injection Tests (sql/)
+- ✅ Query endpoint (`/performQuery`) - `sql/test_query_injection.py`
+- ✅ Update endpoint (`/data/update`) - `sql/test_update_injection.py`
+- ✅ Insert endpoint (`/data/insert`) - `sql/test_insert_injection.py`
+- ✅ Delete endpoint (`/data/delete`) - `sql/test_delete_injection.py`
+
+### Security Monitoring
+- ✅ Security monitoring and logging - `sql/test_security_monitoring.py`
 
 ## 注意事项 (Notes)
 

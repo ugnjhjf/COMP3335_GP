@@ -92,9 +92,11 @@ def authenticate_user(email, password, ip_address=None):
         logAccountOperation(ip_address or 'unknown', None, None, f"Login request sent: email={email}")
         
         # Try students table first
+        # Use 'student' role DBMS user (has SELECT permission on students table)
         result = db_query(
             "SELECT StuID, password, salt, first_name, last_name FROM students WHERE LOWER(email) = %s",
-            (email,)
+            (email,),
+            role='student'
         )
         if result and result[0]:
             user = result[0]
@@ -117,9 +119,11 @@ def authenticate_user(email, password, ip_address=None):
                 return user_info
         
         # Try guardians table
+        # Use 'guardian' role DBMS user (has SELECT permission on guardians table)
         result = db_query(
             "SELECT GuaID, password, salt, first_name, last_name FROM guardians WHERE LOWER(email) = %s",
-            (email,)
+            (email,),
+            role='guardian'
         )
         if result and result[0]:
             user = result[0]
@@ -142,9 +146,11 @@ def authenticate_user(email, password, ip_address=None):
                 return user_info
         
         # Try staffs table
+        # Use 'dro' role DBMS user (has SELECT permission on staffs table)
         result = db_query(
             "SELECT StfID, password, salt, role, department, first_name, last_name FROM staffs WHERE LOWER(email) = %s",
-            (email,)
+            (email,),
+            role='dro'
         )
         if result and result[0]:
             user = result[0]
@@ -160,7 +166,6 @@ def authenticate_user(email, password, ip_address=None):
                 # Determine system role based on department and role
                 # Academic Affairs department typically handles grades -> aro
                 # Disciplinary-related roles -> dro
-                # Others -> root (for testing/admin access)
                 system_role = None
                 
                 if "academic" in department:
@@ -170,9 +175,10 @@ def authenticate_user(email, password, ip_address=None):
                     # Disciplinary-related -> Disciplinary Records Officer (dro)
                     system_role = "dro"
                 else:
-                    # Default to root for other staff (testing/admin access)
+                    # Default to aro for other staff (fallback)
                     # This includes: Human Resources, IT Support, etc.
-                    system_role = "root"
+                    # Note: Root role removed, using aro as default
+                    system_role = "aro"
                 
                 user_info = {
                     "user_id": str(user["StfID"]),
@@ -230,10 +236,12 @@ def create_session(user_info):
     if USE_DB_SESSIONS:
         try:
             from db_query import db_execute
+            # Use the user's role for DBMS connection
             db_execute(
                 "INSERT INTO sessions (token, user_id, role, expires_at, created_at) VALUES (%s, %s, %s, %s, NOW()) "
                 "ON DUPLICATE KEY UPDATE expires_at = %s",
-                (token, user_info["user_id"], user_info["role"], session_data["expires_at"], session_data["expires_at"])
+                (token, user_info["user_id"], user_info["role"], session_data["expires_at"], session_data["expires_at"]),
+                role=user_info["role"]
             )
             app_logger.info(f"Session stored in database for user {user_info['user_id']}")
         except Exception as e:
@@ -262,9 +270,11 @@ def validate_session(token):
     # If not in memory and DB sessions enabled, try database - 如果不在内存中且启用了数据库会话，尝试数据库
     if not session and USE_DB_SESSIONS:
         try:
+            # Use 'student' role as default for session queries (all roles have INSERT on sessions)
             result = db_query(
                 "SELECT user_id, role, expires_at FROM sessions WHERE token = %s AND expires_at > NOW()",
-                (token,)
+                (token,),
+                role='student'
             )
             if result and result[0]:
                 session = {
@@ -287,7 +297,8 @@ def validate_session(token):
         if USE_DB_SESSIONS:
             try:
                 from db_query import db_execute
-                db_execute("DELETE FROM sessions WHERE token = %s", (token,))
+                # Use 'student' role as default for session cleanup
+                db_execute("DELETE FROM sessions WHERE token = %s", (token,), role='student')
             except Exception:
                 pass
         return None
@@ -312,7 +323,8 @@ def logout(token):
     if USE_DB_SESSIONS:
         try:
             from db_query import db_execute
-            db_execute("DELETE FROM sessions WHERE token = %s", (token,))
+            # Use 'student' role as default for session deletion
+            db_execute("DELETE FROM sessions WHERE token = %s", (token,), role='student')
             removed = True
         except Exception as e:
             app_logger.warning(f"Failed to remove session from database: {e}")

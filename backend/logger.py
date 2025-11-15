@@ -1,9 +1,16 @@
 #!/usr/bin/env python3
-from db_connector import get_db_connection, return_db_connection
+from db_connector import get_db_connection
 
 def logDataUpdate(user_id, role, sql_text):
-    """Log data update operations to log table"""
-    conn = get_db_connection()
+    """
+    Log data update operations to log table
+    
+    Args:
+        user_id: User ID
+        role: User role (student, guardian, aro, dro)
+        sql_text: SQL statement text
+    """
+    conn = get_db_connection(role)
     try:
         with conn.cursor() as cur:
             cur.execute(
@@ -15,7 +22,7 @@ def logDataUpdate(user_id, role, sql_text):
             )
             conn.commit()
     finally:
-        return_db_connection(conn)
+        conn.close()
 
 def logAccountOperation(ip, user_id, user_role, log_content):
     """
@@ -27,7 +34,9 @@ def logAccountOperation(ip, user_id, user_role, log_content):
         user_role: User role (can be None)
         log_content: Log content description
     """
-    conn = get_db_connection()
+    # Use user_role for DBMS connection, default to 'student' if None
+    dbms_role = user_role if user_role else 'student'
+    conn = get_db_connection(dbms_role)
     try:
         with conn.cursor() as cur:
             cur.execute(
@@ -43,5 +52,5 @@ def logAccountOperation(ip, user_id, user_role, log_content):
         import logging
         logging.error(f"Failed to log account operation: {e}")
     finally:
-        return_db_connection(conn)
+        conn.close()
 

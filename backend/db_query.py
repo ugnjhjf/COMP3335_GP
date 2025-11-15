@@ -1,51 +1,63 @@
 #!/usr/bin/env python3
-from db_connector import get_db_connection, return_db_connection
+from db_connector import get_db_connection
 from logger_config import app_logger, log_database_operation
 
-def db_query(sql, params=None):
+def db_query(sql, params=None, role=None):
     """
     Execute query SQL and return results
     执行查询SQL并返回结果
     
-    Uses connection pool for better performance - 使用连接池以提高性能
+    Args:
+        sql: SQL query string
+        params: Query parameters (optional)
+        role: User role for DBMS user selection (student, guardian, aro, dro)
     """
-    conn = get_db_connection()
+    conn = get_db_connection(role)
     try:
         with conn.cursor() as cur:
             cur.execute(sql, params or ())
             result = cur.fetchall()
             # Log database operation - 记录数据库操作
-            log_database_operation('SELECT', 'unknown', 'system', 'system', sql)
+            log_database_operation('SELECT', 'unknown', 'system', role or 'system', sql)
             return result
     except Exception as e:
         app_logger.error(f"Database query error: {e}, SQL: {sql[:100]}")
         raise
     finally:
-        return_db_connection(conn)
+        conn.close()
 
-def db_execute(sql, params=None):
+def db_execute(sql, params=None, role=None):
     """
     Execute update SQL and return affected row count
     执行更新SQL并返回受影响的行数
     
-    Uses connection pool for better performance - 使用连接池以提高性能
+    Args:
+        sql: SQL statement string
+        params: Statement parameters (optional)
+        role: User role for DBMS user selection (student, guardian, aro, dro)
     """
-    conn = get_db_connection()
+    conn = get_db_connection(role)
     try:
         with conn.cursor() as cur:
             cur.execute(sql, params or ())
             result = cur.rowcount
             # Log database operation - 记录数据库操作
-            log_database_operation('EXECUTE', 'unknown', 'system', 'system', sql)
+            log_database_operation('EXECUTE', 'unknown', 'system', role or 'system', sql)
             return result
     except Exception as e:
         app_logger.error(f"Database execute error: {e}, SQL: {sql[:100]}")
         raise
     finally:
-        return_db_connection(conn)
+        conn.close()
 
-def getTableColumns(table_name):
-    """Return all column information for the specified table"""
+def getTableColumns(table_name, role=None):
+    """
+    Return all column information for the specified table
+    
+    Args:
+        table_name: Name of the table
+        role: User role for DBMS user selection (student, guardian, aro, dro)
+    """
     # Use parameterized query to prevent SQL injection - 使用参数化查询防止SQL注入
     # Note: SHOW COLUMNS doesn't support parameters, so we validate table_name first
     # 注意：SHOW COLUMNS不支持参数，所以先验证表名
@@ -54,7 +66,7 @@ def getTableColumns(table_name):
         raise ValueError(f"Invalid table name: {table_name}")
     # Escape table name to prevent injection - 转义表名防止注入
     # Since table_name is validated, this is safe - 由于表名已验证，这是安全的
-    rows = db_query(f"SHOW COLUMNS FROM `{table_name}`")
+    rows = db_query(f"SHOW COLUMNS FROM `{table_name}`", role=role)
     return rows
 
 def checkPrimaryKey(columnData, keyPair):
