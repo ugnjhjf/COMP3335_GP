@@ -7,36 +7,13 @@ import requests
 import json
 from typing import Dict, List
 
-def test_query_sql_injection(base_url: str = "http://127.0.0.1:8000", 
-                             auth_token: str = None) -> List[Dict]:
-    """
-    Test SQL injection attacks on /performQuery endpoint
-    测试 /performQuery 端点的SQL注入攻击
-    
-    Args:
-        base_url: Base URL of the API server
-        auth_token: Authentication token for authorized requests
-        
-    Returns:
-        List of test results with status and details
-    """
-    results = []
-    
-    if not auth_token:
-        return [{
-            "test_name": "Authentication Required",
-            "status": "SKIPPED",
-            "error": "Auth token required for query endpoint tests"
-        }]
-    
-    headers = {
-        "Authorization": f"Bearer {auth_token}",
-        "Content-Type": "application/json"
-    }
-    
-    # SQL injection payloads for query filters
-    # 查询过滤器的SQL注入载荷
-    injection_payloads = [
+# Test user credentials
+TEST_STUDENT_EMAIL = "test_student@example.com"
+TEST_STUDENT_PASSWORD = "StudentTest123"
+
+def get_query_injection_payloads():
+    """Get SQL injection payloads for query endpoint"""
+    return [
         {
             "name": "Filter value injection - OR",
             "description": "过滤器值注入 - OR",
@@ -114,6 +91,38 @@ def test_query_sql_injection(base_url: str = "http://127.0.0.1:8000",
             }]
         }
     ]
+
+
+def test_query_sql_injection(base_url: str = "http://127.0.0.1:8000", 
+                             auth_token: str = None) -> List[Dict]:
+    """
+    Test SQL injection attacks on /performQuery endpoint
+    测试 /performQuery 端点的SQL注入攻击
+    
+    Args:
+        base_url: Base URL of the API server
+        auth_token: Authentication token for authorized requests
+        
+    Returns:
+        List of test results with status and details
+    """
+    results = []
+    
+    if not auth_token:
+        return [{
+            "test_name": "Authentication Required",
+            "status": "SKIPPED",
+            "error": "Auth token required for query endpoint tests"
+        }]
+    
+    headers = {
+        "Authorization": f"Bearer {auth_token}",
+        "Content-Type": "application/json"
+    }
+    
+    # SQL injection payloads for query filters
+    # 查询过滤器的SQL注入载荷
+    injection_payloads = get_query_injection_payloads()
     
     for payload in injection_payloads:
         try:
@@ -218,22 +227,97 @@ def test_query_sql_injection(base_url: str = "http://127.0.0.1:8000",
             
             results.append(result)
             
+            # Print test result
+            status_icon = "✓" if result["status"] == "PROTECTED" else "✗" if result["status"] == "VULNERABLE" else "?"
+            print(f"[{status_icon}] {payload['name']}: {result['status']} (Code: {result['response_code']})")
+            if result.get("indicators"):
+                for indicator in result["indicators"]:
+                    print(f"    - {indicator}")
+            
         except requests.exceptions.Timeout:
-            results.append({
+            result = {
                 "test_name": payload["name"],
                 "description": payload["description"],
                 "payload": payload,
                 "status": "TIMEOUT",
                 "indicators": ["Request timeout"]
-            })
+            }
+            results.append(result)
+            print(f"[✗] {payload['name']}: TIMEOUT")
         except Exception as e:
-            results.append({
+            result = {
                 "test_name": payload["name"],
                 "description": payload["description"],
                 "payload": payload,
                 "status": "ERROR",
                 "error": str(e)
-            })
+            }
+            results.append(result)
+            print(f"[✗] {payload['name']}: ERROR - {str(e)}")
     
     return results
+
+
+def run_query_injection_tests():
+    """Run query injection tests with formatted output"""
+    print("=" * 60)
+    print("SQL Injection Test - Query Endpoint")
+    print("=" * 60)
+    
+    # Get auth token first
+    print("\n[Setup] Logging in to get authentication token...")
+    try:
+        login_response = requests.post(
+            "http://127.0.0.1:8000/auth/login",
+            json={
+                "email": TEST_STUDENT_EMAIL,
+                "password": TEST_STUDENT_PASSWORD
+            },
+            timeout=5
+        )
+        if login_response.status_code == 200:
+            data = login_response.json()
+            if data.get("ok") and data.get("token"):
+                auth_token = data.get("token")
+                print(f"[✓] Login successful, token obtained")
+            else:
+                print("[✗] Login failed - Cannot proceed without authentication")
+                return
+        else:
+            print("[✗] Login failed - Cannot proceed without authentication")
+            return
+    except Exception as e:
+        print(f"[✗] Login error: {e}")
+        return
+    
+    injection_payloads = get_query_injection_payloads()
+    print(f"\n[Attack Test] Starting SQL injection tests on /performQuery endpoint")
+    print(f"[Attack Test] Testing {len(injection_payloads)} injection payloads...\n")
+    
+    results = test_query_sql_injection(auth_token=auth_token)
+    
+    # Print summary
+    print(f"\n[Test Results Summary]")
+    vulnerable_count = sum(1 for r in results if r["status"] == "VULNERABLE")
+    protected_count = sum(1 for r in results if r["status"] == "PROTECTED")
+    error_count = sum(1 for r in results if r["status"] in ["ERROR", "TIMEOUT", "UNKNOWN"])
+    
+    print(f"  - Protected: {protected_count}")
+    print(f"  - Vulnerable: {vulnerable_count}")
+    print(f"  - Errors/Timeouts: {error_count}")
+    print(f"  - Total: {len(results)}")
+    
+    if vulnerable_count > 0:
+        print("\n[Security Warning] System has SQL injection vulnerabilities!")
+        print("Recommendation: Review and fix vulnerable endpoints")
+    else:
+        print("\n[Security Test] SQL injection attacks successfully prevented")
+    
+    print("\n" + "=" * 60)
+    print("Test Completed")
+    print("=" * 60)
+
+
+if __name__ == "__main__":
+    run_query_injection_tests()
 

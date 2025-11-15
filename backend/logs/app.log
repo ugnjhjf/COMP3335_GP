@@ -964,3 +964,279 @@
 2025-11-15 15:21:25 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
 2025-11-15 15:21:25 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
 2025-11-15 15:21:25 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-15 15:21:51 - app - INFO - [api_handler.py:131] - Login request received: email=admin' OR '1'='1, ip=127.0.0.1
+2025-11-15 15:21:51 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin' OR '1'='1, ip=127.0.0.1
+2025-11-15 15:21:51 - app - INFO - [api_handler.py:131] - Login request received: email=admin' OR '1'='1'--, ip=127.0.0.1
+2025-11-15 15:21:51 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin' OR '1'='1'--, ip=127.0.0.1
+2025-11-15 15:21:51 - app - INFO - [api_handler.py:131] - Login request received: email=admin' OR '1'='1'#, ip=127.0.0.1
+2025-11-15 15:21:51 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin' OR '1'='1'#, ip=127.0.0.1
+2025-11-15 15:21:51 - app - INFO - [api_handler.py:131] - Login request received: email=admin' OR '1'='1'/*, ip=127.0.0.1
+2025-11-15 15:21:51 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin' OR '1'='1'/*, ip=127.0.0.1
+2025-11-15 15:21:51 - app - INFO - [api_handler.py:131] - Login request received: email=' OR 1=1--, ip=127.0.0.1
+2025-11-15 15:21:51 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=' OR 1=1--, ip=127.0.0.1
+2025-11-15 15:21:51 - app - INFO - [api_handler.py:131] - Login request received: email=' OR '1'='1, ip=127.0.0.1
+2025-11-15 15:21:51 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=' OR '1'='1, ip=127.0.0.1
+2025-11-15 15:21:51 - app - INFO - [api_handler.py:131] - Login request received: email=' OR 1=1#, ip=127.0.0.1
+2025-11-15 15:21:51 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=' OR 1=1#, ip=127.0.0.1
+2025-11-15 15:21:51 - app - INFO - [api_handler.py:131] - Login request received: email=' OR 'a'='a, ip=127.0.0.1
+2025-11-15 15:21:51 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=' OR 'a'='a, ip=127.0.0.1
+2025-11-15 15:21:51 - app - INFO - [api_handler.py:131] - Login request received: email=' OR ''=', ip=127.0.0.1
+2025-11-15 15:21:51 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=' OR ''=', ip=127.0.0.1
+2025-11-15 15:21:51 - app - INFO - [api_handler.py:131] - Login request received: email=admin' UNION SELECT NULL--, ip=127.0.0.1
+2025-11-15 15:21:51 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin' UNION SELECT NULL--, ip=127.0.0.1
+2025-11-15 15:21:51 - app - INFO - [api_handler.py:131] - Login request received: email=' UNION SELECT * FROM users--, ip=127.0.0.1
+2025-11-15 15:21:51 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=' UNION SELECT * FROM users--, ip=127.0.0.1
+2025-11-15 15:21:51 - app - INFO - [api_handler.py:131] - Login request received: email=' OR '1'='1' AND '1'='1, ip=127.0.0.1
+2025-11-15 15:21:51 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=' OR '1'='1' AND '1'='1, ip=127.0.0.1
+2025-11-15 15:21:51 - app - INFO - [api_handler.py:131] - Login request received: email=' OR '1'='1' AND '1'='2, ip=127.0.0.1
+2025-11-15 15:21:51 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=' OR '1'='1' AND '1'='2, ip=127.0.0.1
+2025-11-15 15:21:51 - app - INFO - [api_handler.py:131] - Login request received: email=admin'; WAITFOR DELAY '00:00:05'--, ip=127.0.0.1
+2025-11-15 15:21:51 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin'; WAITFOR DELAY '00:00:05'--, ip=127.0.0.1
+2025-11-15 15:21:51 - app - INFO - [api_handler.py:131] - Login request received: email=admin'; SLEEP(5)--, ip=127.0.0.1
+2025-11-15 15:21:51 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin'; SLEEP(5)--, ip=127.0.0.1
+2025-11-15 15:21:52 - app - INFO - [api_handler.py:131] - Login request received: email=' OR SLEEP(5)--, ip=127.0.0.1
+2025-11-15 15:21:52 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=' OR SLEEP(5)--, ip=127.0.0.1
+2025-11-15 15:21:52 - app - INFO - [api_handler.py:131] - Login request received: email=admin'; DROP TABLE users--, ip=127.0.0.1
+2025-11-15 15:21:52 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin'; DROP TABLE users--, ip=127.0.0.1
+2025-11-15 15:21:52 - app - INFO - [api_handler.py:131] - Login request received: email='; DELETE FROM users--, ip=127.0.0.1
+2025-11-15 15:21:52 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email='; DELETE FROM users--, ip=127.0.0.1
+2025-11-15 15:21:52 - app - INFO - [api_handler.py:131] - Login request received: email=admin'/**/OR/**/1=1--, ip=127.0.0.1
+2025-11-15 15:21:52 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin'/**/OR/**/1=1--, ip=127.0.0.1
+2025-11-15 15:21:52 - app - INFO - [api_handler.py:131] - Login request received: email=admin'/*comment*/OR/*comment*/1=1--, ip=127.0.0.1
+2025-11-15 15:21:52 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin'/*comment*/OR/*comment*/1=1--, ip=127.0.0.1
+2025-11-15 15:21:52 - app - INFO - [api_handler.py:131] - Login request received: email=admin%27%20OR%20%271%27%3D%271, ip=127.0.0.1
+2025-11-15 15:21:52 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin%27%20OR%20%271%27%3D%271, ip=127.0.0.1
+2025-11-15 15:21:52 - app - INFO - [api_handler.py:131] - Login request received: email=admin' OR CHAR(49)=CHAR(49)--, ip=127.0.0.1
+2025-11-15 15:21:52 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin' OR CHAR(49)=CHAR(49)--, ip=127.0.0.1
+2025-11-15 15:21:52 - app - INFO - [api_handler.py:131] - Login request received: email=admin') OR ('1'='1, ip=127.0.0.1
+2025-11-15 15:21:52 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin') OR ('1'='1, ip=127.0.0.1
+2025-11-15 15:21:52 - app - INFO - [api_handler.py:131] - Login request received: email=admin' OR 1=1 LIMIT 1--, ip=127.0.0.1
+2025-11-15 15:21:52 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin' OR 1=1 LIMIT 1--, ip=127.0.0.1
+2025-11-15 15:21:52 - app - INFO - [api_handler.py:131] - Login request received: email=' OR 1=1 LIMIT 1--, ip=127.0.0.1
+2025-11-15 15:21:52 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=' OR 1=1 LIMIT 1--, ip=127.0.0.1
+2025-11-15 15:21:52 - app - INFO - [api_handler.py:131] - Login request received: email=admin' OR 'x'='x, ip=127.0.0.1
+2025-11-15 15:21:52 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin' OR 'x'='x, ip=127.0.0.1
+2025-11-15 15:32:55 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:32:55 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:32:55 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-15 15:32:55 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:32:55 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-15 15:32:55 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-15 15:33:42 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:33:42 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:33:42 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-15 15:33:42 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:33:42 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-15 15:33:42 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-15 15:38:43 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:38:43 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:38:43 - app - INFO - [auth.py:115] - Login successful: user_id=100, role=student, email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:38:43 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:38:43 - app - INFO - [audit_logger.py:48] - AUDIT: login_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:38:44 - app - INFO - [auth.py:250] - Session created for user 100 with role student
+2025-11-15 15:38:44 - app - INFO - [api_handler.py:202] - Session created for login: user_id=100, role=student, ip=127.0.0.1
+2025-11-15 15:39:38 - app - INFO - [api_handler.py:497] - Update request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 15:39:38 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:39:38 - app - INFO - [audit_logger.py:48] - AUDIT: sql_update_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:39:38 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:39:38 - app - INFO - [audit_logger.py:48] - AUDIT: update - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:39:38 - app - INFO - [api_handler.py:571] - Update executed successfully: user_id=100, role=student, table=students, rows_affected=1, ip=127.0.0.1
+2025-11-15 15:39:38 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 15:39:38 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:39:38 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:39:38 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:39:38 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:39:38 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=students, rows=1, ip=127.0.0.1
+2025-11-15 15:39:43 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 15:39:43 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:39:43 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:39:43 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:39:43 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:39:43 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=students, rows=1, ip=127.0.0.1
+2025-11-15 15:39:46 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 15:39:46 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:39:46 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:39:46 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:39:46 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:39:46 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=students, rows=1, ip=127.0.0.1
+2025-11-15 15:40:40 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=grades, ip=127.0.0.1
+2025-11-15 15:40:40 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:40:40 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:40:40 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:40:40 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:40:40 - app - ERROR - [db_query.py:24] - Database query error: (1142, "SELECT command denied to user 'student'@'172.18.0.1' for table 'courses'"), SQL: SELECT target.`GradeID` AS `GradeID`, target.`StuID` AS `StuID`, CONCAT(j1.`first_name`, ' ', j1.`la
+2025-11-15 15:40:43 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=grades, ip=127.0.0.1
+2025-11-15 15:40:43 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:40:43 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:40:43 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:40:44 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:40:44 - app - ERROR - [db_query.py:24] - Database query error: (1142, "SELECT command denied to user 'student'@'172.18.0.1' for table 'courses'"), SQL: SELECT target.`GradeID` AS `GradeID`, target.`StuID` AS `StuID`, CONCAT(j1.`first_name`, ' ', j1.`la
+2025-11-15 15:40:44 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=grades, ip=127.0.0.1
+2025-11-15 15:40:44 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:40:44 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:40:44 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:40:44 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:40:44 - app - ERROR - [db_query.py:24] - Database query error: (1142, "SELECT command denied to user 'student'@'172.18.0.1' for table 'courses'"), SQL: SELECT target.`GradeID` AS `GradeID`, target.`StuID` AS `StuID`, CONCAT(j1.`first_name`, ' ', j1.`la
+2025-11-15 15:40:46 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=disciplinary_records, ip=127.0.0.1
+2025-11-15 15:40:46 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:40:46 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:40:46 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:40:46 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:40:46 - app - ERROR - [db_query.py:24] - Database query error: (1142, "SELECT command denied to user 'student'@'172.18.0.1' for table 'staffs'"), SQL: SELECT target.`DrID` AS `DrID`, target.`StuID` AS `StuID`, CONCAT(j1.`first_name`, ' ', j1.`last_nam
+2025-11-15 15:40:48 - app - INFO - [auth.py:333] - Session logged out: w4nXP2bc...
+2025-11-15 15:40:53 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:40:53 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:40:53 - app - INFO - [auth.py:115] - Login successful: user_id=100, role=student, email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:40:53 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:40:53 - app - INFO - [audit_logger.py:48] - AUDIT: login_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:40:53 - app - INFO - [auth.py:250] - Session created for user 100 with role student
+2025-11-15 15:40:53 - app - INFO - [api_handler.py:202] - Session created for login: user_id=100, role=student, ip=127.0.0.1
+2025-11-15 15:40:58 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=grades, ip=127.0.0.1
+2025-11-15 15:40:58 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:40:58 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:40:58 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:40:58 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:40:58 - app - ERROR - [db_query.py:24] - Database query error: (1142, "SELECT command denied to user 'student'@'172.18.0.1' for table 'courses'"), SQL: SELECT target.`GradeID` AS `GradeID`, target.`StuID` AS `StuID`, CONCAT(j1.`first_name`, ' ', j1.`la
+2025-11-15 15:41:54 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:41:54 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:41:54 - app - INFO - [auth.py:115] - Login successful: user_id=100, role=student, email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:41:54 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:41:54 - app - INFO - [audit_logger.py:48] - AUDIT: login_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:41:54 - app - INFO - [auth.py:250] - Session created for user 100 with role student
+2025-11-15 15:41:54 - app - INFO - [api_handler.py:202] - Session created for login: user_id=100, role=student, ip=127.0.0.1
+2025-11-15 15:41:54 - app - INFO - [api_handler.py:681] - Insert request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 15:41:54 - app - INFO - [api_handler.py:681] - Insert request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 15:41:55 - app - INFO - [api_handler.py:681] - Insert request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 15:41:55 - app - INFO - [api_handler.py:681] - Insert request: user_id=100, role=student, table=students; DROP TABLE students; --, ip=127.0.0.1
+2025-11-15 15:41:55 - app - WARNING - [api_handler.py:687] - Invalid table name in insert: user_id=100, role=student, table=students; DROP TABLE students; --, ip=127.0.0.1
+2025-11-15 15:41:55 - app - INFO - [api_handler.py:681] - Insert request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 15:42:35 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: KMPYFvhC4KN_nhH5FFQ9...
+2025-11-15 15:43:47 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:43:47 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:43:47 - app - INFO - [auth.py:115] - Login successful: user_id=100, role=student, email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:43:47 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:43:47 - app - INFO - [audit_logger.py:48] - AUDIT: login_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:43:47 - app - INFO - [auth.py:250] - Session created for user 100 with role student
+2025-11-15 15:43:47 - app - INFO - [api_handler.py:202] - Session created for login: user_id=100, role=student, ip=127.0.0.1
+2025-11-15 15:43:49 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 15:43:49 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:43:49 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:43:49 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:43:49 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:43:49 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=students, rows=1, ip=127.0.0.1
+2025-11-15 15:43:52 - app - INFO - [api_handler.py:497] - Update request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 15:43:52 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:43:52 - app - INFO - [audit_logger.py:48] - AUDIT: sql_update_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:43:52 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:43:52 - app - INFO - [audit_logger.py:48] - AUDIT: update - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:43:52 - app - ERROR - [db_query.py:48] - Database execute error: (1406, "Data too long for column 'gender' at row 1"), SQL: UPDATE `students` target SET target.`gender` = %s WHERE target.`StuID` = %s AND target.`StuID` = %s
+2025-11-15 15:43:52 - app - ERROR - [api_handler.py:576] - Update error: user_id=100, role=student, table=students, error=(1406, "Data too long for column 'gender' at row 1"), ip=127.0.0.1
+2025-11-15 15:43:52 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:43:52 - app - INFO - [audit_logger.py:48] - AUDIT: sql_update_failure - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:43:54 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 15:43:54 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:43:54 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:43:54 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:43:54 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:43:54 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=students, rows=1, ip=127.0.0.1
+2025-11-15 15:43:58 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=grades, ip=127.0.0.1
+2025-11-15 15:43:58 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:43:58 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:43:58 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:43:58 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:43:58 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=grades, rows=3, ip=127.0.0.1
+2025-11-15 15:44:01 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=disciplinary_records, ip=127.0.0.1
+2025-11-15 15:44:01 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:44:01 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:44:01 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:44:01 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:44:01 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=disciplinary_records, rows=2, ip=127.0.0.1
+2025-11-15 15:44:03 - app - INFO - [auth.py:333] - Session logged out: JXdRCgmM...
+2025-11-15 15:45:16 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:45:16 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:45:16 - app - INFO - [auth.py:115] - Login successful: user_id=100, role=student, email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:45:16 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:16 - app - INFO - [audit_logger.py:48] - AUDIT: login_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:16 - app - INFO - [auth.py:250] - Session created for user 100 with role student
+2025-11-15 15:45:16 - app - INFO - [api_handler.py:202] - Session created for login: user_id=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:16 - app - INFO - [api_handler.py:601] - Delete request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 15:45:16 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:16 - app - INFO - [audit_logger.py:48] - AUDIT: sql_delete_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:16 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:16 - app - INFO - [audit_logger.py:48] - AUDIT: delete - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:16 - app - ERROR - [db_query.py:48] - Database execute error: (1142, "DELETE command denied to user 'student'@'172.18.0.1' for table 'students'"), SQL: DELETE target FROM `students` target WHERE target.`StuID` = %s AND target.`StuID` = %s
+2025-11-15 15:45:16 - app - ERROR - [api_handler.py:655] - Delete error: user_id=100, role=student, table=students, error=(1142, "DELETE command denied to user 'student'@'172.18.0.1' for table 'students'"), ip=127.0.0.1
+2025-11-15 15:45:16 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:16 - app - INFO - [audit_logger.py:48] - AUDIT: sql_delete_failure - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:16 - app - INFO - [api_handler.py:601] - Delete request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 15:45:16 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:16 - app - INFO - [audit_logger.py:48] - AUDIT: sql_delete_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:16 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:16 - app - INFO - [audit_logger.py:48] - AUDIT: delete - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:16 - app - ERROR - [db_query.py:48] - Database execute error: (1142, "DELETE command denied to user 'student'@'172.18.0.1' for table 'students'"), SQL: DELETE target FROM `students` target WHERE target.`StuID` = %s AND target.`StuID` = %s
+2025-11-15 15:45:16 - app - ERROR - [api_handler.py:655] - Delete error: user_id=100, role=student, table=students, error=(1142, "DELETE command denied to user 'student'@'172.18.0.1' for table 'students'"), ip=127.0.0.1
+2025-11-15 15:45:16 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:16 - app - INFO - [audit_logger.py:48] - AUDIT: sql_delete_failure - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:16 - app - INFO - [api_handler.py:601] - Delete request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 15:45:16 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:16 - app - INFO - [audit_logger.py:48] - AUDIT: sql_delete_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:16 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:16 - app - INFO - [audit_logger.py:48] - AUDIT: delete - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:16 - app - ERROR - [db_query.py:48] - Database execute error: (1142, "DELETE command denied to user 'student'@'172.18.0.1' for table 'students'"), SQL: DELETE target FROM `students` target WHERE target.`StuID` = %s AND target.`StuID` = %s
+2025-11-15 15:45:16 - app - ERROR - [api_handler.py:655] - Delete error: user_id=100, role=student, table=students, error=(1142, "DELETE command denied to user 'student'@'172.18.0.1' for table 'students'"), ip=127.0.0.1
+2025-11-15 15:45:16 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:16 - app - INFO - [audit_logger.py:48] - AUDIT: sql_delete_failure - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:16 - app - INFO - [api_handler.py:601] - Delete request: user_id=100, role=student, table=students; DROP TABLE students; --, ip=127.0.0.1
+2025-11-15 15:45:16 - app - WARNING - [api_handler.py:607] - Invalid table name in delete: user_id=100, role=student, table=students; DROP TABLE students; --, ip=127.0.0.1
+2025-11-15 15:45:16 - app - INFO - [api_handler.py:601] - Delete request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 15:45:56 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:45:56 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:45:56 - app - INFO - [auth.py:115] - Login successful: user_id=100, role=student, email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:45:56 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:56 - app - INFO - [audit_logger.py:48] - AUDIT: login_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:56 - app - INFO - [auth.py:250] - Session created for user 100 with role student
+2025-11-15 15:45:56 - app - INFO - [api_handler.py:202] - Session created for login: user_id=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:56 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 15:45:56 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:56 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:56 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:56 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:56 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=students, rows=0, ip=127.0.0.1
+2025-11-15 15:45:56 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 15:45:56 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:56 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:56 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:57 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:57 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=students, rows=0, ip=127.0.0.1
+2025-11-15 15:45:57 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 15:45:57 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:57 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:57 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:57 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:57 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=students, rows=0, ip=127.0.0.1
+2025-11-15 15:45:57 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=students; DROP TABLE students; --, ip=127.0.0.1
+2025-11-15 15:45:57 - app - WARNING - [api_handler.py:262] - Invalid table name in query: user_id=100, role=student, table=students; DROP TABLE students; --, ip=127.0.0.1
+2025-11-15 15:45:57 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 15:45:57 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:57 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:57 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:57 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:57 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=students, rows=1, ip=127.0.0.1
+2025-11-15 15:45:57 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 15:45:57 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:57 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:57 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:57 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:57 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=students, rows=1, ip=127.0.0.1
+2025-11-15 15:45:57 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 15:45:57 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:57 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:57 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:57 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:57 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=students, rows=0, ip=127.0.0.1
+2025-11-15 15:45:57 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 15:45:57 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:57 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:57 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:57 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:57 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=students, rows=0, ip=127.0.0.1

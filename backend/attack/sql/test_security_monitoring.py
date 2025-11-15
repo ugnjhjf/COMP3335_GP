@@ -9,6 +9,10 @@ import time
 from typing import Dict, List
 import os
 
+# Test user credentials
+TEST_STUDENT_EMAIL = "test_student@example.com"
+TEST_STUDENT_PASSWORD = "StudentTest123"
+
 def test_security_monitoring(base_url: str = "http://127.0.0.1:8000",
                              auth_token: str = None) -> List[Dict]:
     """
@@ -112,13 +116,83 @@ def test_security_monitoring(base_url: str = "http://127.0.0.1:8000",
             
             results.append(result)
             
+            # Print test result
+            status_icon = "✓" if result["status"] == "MONITORED" else "✗"
+            print(f"[{status_icon}] {test['name']}: {result['status']}")
+            if result.get("log_indicators"):
+                for indicator in result["log_indicators"]:
+                    print(f"    - {indicator}")
+            
         except Exception as e:
-            results.append({
+            result = {
                 "test_name": test["name"],
                 "description": test["description"],
                 "status": "ERROR",
                 "error": str(e)
-            })
+            }
+            results.append(result)
+            print(f"[✗] {test['name']}: ERROR - {str(e)}")
     
     return results
+
+
+def run_security_monitoring_tests():
+    """Run security monitoring tests with formatted output"""
+    print("=" * 60)
+    print("Security Monitoring Test")
+    print("=" * 60)
+    
+    # Get auth token first (for authenticated tests)
+    print("\n[Setup] Logging in to get authentication token...")
+    auth_token = None
+    try:
+        login_response = requests.post(
+            "http://127.0.0.1:8000/auth/login",
+            json={
+                "email": TEST_STUDENT_EMAIL,
+                "password": TEST_STUDENT_PASSWORD
+            },
+            timeout=5
+        )
+        if login_response.status_code == 200:
+            data = login_response.json()
+            if data.get("ok") and data.get("token"):
+                auth_token = data.get("token")
+                print(f"[✓] Login successful, token obtained")
+            else:
+                print("[!] Login failed - Some tests may be skipped")
+        else:
+            print("[!] Login failed - Some tests may be skipped")
+    except Exception as e:
+        print(f"[!] Login error: {e} - Some tests may be skipped")
+    
+    print(f"\n[Attack Test] Starting security monitoring tests")
+    print(f"[Attack Test] Testing security event logging...\n")
+    
+    results = test_security_monitoring(auth_token=auth_token)
+    
+    # Print summary
+    print(f"\n[Test Results Summary]")
+    monitored_count = sum(1 for r in results if r["status"] == "MONITORED")
+    not_monitored_count = sum(1 for r in results if r["status"] == "NOT_MONITORED")
+    error_count = sum(1 for r in results if r["status"] == "ERROR")
+    
+    print(f"  - Monitored: {monitored_count}")
+    print(f"  - Not Monitored: {not_monitored_count}")
+    print(f"  - Errors: {error_count}")
+    print(f"  - Total: {len(results)}")
+    
+    if not_monitored_count > 0:
+        print("\n[Security Warning] Some security events are not being monitored!")
+        print("Recommendation: Review and enhance security monitoring")
+    else:
+        print("\n[Security Test] Security monitoring is working correctly")
+    
+    print("\n" + "=" * 60)
+    print("Test Completed")
+    print("=" * 60)
+
+
+if __name__ == "__main__":
+    run_security_monitoring_tests()
 
