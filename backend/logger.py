@@ -34,8 +34,9 @@ def logAccountOperation(ip, user_id, user_role, log_content):
         user_role: User role (can be None)
         log_content: Log content description
     """
-    # Use user_role for DBMS connection, default to 'student' if None
-    dbms_role = user_role if user_role else 'student'
+    # Use user_role for DBMS connection, default to 'auth' if None (for login operations)
+    # When user_role is None, it means we're in the login phase and should use auth_user
+    dbms_role = user_role if user_role else 'auth'
     conn = get_db_connection(dbms_role)
     try:
         with conn.cursor() as cur:

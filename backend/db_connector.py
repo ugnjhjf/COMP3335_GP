@@ -18,6 +18,7 @@ DB_CONFIG = {
 # Role-based DBMS user mapping - 基于角色的数据库用户映射
 # Passwords are hardcoded for development/test (as per plan option b)
 DBMS_USERS = {
+    'auth': {'user': 'auth_user', 'password': 'auth_user_password'},  # For login authentication only
     'student': {'user': 'student', 'password': 'student_password'},
     'guardian': {'user': 'guardian', 'password': 'guardian_password'},
     'aro': {'user': 'aro', 'password': 'aro_password'},
@@ -30,7 +31,7 @@ def _create_connection(role=None):
     使用基于角色的数据库用户创建新的数据库连接
     
     Args:
-        role: User role (student, guardian, aro, dro). If None, defaults to 'student'
+        role: User role (auth, student, guardian, aro, dro). If None, defaults to 'student'
     
     Returns:
         Database connection object
@@ -59,7 +60,7 @@ def get_db_connection(role=None):
     使用基于角色的数据库用户获取数据库连接
     
     Args:
-        role: User role (student, guardian, aro, dro). If None, defaults to 'student'
+        role: User role (auth, student, guardian, aro, dro). If None, defaults to 'student'
     
     Returns:
         Database connection object
@@ -77,7 +78,7 @@ def test_db_connection(role='student'):
     测试数据库连接是否成功
     
     Args:
-        role: User role to test connection with (defaults to 'student')
+        role: User role to test connection with (defaults to 'student'). Can be 'auth', 'student', 'guardian', 'aro', or 'dro'
     """
     try:
         conn = get_db_connection(role)

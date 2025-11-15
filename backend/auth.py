@@ -92,11 +92,11 @@ def authenticate_user(email, password, ip_address=None):
         logAccountOperation(ip_address or 'unknown', None, None, f"Login request sent: email={email}")
         
         # Try students table first
-        # Use 'student' role DBMS user (has SELECT permission on students table)
+        # Use 'auth' role DBMS user (has SELECT permission on students table for authentication)
         result = db_query(
             "SELECT StuID, password, salt, first_name, last_name FROM students WHERE LOWER(email) = %s",
             (email,),
-            role='student'
+            role='auth'
         )
         if result and result[0]:
             user = result[0]
@@ -119,11 +119,11 @@ def authenticate_user(email, password, ip_address=None):
                 return user_info
         
         # Try guardians table
-        # Use 'guardian' role DBMS user (has SELECT permission on guardians table)
+        # Use 'auth' role DBMS user (has SELECT permission on guardians table for authentication)
         result = db_query(
             "SELECT GuaID, password, salt, first_name, last_name FROM guardians WHERE LOWER(email) = %s",
             (email,),
-            role='guardian'
+            role='auth'
         )
         if result and result[0]:
             user = result[0]
@@ -146,11 +146,11 @@ def authenticate_user(email, password, ip_address=None):
                 return user_info
         
         # Try staffs table
-        # Use 'dro' role DBMS user (has SELECT permission on staffs table)
+        # Use 'auth' role DBMS user (has SELECT permission on staffs table for authentication)
         result = db_query(
             "SELECT StfID, password, salt, role, department, first_name, last_name FROM staffs WHERE LOWER(email) = %s",
             (email,),
-            role='dro'
+            role='auth'
         )
         if result and result[0]:
             user = result[0]

@@ -1,63 +1,29 @@
-DROP DATABASE IF EXISTS ComputingU;  
+DROP DATABASE IF EXISTS ComputingU;
 CREATE DATABASE ComputingU;
 USE ComputingU;
 
--- Create DBMS users for role-based access control
--- 创建基于角色的数据库访问控制用户
+DROP USER IF EXISTS 'auth_user'@'localhost';
+DROP USER IF EXISTS 'auth_user'@'%';
 DROP USER IF EXISTS 'student'@'localhost';
+DROP USER IF EXISTS 'student'@'%';
 DROP USER IF EXISTS 'guardian'@'localhost';
+DROP USER IF EXISTS 'guardian'@'%';
 DROP USER IF EXISTS 'aro'@'localhost';
+DROP USER IF EXISTS 'aro'@'%';
 DROP USER IF EXISTS 'dro'@'localhost';
+DROP USER IF EXISTS 'dro'@'%';
 
+CREATE USER 'auth_user'@'localhost' IDENTIFIED BY 'auth_user_password';
+CREATE USER 'auth_user'@'%' IDENTIFIED BY 'auth_user_password';
 CREATE USER 'student'@'localhost' IDENTIFIED BY 'student_password';
+CREATE USER 'student'@'%' IDENTIFIED BY 'student_password';
 CREATE USER 'guardian'@'localhost' IDENTIFIED BY 'guardian_password';
+CREATE USER 'guardian'@'%' IDENTIFIED BY 'guardian_password';
 CREATE USER 'aro'@'localhost' IDENTIFIED BY 'aro_password';
+CREATE USER 'aro'@'%' IDENTIFIED BY 'aro_password';
 CREATE USER 'dro'@'localhost' IDENTIFIED BY 'dro_password';
+CREATE USER 'dro'@'%' IDENTIFIED BY 'dro_password';
 
--- Grant permissions to student user
--- Student can SELECT and UPDATE on students table (self range enforced by application)
--- Student can SELECT on grades and disciplinary_records (self range enforced by application)
-GRANT SELECT ON ComputingU.students TO 'student'@'localhost';
-GRANT UPDATE (last_name, first_name, gender, Id_No, address, phone, email, guardian_relation) ON ComputingU.students TO 'student'@'localhost';
-GRANT SELECT ON ComputingU.grades TO 'student'@'localhost';
-GRANT SELECT ON ComputingU.disciplinary_records TO 'student'@'localhost';
-
--- Grant permissions to guardian user
--- Guardian can SELECT and UPDATE on guardians table (self range enforced by application)
--- Guardian can SELECT on grades and disciplinary_records (children range enforced by application)
-GRANT SELECT ON ComputingU.guardians TO 'guardian'@'localhost';
-GRANT UPDATE (last_name, first_name, email, phone) ON ComputingU.guardians TO 'guardian'@'localhost';
-GRANT SELECT ON ComputingU.grades TO 'guardian'@'localhost';
-GRANT SELECT ON ComputingU.disciplinary_records TO 'guardian'@'localhost';
-
--- Grant permissions to aro user (Academic Records Officer)
--- ARO has full access to grades table
-GRANT SELECT, INSERT, UPDATE, DELETE ON ComputingU.grades TO 'aro'@'localhost';
--- ARO needs to read students and courses for foreign key relationships
-GRANT SELECT ON ComputingU.students TO 'aro'@'localhost';
-GRANT SELECT ON ComputingU.courses TO 'aro'@'localhost';
-
--- Grant permissions to dro user (Disciplinary Records Officer)
--- DRO has full access to disciplinary_records table
-GRANT SELECT, INSERT, UPDATE, DELETE ON ComputingU.disciplinary_records TO 'dro'@'localhost';
--- DRO needs to read students and staffs for foreign key relationships
-GRANT SELECT ON ComputingU.students TO 'dro'@'localhost';
-GRANT SELECT ON ComputingU.staffs TO 'dro'@'localhost';
-
--- Grant INSERT permission on audit/log tables to all users
--- All users need to log their operations
-GRANT INSERT ON ComputingU.audit_log TO 'student'@'localhost', 'guardian'@'localhost', 'aro'@'localhost', 'dro'@'localhost';
-GRANT INSERT ON ComputingU.security_events TO 'student'@'localhost', 'guardian'@'localhost', 'aro'@'localhost', 'dro'@'localhost';
-GRANT INSERT ON ComputingU.access_violations TO 'student'@'localhost', 'guardian'@'localhost', 'aro'@'localhost', 'dro'@'localhost';
-GRANT INSERT ON ComputingU.dataUpdateLog TO 'student'@'localhost', 'guardian'@'localhost', 'aro'@'localhost', 'dro'@'localhost';
-GRANT INSERT ON ComputingU.accountLog TO 'student'@'localhost', 'guardian'@'localhost', 'aro'@'localhost', 'dro'@'localhost';
-
--- Grant session management permissions to all users
--- All users need to manage their own sessions
-GRANT SELECT, INSERT, UPDATE, DELETE ON ComputingU.sessions TO 'student'@'localhost', 'guardian'@'localhost', 'aro'@'localhost', 'dro'@'localhost';
-
--- Flush privileges to apply changes
-FLUSH PRIVILEGES;
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
@@ -297,6 +263,86 @@ CREATE TABLE accountLog (
   INDEX idx_user_role (user_role),
   INDEX idx_ip (ip)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+DROP TABLE IF EXISTS audit_log;
+CREATE TABLE audit_log (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  event_type VARCHAR(100) NOT NULL,
+  user_id VARCHAR(50),
+  user_role VARCHAR(50),
+  ip_address VARCHAR(45),
+  sql_statement TEXT,
+  details TEXT,
+  timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  INDEX idx_event_type (event_type),
+  INDEX idx_user_id (user_id),
+  INDEX idx_user_role (user_role),
+  INDEX idx_timestamp (timestamp),
+  INDEX idx_ip_address (ip_address)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+DROP TABLE IF EXISTS security_events;
+CREATE TABLE security_events (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  event_type VARCHAR(100) NOT NULL,
+  user_id VARCHAR(50),
+  user_role VARCHAR(50),
+  ip_address VARCHAR(45),
+  details TEXT,
+  severity VARCHAR(20) DEFAULT 'medium',
+  timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  INDEX idx_event_type (event_type),
+  INDEX idx_user_id (user_id),
+  INDEX idx_severity (severity),
+  INDEX idx_timestamp (timestamp),
+  INDEX idx_ip_address (ip_address)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+DROP TABLE IF EXISTS sessions;
+CREATE TABLE sessions (
+  token VARCHAR(255) PRIMARY KEY,
+  user_id VARCHAR(50) NOT NULL,
+  role VARCHAR(50) NOT NULL,
+  expires_at TIMESTAMP NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  INDEX idx_expires_at (expires_at),
+  INDEX idx_user_id (user_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+GRANT SELECT (StuID, email, password, salt, first_name, last_name) ON ComputingU.students TO 'auth_user'@'localhost', 'auth_user'@'%';
+GRANT SELECT (GuaID, email, password, salt, first_name, last_name) ON ComputingU.guardians TO 'auth_user'@'localhost', 'auth_user'@'%';
+GRANT SELECT (StfID, email, password, salt, role, department, first_name, last_name) ON ComputingU.staffs TO 'auth_user'@'localhost', 'auth_user'@'%';
+GRANT INSERT ON ComputingU.audit_log TO 'auth_user'@'localhost', 'auth_user'@'%';
+GRANT INSERT ON ComputingU.security_events TO 'auth_user'@'localhost', 'auth_user'@'%';
+GRANT INSERT ON ComputingU.accountLog TO 'auth_user'@'localhost', 'auth_user'@'%';
+GRANT SELECT, INSERT, UPDATE, DELETE ON ComputingU.sessions TO 'auth_user'@'localhost', 'auth_user'@'%';
+
+GRANT SELECT ON ComputingU.students TO 'student'@'localhost', 'student'@'%';
+GRANT UPDATE (last_name, first_name, gender, Id_No, address, phone, email, guardian_relation) ON ComputingU.students TO 'student'@'localhost', 'student'@'%';
+GRANT SELECT ON ComputingU.grades TO 'student'@'localhost', 'student'@'%';
+GRANT SELECT ON ComputingU.disciplinary_records TO 'student'@'localhost', 'student'@'%';
+
+GRANT SELECT ON ComputingU.guardians TO 'guardian'@'localhost', 'guardian'@'%';
+GRANT UPDATE (last_name, first_name, email, phone) ON ComputingU.guardians TO 'guardian'@'localhost', 'guardian'@'%';
+GRANT SELECT ON ComputingU.grades TO 'guardian'@'localhost', 'guardian'@'%';
+GRANT SELECT ON ComputingU.disciplinary_records TO 'guardian'@'localhost', 'guardian'@'%';
+
+GRANT SELECT, INSERT, UPDATE, DELETE ON ComputingU.grades TO 'aro'@'localhost', 'aro'@'%';
+GRANT SELECT ON ComputingU.students TO 'aro'@'localhost', 'aro'@'%';
+GRANT SELECT ON ComputingU.courses TO 'aro'@'localhost', 'aro'@'%';
+
+GRANT SELECT, INSERT, UPDATE, DELETE ON ComputingU.disciplinary_records TO 'dro'@'localhost', 'dro'@'%';
+GRANT SELECT ON ComputingU.students TO 'dro'@'localhost', 'dro'@'%';
+GRANT SELECT ON ComputingU.staffs TO 'dro'@'localhost', 'dro'@'%';
+
+GRANT INSERT ON ComputingU.audit_log TO 'student'@'localhost', 'student'@'%', 'guardian'@'localhost', 'guardian'@'%', 'aro'@'localhost', 'aro'@'%', 'dro'@'localhost', 'dro'@'%';
+GRANT INSERT ON ComputingU.security_events TO 'student'@'localhost', 'student'@'%', 'guardian'@'localhost', 'guardian'@'%', 'aro'@'localhost', 'aro'@'%', 'dro'@'localhost', 'dro'@'%';
+GRANT INSERT ON ComputingU.dataUpdateLog TO 'student'@'localhost', 'student'@'%', 'guardian'@'localhost', 'guardian'@'%', 'aro'@'localhost', 'aro'@'%', 'dro'@'localhost', 'dro'@'%';
+GRANT INSERT ON ComputingU.accountLog TO 'student'@'localhost', 'student'@'%', 'guardian'@'localhost', 'guardian'@'%', 'aro'@'localhost', 'aro'@'%', 'dro'@'localhost', 'dro'@'%';
+GRANT SELECT, INSERT, UPDATE, DELETE ON ComputingU.sessions TO 'student'@'localhost', 'student'@'%', 'guardian'@'localhost', 'guardian'@'%', 'aro'@'localhost', 'aro'@'%', 'dro'@'localhost', 'dro'@'%';
+
+FLUSH PRIVILEGES;
 
 SET TIME_ZONE=@OLD_TIME_ZONE;
 SET SQL_MODE=@OLD_SQL_MODE;
