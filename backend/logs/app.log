@@ -1,0 +1,1242 @@
+2025-11-08 14:23:24 - app - ERROR - [db_connector.py:62] - Failed to create connection for pool: (2003, "Can't connect to MySQL server on '127.0.0.1' ([WinError 10061] 無法連線，因為目標電腦拒絕連線。)")
+2025-11-08 14:23:26 - app - ERROR - [db_connector.py:62] - Failed to create connection for pool: (2003, "Can't connect to MySQL server on '127.0.0.1' ([WinError 10061] 無法連線，因為目標電腦拒絕連線。)")
+2025-11-08 14:23:28 - app - ERROR - [db_connector.py:62] - Failed to create connection for pool: (2003, "Can't connect to MySQL server on '127.0.0.1' ([WinError 10061] 無法連線，因為目標電腦拒絕連線。)")
+2025-11-08 14:23:30 - app - ERROR - [db_connector.py:62] - Failed to create connection for pool: (2003, "Can't connect to MySQL server on '127.0.0.1' ([WinError 10061] 無法連線，因為目標電腦拒絕連線。)")
+2025-11-08 14:23:32 - app - ERROR - [db_connector.py:62] - Failed to create connection for pool: (2003, "Can't connect to MySQL server on '127.0.0.1' ([WinError 10061] 無法連線，因為目標電腦拒絕連線。)")
+2025-11-08 14:23:34 - app - ERROR - [db_connector.py:62] - Failed to create connection for pool: (2003, "Can't connect to MySQL server on '127.0.0.1' ([WinError 10061] 無法連線，因為目標電腦拒絕連線。)")
+2025-11-08 14:23:36 - app - ERROR - [db_connector.py:62] - Failed to create connection for pool: (2003, "Can't connect to MySQL server on '127.0.0.1' ([WinError 10061] 無法連線，因為目標電腦拒絕連線。)")
+2025-11-08 14:23:38 - app - ERROR - [db_connector.py:62] - Failed to create connection for pool: (2003, "Can't connect to MySQL server on '127.0.0.1' ([WinError 10061] 無法連線，因為目標電腦拒絕連線。)")
+2025-11-08 14:23:40 - app - ERROR - [db_connector.py:62] - Failed to create connection for pool: (2003, "Can't connect to MySQL server on '127.0.0.1' ([WinError 10061] 無法連線，因為目標電腦拒絕連線。)")
+2025-11-08 14:23:42 - app - ERROR - [db_connector.py:62] - Failed to create connection for pool: (2003, "Can't connect to MySQL server on '127.0.0.1' ([WinError 10061] 無法連線，因為目標電腦拒絕連線。)")
+2025-11-08 14:23:42 - app - INFO - [db_connector.py:63] - Connection pool initialized with 0 connections
+2025-11-08 14:23:47 - app - WARNING - [db_connector.py:90] - Connection pool exhausted, creating new connection
+2025-11-08 14:24:20 - app - INFO - [db_connector.py:63] - Connection pool initialized with 10 connections
+2025-11-08 14:37:55 - app - INFO - [db_connector.py:63] - Connection pool initialized with 10 connections
+2025-11-08 14:48:13 - app - INFO - [auth.py:207] - Session created for user 100 with role student
+2025-11-08 15:11:30 - app - INFO - [auth.py:286] - Session logged out: G5qK_IBE...
+2025-11-08 15:13:07 - app - INFO - [auth.py:207] - Session created for user 100 with role student
+2025-11-08 15:13:11 - app - INFO - [auth.py:286] - Session logged out: tNYKs8dT...
+2025-11-08 15:13:48 - app - INFO - [auth.py:207] - Session created for user 5001 with role aro
+2025-11-08 15:13:53 - app - INFO - [auth.py:286] - Session logged out: wgzGT_iM...
+2025-11-08 15:14:26 - app - INFO - [auth.py:207] - Session created for user 1000 with role guardian
+2025-11-08 15:14:29 - app - INFO - [auth.py:286] - Session logged out: jr6Yw2p_...
+2025-11-08 15:20:16 - app - INFO - [auth.py:207] - Session created for user 1000 with role guardian
+2025-11-08 15:20:18 - app - INFO - [auth.py:286] - Session logged out: HqF_58yv...
+2025-11-08 15:21:04 - app - INFO - [auth.py:207] - Session created for user 5001 with role aro
+2025-11-08 15:21:06 - app - INFO - [auth.py:286] - Session logged out: POHn8ylJ...
+2025-11-08 15:21:25 - app - INFO - [auth.py:207] - Session created for user 100 with role student
+2025-11-08 15:21:28 - app - INFO - [auth.py:286] - Session logged out: XaiM7dqK...
+2025-11-08 18:04:23 - app - INFO - [db_connector.py:63] - Connection pool initialized with 10 connections
+2025-11-08 18:15:22 - app - INFO - [db_connector.py:63] - Connection pool initialized with 10 connections
+2025-11-08 18:15:45 - app - INFO - [auth.py:207] - Session created for user 100 with role student
+2025-11-08 18:15:45 - app - ERROR - [db_query.py:42] - Database execute error: (1292, "Truncated incorrect DOUBLE value: '1' OR '1'='1'"), SQL: UPDATE `students` target SET target.`email` = %s WHERE target.`StuID` = %s AND target.`StuID` = %s
+2025-11-08 18:15:45 - app - ERROR - [db_query.py:42] - Database execute error: (1292, "Truncated incorrect DOUBLE value: '1' OR '1'='1'"), SQL: DELETE target FROM `students` target WHERE target.`StuID` = %s AND target.`StuID` = %s
+2025-11-08 18:15:45 - app - ERROR - [db_query.py:42] - Database execute error: (1292, "Truncated incorrect DOUBLE value: '1' --'"), SQL: DELETE target FROM `students` target WHERE target.`StuID` = %s AND target.`StuID` = %s
+2025-11-08 18:15:45 - app - ERROR - [db_query.py:42] - Database execute error: (1292, "Truncated incorrect DOUBLE value: '1'; DROP TABLE students; --'"), SQL: DELETE target FROM `students` target WHERE target.`StuID` = %s AND target.`StuID` = %s
+2025-11-08 18:41:42 - app - INFO - [auth.py:207] - Session created for user 100 with role student
+2025-11-08 18:41:45 - app - INFO - [auth.py:286] - Session logged out: xpJD20Y2...
+2025-11-08 18:45:39 - app - INFO - [db_connector.py:63] - Connection pool initialized with 10 connections
+2025-11-08 18:46:37 - app - INFO - [auth.py:207] - Session created for user 100 with role student
+2025-11-08 18:46:37 - app - ERROR - [db_query.py:42] - Database execute error: (1292, "Truncated incorrect DOUBLE value: '1' OR '1'='1'"), SQL: UPDATE `students` target SET target.`email` = %s WHERE target.`StuID` = %s AND target.`StuID` = %s
+2025-11-08 18:46:37 - app - ERROR - [db_query.py:42] - Database execute error: (1292, "Truncated incorrect DOUBLE value: '1' OR '1'='1'"), SQL: DELETE target FROM `students` target WHERE target.`StuID` = %s AND target.`StuID` = %s
+2025-11-08 18:46:37 - app - ERROR - [db_query.py:42] - Database execute error: (1292, "Truncated incorrect DOUBLE value: '1' --'"), SQL: DELETE target FROM `students` target WHERE target.`StuID` = %s AND target.`StuID` = %s
+2025-11-08 18:46:37 - app - ERROR - [db_query.py:42] - Database execute error: (1292, "Truncated incorrect DOUBLE value: '1'; DROP TABLE students; --'"), SQL: DELETE target FROM `students` target WHERE target.`StuID` = %s AND target.`StuID` = %s
+2025-11-08 18:59:28 - app - INFO - [db_connector.py:63] - Connection pool initialized with 10 connections
+2025-11-08 19:00:10 - app - INFO - [db_connector.py:63] - Connection pool initialized with 10 connections
+2025-11-08 19:00:26 - app - INFO - [auth.py:207] - Session created for user 100 with role student
+2025-11-08 19:00:33 - app - ERROR - [db_query.py:42] - Database execute error: (1292, "Truncated incorrect DOUBLE value: '1' OR '1'='1'"), SQL: UPDATE `students` target SET target.`email` = %s WHERE target.`StuID` = %s AND target.`StuID` = %s
+2025-11-08 19:00:34 - app - ERROR - [db_query.py:42] - Database execute error: (1292, "Truncated incorrect DOUBLE value: '1' OR '1'='1'"), SQL: DELETE target FROM `students` target WHERE target.`StuID` = %s AND target.`StuID` = %s
+2025-11-08 19:00:34 - app - ERROR - [db_query.py:42] - Database execute error: (1292, "Truncated incorrect DOUBLE value: '1' --'"), SQL: DELETE target FROM `students` target WHERE target.`StuID` = %s AND target.`StuID` = %s
+2025-11-08 19:00:35 - app - ERROR - [db_query.py:42] - Database execute error: (1292, "Truncated incorrect DOUBLE value: '1'; DROP TABLE students; --'"), SQL: DELETE target FROM `students` target WHERE target.`StuID` = %s AND target.`StuID` = %s
+2025-11-08 19:29:16 - app - INFO - [auth.py:207] - Session created for user 1000 with role guardian
+2025-11-08 19:29:16 - app - INFO - [auth.py:207] - Session created for user 1000 with role guardian
+2025-11-08 19:29:18 - app - INFO - [auth.py:286] - Session logged out: M8AdTxAD...
+2025-11-08 19:29:37 - app - INFO - [auth.py:207] - Session created for user 5001 with role aro
+2025-11-08 19:29:39 - app - INFO - [auth.py:286] - Session logged out: P8LcbwN5...
+2025-11-08 19:38:27 - app - INFO - [auth.py:207] - Session created for user 100 with role student
+2025-11-08 19:38:28 - app - INFO - [db_connector.py:63] - Connection pool initialized with 10 connections
+2025-11-08 19:38:54 - app - INFO - [auth.py:207] - Session created for user 100 with role student
+2025-11-08 19:38:54 - app - ERROR - [db_query.py:42] - Database execute error: (1292, "Truncated incorrect DOUBLE value: '1' OR '1'='1'"), SQL: UPDATE `students` target SET target.`email` = %s WHERE target.`StuID` = %s AND target.`StuID` = %s
+2025-11-08 19:38:55 - app - ERROR - [db_query.py:42] - Database execute error: (1292, "Truncated incorrect DOUBLE value: '1' OR '1'='1'"), SQL: DELETE target FROM `students` target WHERE target.`StuID` = %s AND target.`StuID` = %s
+2025-11-08 19:38:55 - app - ERROR - [db_query.py:42] - Database execute error: (1292, "Truncated incorrect DOUBLE value: '1' --'"), SQL: DELETE target FROM `students` target WHERE target.`StuID` = %s AND target.`StuID` = %s
+2025-11-08 19:38:55 - app - ERROR - [db_query.py:42] - Database execute error: (1292, "Truncated incorrect DOUBLE value: '1'; DROP TABLE students; --'"), SQL: DELETE target FROM `students` target WHERE target.`StuID` = %s AND target.`StuID` = %s
+2025-11-15 14:07:35 - app - INFO - [db_connector.py:63] - Connection pool initialized with 10 connections
+2025-11-15 14:08:32 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:08:32 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:08:32 - app - INFO - [auth.py:113] - Login successful: user_id=100, role=student, email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:08:32 - app - ERROR - [db_query.py:42] - Database execute error: (1146, "Table 'ComputingU.audit_log' doesn't exist"), SQL: 
+            INSERT INTO audit_log 
+            (event_type, user_id, user_role, ip_address, sql_sta
+2025-11-15 14:08:32 - app - ERROR - [audit_logger.py:52] - Failed to log audit event to database: (1146, "Table 'ComputingU.audit_log' doesn't exist")
+2025-11-15 14:08:32 - app - INFO - [auth.py:242] - Session created for user 100 with role student
+2025-11-15 14:08:32 - app - INFO - [api_handler.py:194] - Session created for login: user_id=100, role=student, ip=127.0.0.1
+2025-11-15 14:08:36 - app - INFO - [api_handler.py:238] - Query request: user_id=100, role=student, table=grades, ip=127.0.0.1
+2025-11-15 14:08:36 - app - ERROR - [db_query.py:42] - Database execute error: (1146, "Table 'ComputingU.audit_log' doesn't exist"), SQL: 
+            INSERT INTO audit_log 
+            (event_type, user_id, user_role, ip_address, sql_sta
+2025-11-15 14:08:36 - app - ERROR - [audit_logger.py:52] - Failed to log audit event to database: (1146, "Table 'ComputingU.audit_log' doesn't exist")
+2025-11-15 14:08:36 - app - ERROR - [db_query.py:42] - Database execute error: (1146, "Table 'ComputingU.audit_log' doesn't exist"), SQL: 
+            INSERT INTO audit_log 
+            (event_type, user_id, user_role, ip_address, sql_sta
+2025-11-15 14:08:36 - app - ERROR - [audit_logger.py:52] - Failed to log audit event to database: (1146, "Table 'ComputingU.audit_log' doesn't exist")
+2025-11-15 14:08:36 - app - INFO - [api_handler.py:458] - Query executed successfully: user_id=100, role=student, table=grades, rows=3, ip=127.0.0.1
+2025-11-15 14:08:38 - app - INFO - [api_handler.py:238] - Query request: user_id=100, role=student, table=disciplinary_records, ip=127.0.0.1
+2025-11-15 14:08:38 - app - ERROR - [db_query.py:42] - Database execute error: (1146, "Table 'ComputingU.audit_log' doesn't exist"), SQL: 
+            INSERT INTO audit_log 
+            (event_type, user_id, user_role, ip_address, sql_sta
+2025-11-15 14:08:38 - app - ERROR - [audit_logger.py:52] - Failed to log audit event to database: (1146, "Table 'ComputingU.audit_log' doesn't exist")
+2025-11-15 14:08:38 - app - ERROR - [db_query.py:42] - Database execute error: (1146, "Table 'ComputingU.audit_log' doesn't exist"), SQL: 
+            INSERT INTO audit_log 
+            (event_type, user_id, user_role, ip_address, sql_sta
+2025-11-15 14:08:38 - app - ERROR - [audit_logger.py:52] - Failed to log audit event to database: (1146, "Table 'ComputingU.audit_log' doesn't exist")
+2025-11-15 14:08:38 - app - INFO - [api_handler.py:458] - Query executed successfully: user_id=100, role=student, table=disciplinary_records, rows=2, ip=127.0.0.1
+2025-11-15 14:08:49 - app - INFO - [api_handler.py:238] - Query request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 14:08:49 - app - ERROR - [db_query.py:42] - Database execute error: (1146, "Table 'ComputingU.audit_log' doesn't exist"), SQL: 
+            INSERT INTO audit_log 
+            (event_type, user_id, user_role, ip_address, sql_sta
+2025-11-15 14:08:49 - app - ERROR - [audit_logger.py:52] - Failed to log audit event to database: (1146, "Table 'ComputingU.audit_log' doesn't exist")
+2025-11-15 14:08:49 - app - ERROR - [db_query.py:42] - Database execute error: (1146, "Table 'ComputingU.audit_log' doesn't exist"), SQL: 
+            INSERT INTO audit_log 
+            (event_type, user_id, user_role, ip_address, sql_sta
+2025-11-15 14:08:49 - app - ERROR - [audit_logger.py:52] - Failed to log audit event to database: (1146, "Table 'ComputingU.audit_log' doesn't exist")
+2025-11-15 14:08:49 - app - INFO - [api_handler.py:458] - Query executed successfully: user_id=100, role=student, table=students, rows=1, ip=127.0.0.1
+2025-11-15 14:08:53 - app - INFO - [api_handler.py:479] - Update request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 14:08:53 - app - ERROR - [db_query.py:42] - Database execute error: (1146, "Table 'ComputingU.audit_log' doesn't exist"), SQL: 
+            INSERT INTO audit_log 
+            (event_type, user_id, user_role, ip_address, sql_sta
+2025-11-15 14:08:53 - app - ERROR - [audit_logger.py:52] - Failed to log audit event to database: (1146, "Table 'ComputingU.audit_log' doesn't exist")
+2025-11-15 14:08:53 - app - ERROR - [db_query.py:42] - Database execute error: (1146, "Table 'ComputingU.audit_log' doesn't exist"), SQL: 
+            INSERT INTO audit_log 
+            (event_type, user_id, user_role, ip_address, sql_sta
+2025-11-15 14:08:53 - app - ERROR - [audit_logger.py:52] - Failed to log audit event to database: (1146, "Table 'ComputingU.audit_log' doesn't exist")
+2025-11-15 14:08:53 - app - INFO - [api_handler.py:553] - Update executed successfully: user_id=100, role=student, table=students, rows_affected=1, ip=127.0.0.1
+2025-11-15 14:08:53 - app - INFO - [api_handler.py:238] - Query request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 14:08:53 - app - ERROR - [db_query.py:42] - Database execute error: (1146, "Table 'ComputingU.audit_log' doesn't exist"), SQL: 
+            INSERT INTO audit_log 
+            (event_type, user_id, user_role, ip_address, sql_sta
+2025-11-15 14:08:53 - app - ERROR - [audit_logger.py:52] - Failed to log audit event to database: (1146, "Table 'ComputingU.audit_log' doesn't exist")
+2025-11-15 14:08:53 - app - ERROR - [db_query.py:42] - Database execute error: (1146, "Table 'ComputingU.audit_log' doesn't exist"), SQL: 
+            INSERT INTO audit_log 
+            (event_type, user_id, user_role, ip_address, sql_sta
+2025-11-15 14:08:53 - app - ERROR - [audit_logger.py:52] - Failed to log audit event to database: (1146, "Table 'ComputingU.audit_log' doesn't exist")
+2025-11-15 14:08:53 - app - INFO - [api_handler.py:458] - Query executed successfully: user_id=100, role=student, table=students, rows=1, ip=127.0.0.1
+2025-11-15 14:10:13 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:13 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:13 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:13 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:13 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:13 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:13 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:13 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:13 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:13 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:13 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:13 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:14 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:14 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:14 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:14 - app - INFO - [auth.py:90] - Login attempt: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:14 - app - WARNING - [auth.py:191] - Login failed: email=alice.student@university.edu, reason=invalid_credentials, ip=127.0.0.1
+2025-11-15 14:10:14 - app - ERROR - [db_query.py:42] - Database execute error: (1146, "Table 'ComputingU.audit_log' doesn't exist"), SQL: 
+            INSERT INTO audit_log 
+            (event_type, user_id, user_role, ip_address, sql_sta
+2025-11-15 14:10:14 - app - ERROR - [audit_logger.py:52] - Failed to log audit event to database: (1146, "Table 'ComputingU.audit_log' doesn't exist")
+2025-11-15 14:10:14 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:14 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:14 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:14 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:14 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:14 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:14 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:14 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:15 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:15 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:15 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:15 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:15 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:15 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:15 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:15 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:15 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:15 - app - INFO - [auth.py:90] - Login attempt: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:15 - app - WARNING - [auth.py:191] - Login failed: email=alice.student@university.edu, reason=invalid_credentials, ip=127.0.0.1
+2025-11-15 14:10:15 - app - ERROR - [db_query.py:42] - Database execute error: (1146, "Table 'ComputingU.audit_log' doesn't exist"), SQL: 
+            INSERT INTO audit_log 
+            (event_type, user_id, user_role, ip_address, sql_sta
+2025-11-15 14:10:15 - app - ERROR - [audit_logger.py:52] - Failed to log audit event to database: (1146, "Table 'ComputingU.audit_log' doesn't exist")
+2025-11-15 14:10:15 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:15 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:16 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:16 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:16 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:16 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:16 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:16 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:16 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:16 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:16 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:16 - app - INFO - [auth.py:90] - Login attempt: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:16 - app - WARNING - [auth.py:191] - Login failed: email=alice.student@university.edu, reason=invalid_credentials, ip=127.0.0.1
+2025-11-15 14:10:16 - app - ERROR - [db_query.py:42] - Database execute error: (1146, "Table 'ComputingU.audit_log' doesn't exist"), SQL: 
+            INSERT INTO audit_log 
+            (event_type, user_id, user_role, ip_address, sql_sta
+2025-11-15 14:10:16 - app - ERROR - [audit_logger.py:52] - Failed to log audit event to database: (1146, "Table 'ComputingU.audit_log' doesn't exist")
+2025-11-15 14:10:16 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:16 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:16 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:16 - app - INFO - [auth.py:90] - Login attempt: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:17 - app - WARNING - [auth.py:191] - Login failed: email=alice.student@university.edu, reason=invalid_credentials, ip=127.0.0.1
+2025-11-15 14:10:17 - app - ERROR - [db_query.py:42] - Database execute error: (1146, "Table 'ComputingU.audit_log' doesn't exist"), SQL: 
+            INSERT INTO audit_log 
+            (event_type, user_id, user_role, ip_address, sql_sta
+2025-11-15 14:10:17 - app - ERROR - [audit_logger.py:52] - Failed to log audit event to database: (1146, "Table 'ComputingU.audit_log' doesn't exist")
+2025-11-15 14:10:17 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:17 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:17 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:17 - app - INFO - [auth.py:90] - Login attempt: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:17 - app - WARNING - [auth.py:191] - Login failed: email=alice.student@university.edu, reason=invalid_credentials, ip=127.0.0.1
+2025-11-15 14:10:17 - app - ERROR - [db_query.py:42] - Database execute error: (1146, "Table 'ComputingU.audit_log' doesn't exist"), SQL: 
+            INSERT INTO audit_log 
+            (event_type, user_id, user_role, ip_address, sql_sta
+2025-11-15 14:10:17 - app - ERROR - [audit_logger.py:52] - Failed to log audit event to database: (1146, "Table 'ComputingU.audit_log' doesn't exist")
+2025-11-15 14:10:17 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:17 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:17 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:17 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:17 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:17 - app - INFO - [auth.py:90] - Login attempt: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:17 - app - WARNING - [auth.py:191] - Login failed: email=alice.student@university.edu, reason=invalid_credentials, ip=127.0.0.1
+2025-11-15 14:10:17 - app - ERROR - [db_query.py:42] - Database execute error: (1146, "Table 'ComputingU.audit_log' doesn't exist"), SQL: 
+            INSERT INTO audit_log 
+            (event_type, user_id, user_role, ip_address, sql_sta
+2025-11-15 14:10:17 - app - ERROR - [audit_logger.py:52] - Failed to log audit event to database: (1146, "Table 'ComputingU.audit_log' doesn't exist")
+2025-11-15 14:10:18 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:18 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:18 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:18 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:18 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:18 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:18 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:18 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:18 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:18 - app - INFO - [auth.py:90] - Login attempt: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:18 - app - WARNING - [auth.py:191] - Login failed: email=alice.student@university.edu, reason=invalid_credentials, ip=127.0.0.1
+2025-11-15 14:10:18 - app - ERROR - [db_query.py:42] - Database execute error: (1146, "Table 'ComputingU.audit_log' doesn't exist"), SQL: 
+            INSERT INTO audit_log 
+            (event_type, user_id, user_role, ip_address, sql_sta
+2025-11-15 14:10:18 - app - ERROR - [audit_logger.py:52] - Failed to log audit event to database: (1146, "Table 'ComputingU.audit_log' doesn't exist")
+2025-11-15 14:10:18 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:18 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:18 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:18 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:19 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:19 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:19 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:19 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:45:49 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:45:49 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:45:49 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:45:49 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:45:49 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:45:49 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:45:49 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:45:49 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:45:49 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:45:49 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:45:49 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:45:49 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:45:49 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:45:49 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:45:49 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:45:49 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:45:49 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:45:49 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:45:49 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:45:49 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:45:49 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:45:49 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:45:49 - app - INFO - [auth.py:113] - Login successful: user_id=100, role=student, email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:45:49 - app - ERROR - [db_query.py:42] - Database execute error: (1146, "Table 'ComputingU.audit_log' doesn't exist"), SQL: 
+            INSERT INTO audit_log 
+            (event_type, user_id, user_role, ip_address, sql_sta
+2025-11-15 14:45:49 - app - ERROR - [audit_logger.py:52] - Failed to log audit event to database: (1146, "Table 'ComputingU.audit_log' doesn't exist")
+2025-11-15 14:45:49 - app - INFO - [auth.py:242] - Session created for user 100 with role student
+2025-11-15 14:45:49 - app - INFO - [api_handler.py:194] - Session created for login: user_id=100, role=student, ip=127.0.0.1
+2025-11-15 14:45:50 - app - INFO - [api_handler.py:238] - Query request: user_id=100, role=student, table=, ip=127.0.0.1
+2025-11-15 14:45:50 - app - WARNING - [api_handler.py:244] - Invalid table name in query: user_id=100, role=student, table=, ip=127.0.0.1
+2025-11-15 14:45:50 - app - INFO - [api_handler.py:238] - Query request: user_id=100, role=student, table=, ip=127.0.0.1
+2025-11-15 14:45:50 - app - WARNING - [api_handler.py:244] - Invalid table name in query: user_id=100, role=student, table=, ip=127.0.0.1
+2025-11-15 14:45:50 - app - INFO - [api_handler.py:238] - Query request: user_id=100, role=student, table=, ip=127.0.0.1
+2025-11-15 14:45:50 - app - WARNING - [api_handler.py:244] - Invalid table name in query: user_id=100, role=student, table=, ip=127.0.0.1
+2025-11-15 14:45:50 - app - INFO - [api_handler.py:238] - Query request: user_id=100, role=student, table=, ip=127.0.0.1
+2025-11-15 14:45:50 - app - WARNING - [api_handler.py:244] - Invalid table name in query: user_id=100, role=student, table=, ip=127.0.0.1
+2025-11-15 14:45:50 - app - INFO - [api_handler.py:238] - Query request: user_id=100, role=student, table=, ip=127.0.0.1
+2025-11-15 14:45:50 - app - WARNING - [api_handler.py:244] - Invalid table name in query: user_id=100, role=student, table=, ip=127.0.0.1
+2025-11-15 14:46:25 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:46:45 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:46:45 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:46:45 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:46:45 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:46:45 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:46:45 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:46:45 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:46:45 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:46:45 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:46:45 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:46:45 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:46:45 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:46:45 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:46:45 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:46:45 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:46:45 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:46:45 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:46:45 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:46:45 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:46:45 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:46:45 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:46:45 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:46:45 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:46:45 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:46:45 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:46:45 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:46:45 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:46:45 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:46:45 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:46:45 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:46:45 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:46:45 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:46:45 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:46:45 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:46:45 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:46:45 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:46:45 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:46:45 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:46:46 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:46:46 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:46:46 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:46:46 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:52:57 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:52:57 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:52:57 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:52:57 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:52:57 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:52:57 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:52:58 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:52:58 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:52:58 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:52:58 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:52:58 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:52:58 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:52:58 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:52:58 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:52:58 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:52:58 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:52:58 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:52:58 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:52:58 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:52:58 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:52:59 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:52:59 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:52:59 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:52:59 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:52:59 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:52:59 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:52:59 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:52:59 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:52:59 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:52:59 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:52:59 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:52:59 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:52:59 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:53:00 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:00 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:53:00 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:00 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:53:00 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:00 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:53:00 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:00 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:53:00 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:00 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:53:00 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:00 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:53:00 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:00 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:53:00 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:01 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:53:01 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:01 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:53:01 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:01 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:53:01 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:01 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:53:01 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:01 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:53:01 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:01 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:53:01 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:02 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:53:02 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:02 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:53:02 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:02 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:53:02 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:02 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:53:02 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:02 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:53:02 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:02 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:53:02 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:02 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:53:02 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:03 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:53:03 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:03 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:53:03 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:03 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:53:03 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:17 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:53:17 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:17 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:53:17 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:17 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:53:17 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:17 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:53:17 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:17 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:53:17 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:17 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:53:17 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:17 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:53:17 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:17 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:53:17 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:17 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:53:17 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:17 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:53:17 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:17 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:53:17 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:17 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:53:17 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:17 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:53:17 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:17 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:53:17 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:17 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:53:17 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:17 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:53:17 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:17 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:53:17 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:17 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:53:17 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:17 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:53:17 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:17 - app - WARNING - [api_handler.py:223] - Unauthorized query attempt: ip=127.0.0.1
+2025-11-15 14:53:17 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:17 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:53:17 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:28 - app - INFO - [api_handler.py:131] - Login request received: email=admin' OR '1'='1, ip=127.0.0.1
+2025-11-15 14:53:28 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:28 - app - INFO - [api_handler.py:131] - Login request received: email=admin' OR '1'='1'--, ip=127.0.0.1
+2025-11-15 14:53:28 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:28 - app - INFO - [api_handler.py:131] - Login request received: email=admin' OR '1'='1'#, ip=127.0.0.1
+2025-11-15 14:53:28 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:28 - app - INFO - [api_handler.py:131] - Login request received: email=admin' OR '1'='1'/*, ip=127.0.0.1
+2025-11-15 14:53:28 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:28 - app - INFO - [api_handler.py:131] - Login request received: email=' OR 1=1--, ip=127.0.0.1
+2025-11-15 14:53:28 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:28 - app - INFO - [api_handler.py:131] - Login request received: email=' OR '1'='1, ip=127.0.0.1
+2025-11-15 14:53:28 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:28 - app - INFO - [api_handler.py:131] - Login request received: email=' OR 1=1#, ip=127.0.0.1
+2025-11-15 14:53:28 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:28 - app - INFO - [api_handler.py:131] - Login request received: email=' OR 'a'='a, ip=127.0.0.1
+2025-11-15 14:53:28 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:28 - app - INFO - [api_handler.py:131] - Login request received: email=' OR ''=', ip=127.0.0.1
+2025-11-15 14:53:28 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:28 - app - INFO - [api_handler.py:131] - Login request received: email=admin' UNION SELECT NULL--, ip=127.0.0.1
+2025-11-15 14:53:28 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:28 - app - INFO - [api_handler.py:131] - Login request received: email=' UNION SELECT * FROM users--, ip=127.0.0.1
+2025-11-15 14:53:28 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:28 - app - INFO - [api_handler.py:131] - Login request received: email=' OR '1'='1' AND '1'='1, ip=127.0.0.1
+2025-11-15 14:53:28 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:28 - app - INFO - [api_handler.py:131] - Login request received: email=' OR '1'='1' AND '1'='2, ip=127.0.0.1
+2025-11-15 14:53:28 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:28 - app - INFO - [api_handler.py:131] - Login request received: email=admin'; WAITFOR DELAY '00:00:05'--, ip=127.0.0.1
+2025-11-15 14:53:28 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:28 - app - INFO - [api_handler.py:131] - Login request received: email=admin'; SLEEP(5)--, ip=127.0.0.1
+2025-11-15 14:53:28 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:28 - app - INFO - [api_handler.py:131] - Login request received: email=' OR SLEEP(5)--, ip=127.0.0.1
+2025-11-15 14:53:28 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:28 - app - INFO - [api_handler.py:131] - Login request received: email=admin'; DROP TABLE users--, ip=127.0.0.1
+2025-11-15 14:53:28 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:28 - app - INFO - [api_handler.py:131] - Login request received: email='; DELETE FROM users--, ip=127.0.0.1
+2025-11-15 14:53:28 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:28 - app - INFO - [api_handler.py:131] - Login request received: email=admin'/**/OR/**/1=1--, ip=127.0.0.1
+2025-11-15 14:53:29 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:29 - app - INFO - [api_handler.py:131] - Login request received: email=admin'/*comment*/OR/*comment*/1=1--, ip=127.0.0.1
+2025-11-15 14:53:29 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:29 - app - INFO - [api_handler.py:131] - Login request received: email=admin%27%20OR%20%271%27%3D%271, ip=127.0.0.1
+2025-11-15 14:53:29 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:29 - app - INFO - [api_handler.py:131] - Login request received: email=admin' OR CHAR(49)=CHAR(49)--, ip=127.0.0.1
+2025-11-15 14:53:29 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:29 - app - INFO - [api_handler.py:131] - Login request received: email=admin') OR ('1'='1, ip=127.0.0.1
+2025-11-15 14:53:29 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:29 - app - INFO - [api_handler.py:131] - Login request received: email=admin' OR 1=1 LIMIT 1--, ip=127.0.0.1
+2025-11-15 14:53:29 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:29 - app - INFO - [api_handler.py:131] - Login request received: email=' OR 1=1 LIMIT 1--, ip=127.0.0.1
+2025-11-15 14:53:29 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:53:29 - app - INFO - [api_handler.py:131] - Login request received: email=admin' OR 'x'='x, ip=127.0.0.1
+2025-11-15 14:53:29 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:56:17 - app - INFO - [api_handler.py:131] - Login request received: email=admin' OR '1'='1, ip=127.0.0.1
+2025-11-15 14:56:17 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:56:17 - app - INFO - [api_handler.py:131] - Login request received: email=admin' OR '1'='1'--, ip=127.0.0.1
+2025-11-15 14:56:17 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:56:17 - app - INFO - [api_handler.py:131] - Login request received: email=admin' OR '1'='1'#, ip=127.0.0.1
+2025-11-15 14:56:17 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:56:17 - app - INFO - [api_handler.py:131] - Login request received: email=admin' OR '1'='1'/*, ip=127.0.0.1
+2025-11-15 14:56:17 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:56:17 - app - INFO - [api_handler.py:131] - Login request received: email=' OR 1=1--, ip=127.0.0.1
+2025-11-15 14:56:17 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:56:17 - app - INFO - [api_handler.py:131] - Login request received: email=' OR '1'='1, ip=127.0.0.1
+2025-11-15 14:56:17 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:56:17 - app - INFO - [api_handler.py:131] - Login request received: email=' OR 1=1#, ip=127.0.0.1
+2025-11-15 14:56:18 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:56:18 - app - INFO - [api_handler.py:131] - Login request received: email=' OR 'a'='a, ip=127.0.0.1
+2025-11-15 14:56:18 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:56:18 - app - INFO - [api_handler.py:131] - Login request received: email=' OR ''=', ip=127.0.0.1
+2025-11-15 14:56:18 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:56:18 - app - INFO - [api_handler.py:131] - Login request received: email=admin' UNION SELECT NULL--, ip=127.0.0.1
+2025-11-15 14:56:18 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:56:18 - app - INFO - [api_handler.py:131] - Login request received: email=' UNION SELECT * FROM users--, ip=127.0.0.1
+2025-11-15 14:56:18 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:56:18 - app - INFO - [api_handler.py:131] - Login request received: email=' OR '1'='1' AND '1'='1, ip=127.0.0.1
+2025-11-15 14:56:18 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:56:18 - app - INFO - [api_handler.py:131] - Login request received: email=' OR '1'='1' AND '1'='2, ip=127.0.0.1
+2025-11-15 14:56:18 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:56:18 - app - INFO - [api_handler.py:131] - Login request received: email=admin'; WAITFOR DELAY '00:00:05'--, ip=127.0.0.1
+2025-11-15 14:56:18 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:56:18 - app - INFO - [api_handler.py:131] - Login request received: email=admin'; SLEEP(5)--, ip=127.0.0.1
+2025-11-15 14:56:18 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:56:18 - app - INFO - [api_handler.py:131] - Login request received: email=' OR SLEEP(5)--, ip=127.0.0.1
+2025-11-15 14:56:18 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:56:18 - app - INFO - [api_handler.py:131] - Login request received: email=admin'; DROP TABLE users--, ip=127.0.0.1
+2025-11-15 14:56:18 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:56:18 - app - INFO - [api_handler.py:131] - Login request received: email='; DELETE FROM users--, ip=127.0.0.1
+2025-11-15 14:56:18 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:56:18 - app - INFO - [api_handler.py:131] - Login request received: email=admin'/**/OR/**/1=1--, ip=127.0.0.1
+2025-11-15 14:56:18 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:56:18 - app - INFO - [api_handler.py:131] - Login request received: email=admin'/*comment*/OR/*comment*/1=1--, ip=127.0.0.1
+2025-11-15 14:56:18 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:56:18 - app - INFO - [api_handler.py:131] - Login request received: email=admin%27%20OR%20%271%27%3D%271, ip=127.0.0.1
+2025-11-15 14:56:18 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:56:18 - app - INFO - [api_handler.py:131] - Login request received: email=admin' OR CHAR(49)=CHAR(49)--, ip=127.0.0.1
+2025-11-15 14:56:18 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:56:18 - app - INFO - [api_handler.py:131] - Login request received: email=admin') OR ('1'='1, ip=127.0.0.1
+2025-11-15 14:56:18 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:56:18 - app - INFO - [api_handler.py:131] - Login request received: email=admin' OR 1=1 LIMIT 1--, ip=127.0.0.1
+2025-11-15 14:56:18 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:56:18 - app - INFO - [api_handler.py:131] - Login request received: email=' OR 1=1 LIMIT 1--, ip=127.0.0.1
+2025-11-15 14:56:18 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:56:18 - app - INFO - [api_handler.py:131] - Login request received: email=admin' OR 'x'='x, ip=127.0.0.1
+2025-11-15 14:56:18 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:56:23 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 14:56:36 - app - ERROR - [db_connector.py:71] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:12:03 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: test_token_12345
+2025-11-15 15:12:03 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:12:04 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: admin_token
+2025-11-15 15:12:04 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:12:04 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: session_token
+2025-11-15 15:12:04 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:12:04 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: 12345678901234567890...
+2025-11-15 15:12:04 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:12:04 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: aaaaaaaaaaaaaaaaaaaa...
+2025-11-15 15:12:04 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:12:04 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: 11111111111111111111...
+2025-11-15 15:12:04 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:12:04 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: adminadminadminadmin...
+2025-11-15 15:12:04 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:12:04 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: iHOChxakTZPnmz7CCu54...
+2025-11-15 15:12:04 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:12:04 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: JeWCO5CQG-O030wrkB28...
+2025-11-15 15:12:04 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:12:04 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: qR2GOdqe--DdDxLhnppj...
+2025-11-15 15:12:04 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:12:04 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: OXUWcnH81OB5goBR32CR...
+2025-11-15 15:12:04 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:12:04 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: _ZWrl_Athc3EQqWpL0_Y...
+2025-11-15 15:12:04 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:12:04 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: NvaY9NRsNhNisDzuMtJb...
+2025-11-15 15:12:04 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:12:04 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: rkf2t5vNhItUx0fiwRKI...
+2025-11-15 15:12:04 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:12:04 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: ss6DUvfedZSpOcY5uGxl...
+2025-11-15 15:12:04 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:12:04 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: PzYCxx0eqN0eN12LFRU4...
+2025-11-15 15:12:04 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:12:04 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: dNWp8AaJe3uEpKbG5tdy...
+2025-11-15 15:12:04 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:12:04 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: expired_token_12345
+2025-11-15 15:12:04 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:12:04 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: old_session_token
+2025-11-15 15:12:04 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:12:04 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: invalid_token_123
+2025-11-15 15:12:04 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:12:04 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:12:04 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:15:17 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:15:17 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:15:17 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:15:17 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:15:17 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:15:17 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:15:17 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:15:17 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:15:18 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:15:18 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:15:18 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:15:18 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:15:18 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:15:18 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:15:18 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:15:18 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:15:18 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:15:18 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:15:18 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:15:18 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:15:18 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:15:19 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:15:19 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:15:19 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:15:19 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:15:19 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:15:19 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:15:19 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:15:19 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:15:19 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:15:19 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:15:19 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:15:19 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:15:19 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:15:19 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:15:19 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:15:20 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:15:20 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:15:20 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:15:20 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:15:20 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:15:20 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:15:20 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:15:20 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:15:20 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:15:20 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:15:20 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:15:20 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:15:20 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:15:21 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:15:21 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:15:21 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:15:21 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:15:21 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:15:21 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:15:21 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:15:21 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:15:21 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:15:21 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:15:21 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:15:21 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:15:21 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:15:21 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:15:21 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:15:22 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:15:22 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:15:22 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:15:22 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:15:22 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:15:22 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:15:22 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:15:22 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:15:22 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:15:22 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:15:22 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:15:22 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:15:22 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:15:22 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:15:23 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:15:23 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:16:51 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:17:37 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:17:37 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:17:37 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:17:37 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:17:37 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:17:37 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:17:37 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:17:37 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:17:37 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:17:37 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:17:38 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:17:38 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:17:38 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:17:38 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:17:38 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:17:38 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:17:38 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:17:38 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:17:38 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:17:38 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:17:38 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:17:38 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:17:38 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:17:38 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:17:39 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:17:39 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:17:39 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:17:39 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:17:39 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:17:39 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:17:39 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:17:39 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:17:39 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:17:39 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:17:39 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:17:39 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:17:39 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:17:39 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:17:40 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:17:40 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:17:40 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:17:40 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:17:40 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:17:40 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:17:40 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:17:40 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:17:40 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:17:40 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:17:40 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:17:40 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:17:40 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:17:40 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:17:41 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:17:41 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:17:41 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:17:41 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:17:41 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:17:41 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:17:41 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:17:41 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:17:41 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:17:41 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:17:41 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:17:41 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:17:41 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:17:41 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:17:42 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:17:42 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:17:42 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:17:42 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:17:42 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:17:42 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:17:42 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:17:42 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:17:42 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:17:42 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:17:42 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:17:42 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:17:43 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:17:43 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1045, "Access denied for user 'student'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:18:08 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:18:08 - app - ERROR - [db_connector.py:72] - Error creating database connection for role auth: (1045, "Access denied for user 'auth_user'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:18:08 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:18:08 - app - ERROR - [db_connector.py:72] - Error creating database connection for role auth: (1045, "Access denied for user 'auth_user'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:18:08 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:18:08 - app - ERROR - [db_connector.py:72] - Error creating database connection for role auth: (1045, "Access denied for user 'auth_user'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:18:09 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:18:09 - app - ERROR - [db_connector.py:72] - Error creating database connection for role auth: (1045, "Access denied for user 'auth_user'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:18:09 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:18:09 - app - ERROR - [db_connector.py:72] - Error creating database connection for role auth: (1045, "Access denied for user 'auth_user'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:18:09 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:18:09 - app - ERROR - [db_connector.py:72] - Error creating database connection for role auth: (1045, "Access denied for user 'auth_user'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:18:09 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:18:09 - app - ERROR - [db_connector.py:72] - Error creating database connection for role auth: (1045, "Access denied for user 'auth_user'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:18:09 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:18:09 - app - ERROR - [db_connector.py:72] - Error creating database connection for role auth: (1045, "Access denied for user 'auth_user'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:18:09 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:18:09 - app - ERROR - [db_connector.py:72] - Error creating database connection for role auth: (1045, "Access denied for user 'auth_user'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:18:09 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:18:10 - app - ERROR - [db_connector.py:72] - Error creating database connection for role auth: (1045, "Access denied for user 'auth_user'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:18:10 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:18:10 - app - ERROR - [db_connector.py:72] - Error creating database connection for role auth: (1045, "Access denied for user 'auth_user'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:18:10 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:18:10 - app - ERROR - [db_connector.py:72] - Error creating database connection for role auth: (1045, "Access denied for user 'auth_user'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:18:10 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:18:10 - app - ERROR - [db_connector.py:72] - Error creating database connection for role auth: (1045, "Access denied for user 'auth_user'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:18:10 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:18:10 - app - ERROR - [db_connector.py:72] - Error creating database connection for role auth: (1045, "Access denied for user 'auth_user'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:18:10 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:18:10 - app - ERROR - [db_connector.py:72] - Error creating database connection for role auth: (1045, "Access denied for user 'auth_user'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:18:10 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:18:10 - app - ERROR - [db_connector.py:72] - Error creating database connection for role auth: (1045, "Access denied for user 'auth_user'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:18:11 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:18:11 - app - ERROR - [db_connector.py:72] - Error creating database connection for role auth: (1045, "Access denied for user 'auth_user'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:18:11 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:18:11 - app - ERROR - [db_connector.py:72] - Error creating database connection for role auth: (1045, "Access denied for user 'auth_user'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:18:11 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:18:11 - app - ERROR - [db_connector.py:72] - Error creating database connection for role auth: (1045, "Access denied for user 'auth_user'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:18:11 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:18:11 - app - ERROR - [db_connector.py:72] - Error creating database connection for role auth: (1045, "Access denied for user 'auth_user'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:18:11 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:18:11 - app - ERROR - [db_connector.py:72] - Error creating database connection for role auth: (1045, "Access denied for user 'auth_user'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:18:11 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:18:11 - app - ERROR - [db_connector.py:72] - Error creating database connection for role auth: (1045, "Access denied for user 'auth_user'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:18:11 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:18:11 - app - ERROR - [db_connector.py:72] - Error creating database connection for role auth: (1045, "Access denied for user 'auth_user'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:18:12 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:18:12 - app - ERROR - [db_connector.py:72] - Error creating database connection for role auth: (1045, "Access denied for user 'auth_user'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:18:12 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:18:12 - app - ERROR - [db_connector.py:72] - Error creating database connection for role auth: (1045, "Access denied for user 'auth_user'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:18:12 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:18:12 - app - ERROR - [db_connector.py:72] - Error creating database connection for role auth: (1045, "Access denied for user 'auth_user'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:18:12 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:18:12 - app - ERROR - [db_connector.py:72] - Error creating database connection for role auth: (1045, "Access denied for user 'auth_user'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:18:12 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:18:12 - app - ERROR - [db_connector.py:72] - Error creating database connection for role auth: (1045, "Access denied for user 'auth_user'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:18:12 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:18:12 - app - ERROR - [db_connector.py:72] - Error creating database connection for role auth: (1045, "Access denied for user 'auth_user'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:18:12 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:18:13 - app - ERROR - [db_connector.py:72] - Error creating database connection for role auth: (1045, "Access denied for user 'auth_user'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:18:13 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:18:13 - app - ERROR - [db_connector.py:72] - Error creating database connection for role auth: (1045, "Access denied for user 'auth_user'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:18:13 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:18:13 - app - ERROR - [db_connector.py:72] - Error creating database connection for role auth: (1045, "Access denied for user 'auth_user'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:18:13 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:18:13 - app - ERROR - [db_connector.py:72] - Error creating database connection for role auth: (1045, "Access denied for user 'auth_user'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:18:13 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:18:13 - app - ERROR - [db_connector.py:72] - Error creating database connection for role auth: (1045, "Access denied for user 'auth_user'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:18:13 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:18:13 - app - ERROR - [db_connector.py:72] - Error creating database connection for role auth: (1045, "Access denied for user 'auth_user'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:18:13 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:18:13 - app - ERROR - [db_connector.py:72] - Error creating database connection for role auth: (1045, "Access denied for user 'auth_user'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:18:14 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:18:14 - app - ERROR - [db_connector.py:72] - Error creating database connection for role auth: (1045, "Access denied for user 'auth_user'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:18:14 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:18:14 - app - ERROR - [db_connector.py:72] - Error creating database connection for role auth: (1045, "Access denied for user 'auth_user'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:18:14 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:18:14 - app - ERROR - [db_connector.py:72] - Error creating database connection for role auth: (1045, "Access denied for user 'auth_user'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:18:14 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:18:14 - app - ERROR - [db_connector.py:72] - Error creating database connection for role auth: (1045, "Access denied for user 'auth_user'@'172.18.0.1' (using password: YES)")
+2025-11-15 15:20:51 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:51 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:51 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:51 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:51 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:51 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:51 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:52 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:52 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:52 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:52 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:52 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:52 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:52 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:52 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:52 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:52 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-15 15:20:52 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:20:52 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-15 15:20:52 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-15 15:20:53 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:53 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:53 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:53 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:53 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:53 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:53 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:53 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:53 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:53 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:53 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:53 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:53 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:54 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:54 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:54 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:54 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:54 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:54 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-15 15:20:54 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:20:54 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-15 15:20:54 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-15 15:20:54 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:54 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:54 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:54 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:54 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:55 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:55 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:55 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:55 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:55 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:55 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:55 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:55 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-15 15:20:55 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:20:55 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-15 15:20:55 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-15 15:20:55 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:55 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:55 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:56 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:56 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-15 15:20:56 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:20:56 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-15 15:20:56 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-15 15:20:56 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:56 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:56 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:56 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:56 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-15 15:20:56 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:20:56 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-15 15:20:56 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-15 15:20:56 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:56 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:56 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:56 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:57 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:57 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:57 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-15 15:20:57 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:20:57 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-15 15:20:57 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-15 15:20:57 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:57 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:57 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:57 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:57 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:57 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:57 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:57 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:57 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:58 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:58 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-15 15:20:58 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:20:58 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-15 15:20:58 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-15 15:20:58 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:58 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:58 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:58 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:58 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:58 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:58 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:58 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:58 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:58 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:20:58 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-15 15:20:59 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:20:59 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-15 15:20:59 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-15 15:21:24 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: test_token_12345
+2025-11-15 15:21:24 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: admin_token
+2025-11-15 15:21:25 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: session_token
+2025-11-15 15:21:25 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: 12345678901234567890...
+2025-11-15 15:21:25 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: aaaaaaaaaaaaaaaaaaaa...
+2025-11-15 15:21:25 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: 11111111111111111111...
+2025-11-15 15:21:25 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: adminadminadminadmin...
+2025-11-15 15:21:25 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: A2m9UTnfVh5qmBjChVFt...
+2025-11-15 15:21:25 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: ZnxRDu5Yx1bfCVRwjfiQ...
+2025-11-15 15:21:25 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: zXt6uf6Dc_zHfXdyivdl...
+2025-11-15 15:21:25 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: 0FKJKPnY7HWtGSPiMyTS...
+2025-11-15 15:21:25 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: dUlQBIwZTXBCELuE5fs8...
+2025-11-15 15:21:25 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: iSWDYh-2xGkz1YmDvQ0N...
+2025-11-15 15:21:25 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: HKD1GsqefuExkeiKNiko...
+2025-11-15 15:21:25 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: V6uyQvd_DDXfbvylYpRE...
+2025-11-15 15:21:25 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: S6Zu10bOeUmaE3sqecjA...
+2025-11-15 15:21:25 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: rAO1_yT3-JqqraA3CIpj...
+2025-11-15 15:21:25 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: expired_token_12345
+2025-11-15 15:21:25 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: old_session_token
+2025-11-15 15:21:25 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: invalid_token_123
+2025-11-15 15:21:25 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:21:25 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:21:25 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-15 15:21:25 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:21:25 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-15 15:21:25 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-15 15:21:51 - app - INFO - [api_handler.py:131] - Login request received: email=admin' OR '1'='1, ip=127.0.0.1
+2025-11-15 15:21:51 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin' OR '1'='1, ip=127.0.0.1
+2025-11-15 15:21:51 - app - INFO - [api_handler.py:131] - Login request received: email=admin' OR '1'='1'--, ip=127.0.0.1
+2025-11-15 15:21:51 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin' OR '1'='1'--, ip=127.0.0.1
+2025-11-15 15:21:51 - app - INFO - [api_handler.py:131] - Login request received: email=admin' OR '1'='1'#, ip=127.0.0.1
+2025-11-15 15:21:51 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin' OR '1'='1'#, ip=127.0.0.1
+2025-11-15 15:21:51 - app - INFO - [api_handler.py:131] - Login request received: email=admin' OR '1'='1'/*, ip=127.0.0.1
+2025-11-15 15:21:51 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin' OR '1'='1'/*, ip=127.0.0.1
+2025-11-15 15:21:51 - app - INFO - [api_handler.py:131] - Login request received: email=' OR 1=1--, ip=127.0.0.1
+2025-11-15 15:21:51 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=' OR 1=1--, ip=127.0.0.1
+2025-11-15 15:21:51 - app - INFO - [api_handler.py:131] - Login request received: email=' OR '1'='1, ip=127.0.0.1
+2025-11-15 15:21:51 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=' OR '1'='1, ip=127.0.0.1
+2025-11-15 15:21:51 - app - INFO - [api_handler.py:131] - Login request received: email=' OR 1=1#, ip=127.0.0.1
+2025-11-15 15:21:51 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=' OR 1=1#, ip=127.0.0.1
+2025-11-15 15:21:51 - app - INFO - [api_handler.py:131] - Login request received: email=' OR 'a'='a, ip=127.0.0.1
+2025-11-15 15:21:51 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=' OR 'a'='a, ip=127.0.0.1
+2025-11-15 15:21:51 - app - INFO - [api_handler.py:131] - Login request received: email=' OR ''=', ip=127.0.0.1
+2025-11-15 15:21:51 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=' OR ''=', ip=127.0.0.1
+2025-11-15 15:21:51 - app - INFO - [api_handler.py:131] - Login request received: email=admin' UNION SELECT NULL--, ip=127.0.0.1
+2025-11-15 15:21:51 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin' UNION SELECT NULL--, ip=127.0.0.1
+2025-11-15 15:21:51 - app - INFO - [api_handler.py:131] - Login request received: email=' UNION SELECT * FROM users--, ip=127.0.0.1
+2025-11-15 15:21:51 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=' UNION SELECT * FROM users--, ip=127.0.0.1
+2025-11-15 15:21:51 - app - INFO - [api_handler.py:131] - Login request received: email=' OR '1'='1' AND '1'='1, ip=127.0.0.1
+2025-11-15 15:21:51 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=' OR '1'='1' AND '1'='1, ip=127.0.0.1
+2025-11-15 15:21:51 - app - INFO - [api_handler.py:131] - Login request received: email=' OR '1'='1' AND '1'='2, ip=127.0.0.1
+2025-11-15 15:21:51 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=' OR '1'='1' AND '1'='2, ip=127.0.0.1
+2025-11-15 15:21:51 - app - INFO - [api_handler.py:131] - Login request received: email=admin'; WAITFOR DELAY '00:00:05'--, ip=127.0.0.1
+2025-11-15 15:21:51 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin'; WAITFOR DELAY '00:00:05'--, ip=127.0.0.1
+2025-11-15 15:21:51 - app - INFO - [api_handler.py:131] - Login request received: email=admin'; SLEEP(5)--, ip=127.0.0.1
+2025-11-15 15:21:51 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin'; SLEEP(5)--, ip=127.0.0.1
+2025-11-15 15:21:52 - app - INFO - [api_handler.py:131] - Login request received: email=' OR SLEEP(5)--, ip=127.0.0.1
+2025-11-15 15:21:52 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=' OR SLEEP(5)--, ip=127.0.0.1
+2025-11-15 15:21:52 - app - INFO - [api_handler.py:131] - Login request received: email=admin'; DROP TABLE users--, ip=127.0.0.1
+2025-11-15 15:21:52 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin'; DROP TABLE users--, ip=127.0.0.1
+2025-11-15 15:21:52 - app - INFO - [api_handler.py:131] - Login request received: email='; DELETE FROM users--, ip=127.0.0.1
+2025-11-15 15:21:52 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email='; DELETE FROM users--, ip=127.0.0.1
+2025-11-15 15:21:52 - app - INFO - [api_handler.py:131] - Login request received: email=admin'/**/OR/**/1=1--, ip=127.0.0.1
+2025-11-15 15:21:52 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin'/**/OR/**/1=1--, ip=127.0.0.1
+2025-11-15 15:21:52 - app - INFO - [api_handler.py:131] - Login request received: email=admin'/*comment*/OR/*comment*/1=1--, ip=127.0.0.1
+2025-11-15 15:21:52 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin'/*comment*/OR/*comment*/1=1--, ip=127.0.0.1
+2025-11-15 15:21:52 - app - INFO - [api_handler.py:131] - Login request received: email=admin%27%20OR%20%271%27%3D%271, ip=127.0.0.1
+2025-11-15 15:21:52 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin%27%20OR%20%271%27%3D%271, ip=127.0.0.1
+2025-11-15 15:21:52 - app - INFO - [api_handler.py:131] - Login request received: email=admin' OR CHAR(49)=CHAR(49)--, ip=127.0.0.1
+2025-11-15 15:21:52 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin' OR CHAR(49)=CHAR(49)--, ip=127.0.0.1
+2025-11-15 15:21:52 - app - INFO - [api_handler.py:131] - Login request received: email=admin') OR ('1'='1, ip=127.0.0.1
+2025-11-15 15:21:52 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin') OR ('1'='1, ip=127.0.0.1
+2025-11-15 15:21:52 - app - INFO - [api_handler.py:131] - Login request received: email=admin' OR 1=1 LIMIT 1--, ip=127.0.0.1
+2025-11-15 15:21:52 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin' OR 1=1 LIMIT 1--, ip=127.0.0.1
+2025-11-15 15:21:52 - app - INFO - [api_handler.py:131] - Login request received: email=' OR 1=1 LIMIT 1--, ip=127.0.0.1
+2025-11-15 15:21:52 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=' OR 1=1 LIMIT 1--, ip=127.0.0.1
+2025-11-15 15:21:52 - app - INFO - [api_handler.py:131] - Login request received: email=admin' OR 'x'='x, ip=127.0.0.1
+2025-11-15 15:21:52 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin' OR 'x'='x, ip=127.0.0.1
+2025-11-15 15:32:55 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:32:55 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:32:55 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-15 15:32:55 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:32:55 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-15 15:32:55 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-15 15:33:42 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:33:42 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:33:42 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-15 15:33:42 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:33:42 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-15 15:33:42 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-15 15:38:43 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:38:43 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:38:43 - app - INFO - [auth.py:115] - Login successful: user_id=100, role=student, email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:38:43 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:38:43 - app - INFO - [audit_logger.py:48] - AUDIT: login_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:38:44 - app - INFO - [auth.py:250] - Session created for user 100 with role student
+2025-11-15 15:38:44 - app - INFO - [api_handler.py:202] - Session created for login: user_id=100, role=student, ip=127.0.0.1
+2025-11-15 15:39:38 - app - INFO - [api_handler.py:497] - Update request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 15:39:38 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:39:38 - app - INFO - [audit_logger.py:48] - AUDIT: sql_update_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:39:38 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:39:38 - app - INFO - [audit_logger.py:48] - AUDIT: update - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:39:38 - app - INFO - [api_handler.py:571] - Update executed successfully: user_id=100, role=student, table=students, rows_affected=1, ip=127.0.0.1
+2025-11-15 15:39:38 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 15:39:38 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:39:38 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:39:38 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:39:38 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:39:38 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=students, rows=1, ip=127.0.0.1
+2025-11-15 15:39:43 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 15:39:43 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:39:43 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:39:43 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:39:43 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:39:43 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=students, rows=1, ip=127.0.0.1
+2025-11-15 15:39:46 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 15:39:46 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:39:46 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:39:46 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:39:46 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:39:46 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=students, rows=1, ip=127.0.0.1
+2025-11-15 15:40:40 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=grades, ip=127.0.0.1
+2025-11-15 15:40:40 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:40:40 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:40:40 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:40:40 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:40:40 - app - ERROR - [db_query.py:24] - Database query error: (1142, "SELECT command denied to user 'student'@'172.18.0.1' for table 'courses'"), SQL: SELECT target.`GradeID` AS `GradeID`, target.`StuID` AS `StuID`, CONCAT(j1.`first_name`, ' ', j1.`la
+2025-11-15 15:40:43 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=grades, ip=127.0.0.1
+2025-11-15 15:40:43 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:40:43 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:40:43 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:40:44 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:40:44 - app - ERROR - [db_query.py:24] - Database query error: (1142, "SELECT command denied to user 'student'@'172.18.0.1' for table 'courses'"), SQL: SELECT target.`GradeID` AS `GradeID`, target.`StuID` AS `StuID`, CONCAT(j1.`first_name`, ' ', j1.`la
+2025-11-15 15:40:44 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=grades, ip=127.0.0.1
+2025-11-15 15:40:44 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:40:44 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:40:44 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:40:44 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:40:44 - app - ERROR - [db_query.py:24] - Database query error: (1142, "SELECT command denied to user 'student'@'172.18.0.1' for table 'courses'"), SQL: SELECT target.`GradeID` AS `GradeID`, target.`StuID` AS `StuID`, CONCAT(j1.`first_name`, ' ', j1.`la
+2025-11-15 15:40:46 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=disciplinary_records, ip=127.0.0.1
+2025-11-15 15:40:46 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:40:46 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:40:46 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:40:46 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:40:46 - app - ERROR - [db_query.py:24] - Database query error: (1142, "SELECT command denied to user 'student'@'172.18.0.1' for table 'staffs'"), SQL: SELECT target.`DrID` AS `DrID`, target.`StuID` AS `StuID`, CONCAT(j1.`first_name`, ' ', j1.`last_nam
+2025-11-15 15:40:48 - app - INFO - [auth.py:333] - Session logged out: w4nXP2bc...
+2025-11-15 15:40:53 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:40:53 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:40:53 - app - INFO - [auth.py:115] - Login successful: user_id=100, role=student, email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:40:53 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:40:53 - app - INFO - [audit_logger.py:48] - AUDIT: login_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:40:53 - app - INFO - [auth.py:250] - Session created for user 100 with role student
+2025-11-15 15:40:53 - app - INFO - [api_handler.py:202] - Session created for login: user_id=100, role=student, ip=127.0.0.1
+2025-11-15 15:40:58 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=grades, ip=127.0.0.1
+2025-11-15 15:40:58 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:40:58 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:40:58 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:40:58 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:40:58 - app - ERROR - [db_query.py:24] - Database query error: (1142, "SELECT command denied to user 'student'@'172.18.0.1' for table 'courses'"), SQL: SELECT target.`GradeID` AS `GradeID`, target.`StuID` AS `StuID`, CONCAT(j1.`first_name`, ' ', j1.`la
+2025-11-15 15:41:54 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:41:54 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:41:54 - app - INFO - [auth.py:115] - Login successful: user_id=100, role=student, email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:41:54 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:41:54 - app - INFO - [audit_logger.py:48] - AUDIT: login_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:41:54 - app - INFO - [auth.py:250] - Session created for user 100 with role student
+2025-11-15 15:41:54 - app - INFO - [api_handler.py:202] - Session created for login: user_id=100, role=student, ip=127.0.0.1
+2025-11-15 15:41:54 - app - INFO - [api_handler.py:681] - Insert request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 15:41:54 - app - INFO - [api_handler.py:681] - Insert request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 15:41:55 - app - INFO - [api_handler.py:681] - Insert request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 15:41:55 - app - INFO - [api_handler.py:681] - Insert request: user_id=100, role=student, table=students; DROP TABLE students; --, ip=127.0.0.1
+2025-11-15 15:41:55 - app - WARNING - [api_handler.py:687] - Invalid table name in insert: user_id=100, role=student, table=students; DROP TABLE students; --, ip=127.0.0.1
+2025-11-15 15:41:55 - app - INFO - [api_handler.py:681] - Insert request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 15:42:35 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: KMPYFvhC4KN_nhH5FFQ9...
+2025-11-15 15:43:47 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:43:47 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:43:47 - app - INFO - [auth.py:115] - Login successful: user_id=100, role=student, email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:43:47 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:43:47 - app - INFO - [audit_logger.py:48] - AUDIT: login_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:43:47 - app - INFO - [auth.py:250] - Session created for user 100 with role student
+2025-11-15 15:43:47 - app - INFO - [api_handler.py:202] - Session created for login: user_id=100, role=student, ip=127.0.0.1
+2025-11-15 15:43:49 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 15:43:49 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:43:49 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:43:49 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:43:49 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:43:49 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=students, rows=1, ip=127.0.0.1
+2025-11-15 15:43:52 - app - INFO - [api_handler.py:497] - Update request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 15:43:52 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:43:52 - app - INFO - [audit_logger.py:48] - AUDIT: sql_update_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:43:52 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:43:52 - app - INFO - [audit_logger.py:48] - AUDIT: update - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:43:52 - app - ERROR - [db_query.py:48] - Database execute error: (1406, "Data too long for column 'gender' at row 1"), SQL: UPDATE `students` target SET target.`gender` = %s WHERE target.`StuID` = %s AND target.`StuID` = %s
+2025-11-15 15:43:52 - app - ERROR - [api_handler.py:576] - Update error: user_id=100, role=student, table=students, error=(1406, "Data too long for column 'gender' at row 1"), ip=127.0.0.1
+2025-11-15 15:43:52 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:43:52 - app - INFO - [audit_logger.py:48] - AUDIT: sql_update_failure - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:43:54 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 15:43:54 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:43:54 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:43:54 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:43:54 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:43:54 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=students, rows=1, ip=127.0.0.1
+2025-11-15 15:43:58 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=grades, ip=127.0.0.1
+2025-11-15 15:43:58 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:43:58 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:43:58 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:43:58 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:43:58 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=grades, rows=3, ip=127.0.0.1
+2025-11-15 15:44:01 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=disciplinary_records, ip=127.0.0.1
+2025-11-15 15:44:01 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:44:01 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:44:01 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:44:01 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:44:01 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=disciplinary_records, rows=2, ip=127.0.0.1
+2025-11-15 15:44:03 - app - INFO - [auth.py:333] - Session logged out: JXdRCgmM...
+2025-11-15 15:45:16 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:45:16 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:45:16 - app - INFO - [auth.py:115] - Login successful: user_id=100, role=student, email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:45:16 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:16 - app - INFO - [audit_logger.py:48] - AUDIT: login_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:16 - app - INFO - [auth.py:250] - Session created for user 100 with role student
+2025-11-15 15:45:16 - app - INFO - [api_handler.py:202] - Session created for login: user_id=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:16 - app - INFO - [api_handler.py:601] - Delete request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 15:45:16 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:16 - app - INFO - [audit_logger.py:48] - AUDIT: sql_delete_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:16 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:16 - app - INFO - [audit_logger.py:48] - AUDIT: delete - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:16 - app - ERROR - [db_query.py:48] - Database execute error: (1142, "DELETE command denied to user 'student'@'172.18.0.1' for table 'students'"), SQL: DELETE target FROM `students` target WHERE target.`StuID` = %s AND target.`StuID` = %s
+2025-11-15 15:45:16 - app - ERROR - [api_handler.py:655] - Delete error: user_id=100, role=student, table=students, error=(1142, "DELETE command denied to user 'student'@'172.18.0.1' for table 'students'"), ip=127.0.0.1
+2025-11-15 15:45:16 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:16 - app - INFO - [audit_logger.py:48] - AUDIT: sql_delete_failure - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:16 - app - INFO - [api_handler.py:601] - Delete request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 15:45:16 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:16 - app - INFO - [audit_logger.py:48] - AUDIT: sql_delete_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:16 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:16 - app - INFO - [audit_logger.py:48] - AUDIT: delete - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:16 - app - ERROR - [db_query.py:48] - Database execute error: (1142, "DELETE command denied to user 'student'@'172.18.0.1' for table 'students'"), SQL: DELETE target FROM `students` target WHERE target.`StuID` = %s AND target.`StuID` = %s
+2025-11-15 15:45:16 - app - ERROR - [api_handler.py:655] - Delete error: user_id=100, role=student, table=students, error=(1142, "DELETE command denied to user 'student'@'172.18.0.1' for table 'students'"), ip=127.0.0.1
+2025-11-15 15:45:16 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:16 - app - INFO - [audit_logger.py:48] - AUDIT: sql_delete_failure - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:16 - app - INFO - [api_handler.py:601] - Delete request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 15:45:16 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:16 - app - INFO - [audit_logger.py:48] - AUDIT: sql_delete_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:16 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:16 - app - INFO - [audit_logger.py:48] - AUDIT: delete - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:16 - app - ERROR - [db_query.py:48] - Database execute error: (1142, "DELETE command denied to user 'student'@'172.18.0.1' for table 'students'"), SQL: DELETE target FROM `students` target WHERE target.`StuID` = %s AND target.`StuID` = %s
+2025-11-15 15:45:16 - app - ERROR - [api_handler.py:655] - Delete error: user_id=100, role=student, table=students, error=(1142, "DELETE command denied to user 'student'@'172.18.0.1' for table 'students'"), ip=127.0.0.1
+2025-11-15 15:45:16 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:16 - app - INFO - [audit_logger.py:48] - AUDIT: sql_delete_failure - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:16 - app - INFO - [api_handler.py:601] - Delete request: user_id=100, role=student, table=students; DROP TABLE students; --, ip=127.0.0.1
+2025-11-15 15:45:16 - app - WARNING - [api_handler.py:607] - Invalid table name in delete: user_id=100, role=student, table=students; DROP TABLE students; --, ip=127.0.0.1
+2025-11-15 15:45:16 - app - INFO - [api_handler.py:601] - Delete request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 15:45:56 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:45:56 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:45:56 - app - INFO - [auth.py:115] - Login successful: user_id=100, role=student, email=test_student@example.com, ip=127.0.0.1
+2025-11-15 15:45:56 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:56 - app - INFO - [audit_logger.py:48] - AUDIT: login_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:56 - app - INFO - [auth.py:250] - Session created for user 100 with role student
+2025-11-15 15:45:56 - app - INFO - [api_handler.py:202] - Session created for login: user_id=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:56 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 15:45:56 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:56 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:56 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:56 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:56 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=students, rows=0, ip=127.0.0.1
+2025-11-15 15:45:56 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 15:45:56 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:56 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:56 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:57 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:57 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=students, rows=0, ip=127.0.0.1
+2025-11-15 15:45:57 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 15:45:57 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:57 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:57 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:57 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:57 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=students, rows=0, ip=127.0.0.1
+2025-11-15 15:45:57 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=students; DROP TABLE students; --, ip=127.0.0.1
+2025-11-15 15:45:57 - app - WARNING - [api_handler.py:262] - Invalid table name in query: user_id=100, role=student, table=students; DROP TABLE students; --, ip=127.0.0.1
+2025-11-15 15:45:57 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 15:45:57 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:57 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:57 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:57 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:57 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=students, rows=1, ip=127.0.0.1
+2025-11-15 15:45:57 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 15:45:57 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:57 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:57 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:57 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:57 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=students, rows=1, ip=127.0.0.1
+2025-11-15 15:45:57 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 15:45:57 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:57 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:57 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:57 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:57 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=students, rows=0, ip=127.0.0.1
+2025-11-15 15:45:57 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 15:45:57 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:57 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:57 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-15 15:45:57 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-15 15:45:57 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=students, rows=0, ip=127.0.0.1
