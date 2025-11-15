@@ -5,9 +5,11 @@ University Data API Server - Main Entry Point
 from http.server import HTTPServer
 from db_connector import test_db_connection
 from api_handler import SimpleAPIServer
+from encryption import ensureEncryptionKey
 
 def run(host="127.0.0.1", port=8000):
     """Start HTTP server"""
+    ensureEncryptionKey()
     # Test database connection
     print("Testing database connection...")
     success, message = test_db_connection()

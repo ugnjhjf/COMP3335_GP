@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 import json
 import urllib.parse
 import traceback
@@ -7,7 +6,12 @@ from http.server import BaseHTTPRequestHandler
 import os
 from communicator import json_response, read_json
 from privilege_controller import (
-    parse_bearer_role, ROLE_TABLES, RolePrivileges, FKLink, buildRangeFilter
+    parse_bearer_role,
+    ROLE_TABLES,
+    RolePrivileges,
+    FKLink,
+    buildRangeFilter,
+    retrieveReadableColumns,
 )
 from db_query import db_query, db_execute, getTableColumns, checkPrimaryKey, checkUpdatableColumns
 from logger import logDataUpdate, logAccountOperation
@@ -21,6 +25,12 @@ from security import (
     sanitize_input, validate_table_name, validate_column_name,
     validate_table_name_whitelist, escape_identifier
 )
+from encryption import (
+    getEncryptedColumns,
+    buildSelectDecryptExpr,
+    getEncryptionKey,
+)
+
 
 class SimpleAPIServer(BaseHTTPRequestHandler):
     server_version = "SimpleAPIServer/0.1"
@@ -43,7 +53,7 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
             url = urllib.parse.urlparse(self.path)
             path = url.path
             self.log_message(f"GET {path}")
-            
+
             if path == "/" or path == "":
                 return json_response(self, 200, {
                     "message": "University Data API Server",
@@ -53,20 +63,33 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                         "POST": ["/auth/login", "/performQuery", "/data/update", "/data/delete", "/data/insert"]
                     }
                 })
-            
+
             if path == "/retrieveTablesColumns":
                 auth = parse_bearer_role(self.headers)
                 if not auth:
                     return json_response(self, 401, {"error": "Unauthorized"})
-                
+
+                role_privs = RolePrivileges.get(auth["role"], {})
                 tables = ROLE_TABLES.get(auth["role"], [])
-                
+
                 tableColumns = {}
                 for table in tables:
-                    tableColumns[table] = getTableColumns(table)
+                    columns_info = getTableColumns(table)
+                    table_priv = role_privs.get(table, {})
+                    allowed_columns = retrieveReadableColumns(
+                        table_priv, [col["Field"] for col in columns_info]
+                    )
 
-                roleRrivileges = RolePrivileges.get(auth["role"], {})
-                return json_response(self, 200, {"tables": tables, "tableColumns": tableColumns, "rolePrivileges": roleRrivileges})
+                    # keep original structure but drop disallowed columns
+                    filtered = [col for col in columns_info if col["Field"] in allowed_columns]
+                    tableColumns[table] = filtered
+
+                rolePrivileges = role_privs  # keep original structure for client if needed
+                return json_response(
+                    self,
+                    200,
+                    {"tables": tables, "tableColumns": tableColumns, "rolePrivileges": rolePrivileges},
+                )
             
             # Public key endpoint for frontend encryption - 前端加密用的公钥端点
             if path == "/auth/public-key":
@@ -183,7 +206,7 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                 else:
                     # Login failed - already logged in authenticate_user
                     return json_response(self, 401, {"ok": False, "error": "Invalid email or password"})
-            
+
             elif path == "/auth/logout":
                 auth_header = self.headers.get("Authorization", "")
                 token = auth_header.replace("Bearer ", "") if auth_header.startswith("Bearer ") else ""
@@ -208,7 +231,7 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                 orders = data.get("orders", [])
                 limit = int(data.get("limit", 100))
                 offset = int(data.get("offset", 0))
-                limit = max(1, min(limit, 500))   # cap
+                limit = max(1, min(limit, 500))
                 offset = max(0, offset)
 
                 # Log query request
@@ -231,15 +254,33 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                     logAccountOperation(client_ip, auth.get('personId'), auth.get('role'), f"Inappropriate access: action=query, table={table}, reason=Access denied")
                     return json_response(self, 403, {"error": "Forbidden"})
 
-                # check if the table contain the columns
                 columnData = getTableColumns(table)
+                table_priv = RolePrivileges.get(auth["role"], {}).get(table, {})
+                allowed_columns = retrieveReadableColumns(table_priv, [col["Field"] for col in columnData])
+                if not allowed_columns:
+                    return json_response(self, 403, {"error": "Forbidden"})
+
+                table_encrypted_columns = getEncryptedColumns(table)
+
                 tableCols = []
+                tableColsMap = {}
                 for c in columnData:
-                    tableCols.append(c.get("Field"))
+                    colName = c.get("Field")
+                    if colName in allowed_columns:
+                        tableCols.append(colName)
+                        tableColsMap[colName.lower()] = colName
+
+                if not tableCols:
+                    return json_response(
+                        self,
+                        403,
+                        {"error": "No readable columns configured for this table"},
+                    )
 
                 def checkColumn(name):
-                    if name in tableCols:
-                        return f"{currentTableName}.`{name}`"
+                    actual = tableColsMap.get(str(name).lower())
+                    if actual:
+                        return f"{currentTableName}.`{actual}`", actual
                     raise ValueError("Invalid column")
 
                 OP = {
@@ -258,24 +299,38 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
 
                 currentTableName = "target"
                 queryingColumns = []
-                queryingColumnsStr = ""
                 joins = []
                 joinIdx = 1
                 whereClauses = []
-                setColumnSql = []
-                params = []
+                select_params = []
+                where_params = []
 
                 tableFks = FKLink.get(table, {})
+                encryption_key_value = None
 
                 for col in tableCols:
-                    if col in tableFks.keys():
+                    if col in table_encrypted_columns:
+                        if encryption_key_value is None:
+                            encryption_key_value = getEncryptionKey()
+                        decrypt_expr = buildSelectDecryptExpr(table, col, currentTableName)
+                        queryingColumns.append(f"{decrypt_expr} AS `{col}`")
+                        select_params.append(encryption_key_value)
+                    elif col in tableFks.keys():
                         queryingColumns.append(f"{currentTableName}.`{col}` AS `{col}`")
-                        
+
                         joinTableName = f"j{joinIdx}"
-                        joins.append(f"LEFT JOIN `{tableFks[col].get('table')}` {joinTableName} ON {currentTableName}.`{col}` = {joinTableName}.`{tableFks[col].get('pk')}`")
+                        joins.append(
+                            f"LEFT JOIN `{tableFks[col].get('table')}` {joinTableName} "
+                            f"ON {currentTableName}.`{col}` = {joinTableName}.`{tableFks[col].get('pk')}`"
+                        )
                         joinIdx += 1
 
-                        queryingColumns.append(f"{tableFks[col].get('corrNameSql').replace('j.', f'{joinTableName}.')} AS `{tableFks[col].get('corrName')}`")
+                        corr_sql = tableFks[col].get("corrNameSql")
+                        corr_alias = tableFks[col].get("corrName")
+                        if corr_sql and corr_alias:
+                            queryingColumns.append(
+                                f"{corr_sql.replace('j.', f'{joinTableName}.')} AS `{corr_alias}`"
+                            )
                     else:
                         queryingColumns.append(f"{currentTableName}.`{col}` AS `{col}`")
 
@@ -301,7 +356,7 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
 
                 if rangeWhere:
                     whereClauses.append(rangeWhere)
-                    params.extend(rangeParams)
+                    where_params.extend(rangeParams or [])
 
                 for f in (filters or []):
                     targetColumn = f.get("column")
@@ -313,16 +368,23 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                     if not validate_column_name(targetColumn):
                         continue
                     try:
-                        col = checkColumn(targetColumn)
+                        col, actual_col = checkColumn(targetColumn)
                     except ValueError:
                         continue
+
+                    if actual_col in table_encrypted_columns:
+                        return json_response(
+                            self,
+                            400,
+                            {"error": f"Filtering on encrypted column '{actual_col}' is not supported"},
+                        )
 
                     tok = OP[operator]
                     if operator in {"eq", "ne", "gt", "lt", "gte", "lte", "like"}:
                         if val is None:
                             continue
                         whereClauses.append(f"{col} {tok} %s")
-                        params.append(val)
+                        where_params.append(val)
                     elif operator == "in":
                         if isinstance(val, str):
                             try:
@@ -335,7 +397,7 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                             continue
                         placeholders = ", ".join(["%s"] * len(valInstance))
                         whereClauses.append(f"{col} IN ({placeholders})")
-                        params.extend(valInstance)
+                        where_params.extend(valInstance)
                     elif operator == "between":
                         if isinstance(val, str):
                             try:
@@ -347,7 +409,7 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                         if not verifyList(valInstance) or len(valInstance) != 2:
                             continue
                         whereClauses.append(f"{col} BETWEEN %s AND %s")
-                        params.extend(valInstance)
+                        where_params.extend(valInstance)
                     elif operator == "is_null":
                         whereClauses.append(f"{col} IS NULL")
                     elif operator == "is_not_null":
@@ -357,7 +419,7 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                     sqlComponents.append("WHERE " + " AND ".join(whereClauses))
 
                 orderClauses = []
-                for o in (orders or {}):
+                for o in (orders or []):
                     targetColumn = o.get("column")
                     if not targetColumn:
                         continue
@@ -365,15 +427,25 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                     if not validate_column_name(targetColumn):
                         continue
                     try:
-                        col = checkColumn(targetColumn)
+                        col, actual_col = checkColumn(targetColumn)
                     except ValueError:
                         continue
-                    direction = (o.get("direction")).upper()
+
+                    if actual_col in table_encrypted_columns:
+                        return json_response(
+                            self,
+                            400,
+                            {"error": f"Ordering on encrypted column '{actual_col}' is not supported"},
+                        )
+
+                    direction = (o.get("direction") or "").upper()
                     if direction not in ("ASC", "DESC"):
                         continue
                     orderClauses.append(f"{col} {direction}")
                 if orderClauses:
                     sqlComponents.append("ORDER BY " + ", ".join(orderClauses))
+
+                sqlComponents.append(f"LIMIT {limit} OFFSET {offset}")
 
                 sql = " ".join(sqlComponents)
 
@@ -381,7 +453,8 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                 log_sql_execution('SELECT', table, auth.get('personId'), auth.get('role'), sql, client_ip, True)
                 log_audit_event('query', {'table': table, 'filters': len(filters), 'limit': limit}, auth.get('personId'), auth.get('role'), client_ip, sql)
 
-                results = db_query(sql, params)
+                final_params = select_params + where_params
+                results = db_query(sql, final_params)
                 app_logger.info(f"Query executed successfully: user_id={auth.get('personId')}, role={auth.get('role')}, table={table}, rows={len(results)}, ip={client_ip}")
                 logAccountOperation(client_ip, auth.get('personId'), auth.get('role'), f"Database query successful: table={table}, rows_returned={len(results)}")
                 return json_response(self, 200, {"results": results})
@@ -395,7 +468,7 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                     log_security_event('unauthorized_access', {'action': 'update', 'reason': 'no_auth'}, None, client_ip)
                     logAccountOperation(client_ip, None, None, f"Unauthorized access: action=update, reason=Token error or missing")
                     return json_response(self, 401, {"ok": False, "error": "Unauthorized"})
-                
+
                 rolePrivileges = RolePrivileges.get(auth["role"], {})
                 data = read_json(self) or {}
                 table = str(data.get("table") or "")
@@ -416,27 +489,42 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                 setColumnSql = []
                 params = []
 
-                 # check if the table is allowed for the role
+                # check if the table is allowed for the role
                 if table not in ROLE_TABLES.get(auth["role"], []):
                     app_logger.warning(f"Access denied to table for update: user_id={auth.get('personId')}, role={auth.get('role')}, table={table}, ip={client_ip}")
                     log_policy_violation('write', auth.get('role'), table, auth.get('personId'), client_ip)
                     log_unauthorized_access('update', auth.get('personId'), auth.get('role'), client_ip, table)
                     logAccountOperation(client_ip, auth.get('personId'), auth.get('role'), f"Inappropriate access: action=update, table={table}, reason=Access denied")
                     return json_response(self, 403, {"error": "Forbidden"})
-                
+
                 columnData = getTableColumns(table)
                 if not checkPrimaryKey(columnData, key):
                     return json_response(self, 401, {"ok": False, "error": "Unauthorized"})
-                
+
                 if not checkUpdatableColumns(rolePrivileges.get(table, {}).get("update", []), updateValues):
                     return json_response(self, 401, {"ok": False, "error": "Unauthorized"})
-                
+
+                table_encrypted_columns = getEncryptedColumns(table)
                 currentTableName = "target"
                 rangeJoins, rangeWhere, rangeParams = buildRangeFilter(auth, table, currentTableName)
 
+                setColumnSql = []
+                params = []
+                encryption_key_value = None
+
                 for colName, colVal in updateValues.items():
-                    setColumnSql.append(f"{currentTableName}.`{colName}` = %s")
-                    params.append(colVal)
+                    if colName in table_encrypted_columns:
+                        if encryption_key_value is None:
+                            encryption_key_value = getEncryptionKey()
+                        setColumnSql.append(f"{currentTableName}.`{colName}` = AES_ENCRYPT(%s, %s)")
+                        params.append(colVal)
+                        params.append(encryption_key_value)
+                    else:
+                        setColumnSql.append(f"{currentTableName}.`{colName}` = %s")
+                        params.append(colVal)
+
+                if not setColumnSql:
+                    return json_response(self, 400, {"ok": False, "error": "No columns to update"})
 
                 primaryKey = next(iter(key))
 
@@ -451,7 +539,7 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
 
                 if rangeWhere:
                     where_parts.append(rangeWhere)
-                    params.extend(rangeParams)
+                    params.extend(rangeParams or [])
 
                 sql = " ".join(parts) + " WHERE " + " AND ".join(where_parts)
 
@@ -485,7 +573,7 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                     log_security_event('unauthorized_access', {'action': 'delete', 'reason': 'no_auth'}, None, client_ip)
                     logAccountOperation(client_ip, None, None, f"Unauthorized access: action=delete, reason=Token error or missing")
                     return json_response(self, 401, {"ok": False, "error": "Unauthorized"})
-                
+
                 rolePrivileges = RolePrivileges.get(auth["role"], {})
                 data = read_json(self) or {}
                 table = str(data.get("table") or "")
@@ -510,14 +598,14 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                     log_unauthorized_access('delete', auth.get('personId'), auth.get('role'), client_ip, table)
                     logAccountOperation(client_ip, auth.get('personId'), auth.get('role'), f"Inappropriate access: action=delete, table={table}, reason=Access denied")
                     return json_response(self, 403, {"error": "Forbidden"})
-                
+
                 columnData = getTableColumns(table)
                 if not checkPrimaryKey(columnData, key):
                     return json_response(self, 401, {"ok": False, "error": "Unauthorized"})
-                
+
                 currentTableName = "target"
                 rangeJoins, rangeWhere, rangeParams = buildRangeFilter(auth, table, currentTableName)
-                
+
                 params = []
                 primaryKey = next(iter(key))
 
@@ -530,7 +618,7 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
 
                 if rangeWhere:
                     where_parts.append(rangeWhere)
-                    params.extend(rangeParams)
+                    params.extend(rangeParams or [])
 
                 sql = " ".join(parts) + " WHERE " + " AND ".join(where_parts)
 
@@ -564,7 +652,7 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                     log_security_event('unauthorized_access', {'action': 'insert', 'reason': 'no_auth'}, None, client_ip)
                     logAccountOperation(client_ip, None, None, f"Unauthorized access: action=insert, reason=Token error or missing")
                     return json_response(self, 401, {"ok": False, "error": "Unauthorized"})
-                
+
                 rolePrivileges = RolePrivileges.get(auth["role"], {})
                 data = read_json(self) or {}
                 table = str(data.get("table") or "")
@@ -583,7 +671,7 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                     logAccountOperation(client_ip, auth.get('personId'), auth.get('role'), f"Policy violation: action=insert, table={table}, reason=Invalid table name")
                     return json_response(self, 400, {"ok": False, "error": "Invalid table name"})
 
-                 # check if the table is allowed for the role
+                # check if the table is allowed for the role
                 if table not in allowed_tables:
                     app_logger.warning(f"Access denied to table for insert: user_id={auth.get('personId')}, role={auth.get('role')}, table={table}, ip={client_ip}")
                     log_policy_violation('write', auth.get('role'), table, auth.get('personId'), client_ip)
@@ -594,6 +682,9 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                 columnData = getTableColumns(table)
                 # Removed debug print statements - 移除调试打印语句
                 if (set(updateValues.keys()) != set(RolePrivileges.get(auth["role"], {}).get(table, {}).get("insert", []))):
+
+                allowed_insert_columns = rolePrivileges.get(table, {}).get("insert", [])
+                if set(insertValues.keys()) != set(allowed_insert_columns):
                     return json_response(self, 401, {"ok": False, "error": "Unauthorized"})
                 
                 updateValueColumns = list(updateValues.keys())
@@ -610,8 +701,31 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                 placeholders = ', '.join(['%s'] * len(updateValueColumns))
                 ColumnsStr = ', '.join(escaped_columns)
 
-                sql = f"INSERT INTO `{table}` ({ColumnsStr}) VALUES ({placeholders})"
-                params = [updateValues[c] for c in updateValueColumns]
+                ordered_columns = allowed_insert_columns
+                table_encrypted_columns = getEncryptedColumns(table)
+
+                columns_clause = []
+                value_fragments = []
+                params = []
+                encryption_key_value = None
+
+                for col in ordered_columns:
+                    columns_clause.append(f"`{col}`")
+                    val = insertValues[col]
+                    if col in table_encrypted_columns:
+                        if encryption_key_value is None:
+                            encryption_key_value = getEncryptionKey()
+                        value_fragments.append("AES_ENCRYPT(%s, %s)")
+                        params.append(val)
+                        params.append(encryption_key_value)
+                    else:
+                        value_fragments.append("%s")
+                        params.append(val)
+
+                columns_str = ', '.join(columns_clause)
+                placeholders = ', '.join(value_fragments)
+
+                sql = f"INSERT INTO `{table}` ({columns_str}) VALUES ({placeholders})"
 
                 # Log data modification
                 logDataUpdate(auth["personId"], auth["role"], sql)
@@ -633,7 +747,7 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                     traceback.print_exc()  # Keep for development - 开发环境保留
                     # Return generic error message - 返回通用错误信息
                     return json_response(self, 500, {"ok": False, "error": "Server error occurred"})
-                
+
             return json_response(self, 404, {"error": "Not found"})
         except Exception as e:
             # Log error details but don't expose to client - 记录错误详情但不暴露给客户端
@@ -647,4 +761,3 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
         print("%s - - [%s] %s" % (self.address_string(),
             self.log_date_time_string(),
             format % args))
-
