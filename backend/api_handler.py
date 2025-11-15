@@ -680,27 +680,22 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                     return json_response(self, 403, {"error": "Forbidden"})
                 
                 columnData = getTableColumns(table)
-                # Removed debug print statements - 移除调试打印语句
-                if (set(updateValues.keys()) != set(RolePrivileges.get(auth["role"], {}).get(table, {}).get("insert", []))):
-
+                
+                # Check if insert columns match allowed columns
                 allowed_insert_columns = rolePrivileges.get(table, {}).get("insert", [])
-                if set(insertValues.keys()) != set(allowed_insert_columns):
+                if set(updateValues.keys()) != set(allowed_insert_columns):
                     return json_response(self, 401, {"ok": False, "error": "Unauthorized"})
                 
-                updateValueColumns = list(updateValues.keys())
                 # Validate and escape column names - 验证并转义列名
-                escaped_columns = []
+                updateValueColumns = list(updateValues.keys())
                 for col in updateValueColumns:
                     if not validate_column_name(col):
                         return json_response(self, 400, {"ok": False, "error": f"Invalid column name: {col}"})
                     escaped_col = escape_identifier(col)
                     if not escaped_col:
                         return json_response(self, 400, {"ok": False, "error": f"Invalid column name: {col}"})
-                    escaped_columns.append(escaped_col)
-                
-                placeholders = ', '.join(['%s'] * len(updateValueColumns))
-                ColumnsStr = ', '.join(escaped_columns)
 
+                # Build INSERT SQL with encryption support
                 ordered_columns = allowed_insert_columns
                 table_encrypted_columns = getEncryptedColumns(table)
 
@@ -711,7 +706,7 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
 
                 for col in ordered_columns:
                     columns_clause.append(f"`{col}`")
-                    val = insertValues[col]
+                    val = updateValues[col]
                     if col in table_encrypted_columns:
                         if encryption_key_value is None:
                             encryption_key_value = getEncryptionKey()

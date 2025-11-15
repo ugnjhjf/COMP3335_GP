@@ -60,3 +60,176 @@
 2025-11-08 19:38:55 - app - ERROR - [db_query.py:42] - Database execute error: (1292, "Truncated incorrect DOUBLE value: '1' OR '1'='1'"), SQL: DELETE target FROM `students` target WHERE target.`StuID` = %s AND target.`StuID` = %s
 2025-11-08 19:38:55 - app - ERROR - [db_query.py:42] - Database execute error: (1292, "Truncated incorrect DOUBLE value: '1' --'"), SQL: DELETE target FROM `students` target WHERE target.`StuID` = %s AND target.`StuID` = %s
 2025-11-08 19:38:55 - app - ERROR - [db_query.py:42] - Database execute error: (1292, "Truncated incorrect DOUBLE value: '1'; DROP TABLE students; --'"), SQL: DELETE target FROM `students` target WHERE target.`StuID` = %s AND target.`StuID` = %s
+2025-11-15 14:07:35 - app - INFO - [db_connector.py:63] - Connection pool initialized with 10 connections
+2025-11-15 14:08:32 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:08:32 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:08:32 - app - INFO - [auth.py:113] - Login successful: user_id=100, role=student, email=test_student@example.com, ip=127.0.0.1
+2025-11-15 14:08:32 - app - ERROR - [db_query.py:42] - Database execute error: (1146, "Table 'ComputingU.audit_log' doesn't exist"), SQL: 
+            INSERT INTO audit_log 
+            (event_type, user_id, user_role, ip_address, sql_sta
+2025-11-15 14:08:32 - app - ERROR - [audit_logger.py:52] - Failed to log audit event to database: (1146, "Table 'ComputingU.audit_log' doesn't exist")
+2025-11-15 14:08:32 - app - INFO - [auth.py:242] - Session created for user 100 with role student
+2025-11-15 14:08:32 - app - INFO - [api_handler.py:194] - Session created for login: user_id=100, role=student, ip=127.0.0.1
+2025-11-15 14:08:36 - app - INFO - [api_handler.py:238] - Query request: user_id=100, role=student, table=grades, ip=127.0.0.1
+2025-11-15 14:08:36 - app - ERROR - [db_query.py:42] - Database execute error: (1146, "Table 'ComputingU.audit_log' doesn't exist"), SQL: 
+            INSERT INTO audit_log 
+            (event_type, user_id, user_role, ip_address, sql_sta
+2025-11-15 14:08:36 - app - ERROR - [audit_logger.py:52] - Failed to log audit event to database: (1146, "Table 'ComputingU.audit_log' doesn't exist")
+2025-11-15 14:08:36 - app - ERROR - [db_query.py:42] - Database execute error: (1146, "Table 'ComputingU.audit_log' doesn't exist"), SQL: 
+            INSERT INTO audit_log 
+            (event_type, user_id, user_role, ip_address, sql_sta
+2025-11-15 14:08:36 - app - ERROR - [audit_logger.py:52] - Failed to log audit event to database: (1146, "Table 'ComputingU.audit_log' doesn't exist")
+2025-11-15 14:08:36 - app - INFO - [api_handler.py:458] - Query executed successfully: user_id=100, role=student, table=grades, rows=3, ip=127.0.0.1
+2025-11-15 14:08:38 - app - INFO - [api_handler.py:238] - Query request: user_id=100, role=student, table=disciplinary_records, ip=127.0.0.1
+2025-11-15 14:08:38 - app - ERROR - [db_query.py:42] - Database execute error: (1146, "Table 'ComputingU.audit_log' doesn't exist"), SQL: 
+            INSERT INTO audit_log 
+            (event_type, user_id, user_role, ip_address, sql_sta
+2025-11-15 14:08:38 - app - ERROR - [audit_logger.py:52] - Failed to log audit event to database: (1146, "Table 'ComputingU.audit_log' doesn't exist")
+2025-11-15 14:08:38 - app - ERROR - [db_query.py:42] - Database execute error: (1146, "Table 'ComputingU.audit_log' doesn't exist"), SQL: 
+            INSERT INTO audit_log 
+            (event_type, user_id, user_role, ip_address, sql_sta
+2025-11-15 14:08:38 - app - ERROR - [audit_logger.py:52] - Failed to log audit event to database: (1146, "Table 'ComputingU.audit_log' doesn't exist")
+2025-11-15 14:08:38 - app - INFO - [api_handler.py:458] - Query executed successfully: user_id=100, role=student, table=disciplinary_records, rows=2, ip=127.0.0.1
+2025-11-15 14:08:49 - app - INFO - [api_handler.py:238] - Query request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 14:08:49 - app - ERROR - [db_query.py:42] - Database execute error: (1146, "Table 'ComputingU.audit_log' doesn't exist"), SQL: 
+            INSERT INTO audit_log 
+            (event_type, user_id, user_role, ip_address, sql_sta
+2025-11-15 14:08:49 - app - ERROR - [audit_logger.py:52] - Failed to log audit event to database: (1146, "Table 'ComputingU.audit_log' doesn't exist")
+2025-11-15 14:08:49 - app - ERROR - [db_query.py:42] - Database execute error: (1146, "Table 'ComputingU.audit_log' doesn't exist"), SQL: 
+            INSERT INTO audit_log 
+            (event_type, user_id, user_role, ip_address, sql_sta
+2025-11-15 14:08:49 - app - ERROR - [audit_logger.py:52] - Failed to log audit event to database: (1146, "Table 'ComputingU.audit_log' doesn't exist")
+2025-11-15 14:08:49 - app - INFO - [api_handler.py:458] - Query executed successfully: user_id=100, role=student, table=students, rows=1, ip=127.0.0.1
+2025-11-15 14:08:53 - app - INFO - [api_handler.py:479] - Update request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 14:08:53 - app - ERROR - [db_query.py:42] - Database execute error: (1146, "Table 'ComputingU.audit_log' doesn't exist"), SQL: 
+            INSERT INTO audit_log 
+            (event_type, user_id, user_role, ip_address, sql_sta
+2025-11-15 14:08:53 - app - ERROR - [audit_logger.py:52] - Failed to log audit event to database: (1146, "Table 'ComputingU.audit_log' doesn't exist")
+2025-11-15 14:08:53 - app - ERROR - [db_query.py:42] - Database execute error: (1146, "Table 'ComputingU.audit_log' doesn't exist"), SQL: 
+            INSERT INTO audit_log 
+            (event_type, user_id, user_role, ip_address, sql_sta
+2025-11-15 14:08:53 - app - ERROR - [audit_logger.py:52] - Failed to log audit event to database: (1146, "Table 'ComputingU.audit_log' doesn't exist")
+2025-11-15 14:08:53 - app - INFO - [api_handler.py:553] - Update executed successfully: user_id=100, role=student, table=students, rows_affected=1, ip=127.0.0.1
+2025-11-15 14:08:53 - app - INFO - [api_handler.py:238] - Query request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-15 14:08:53 - app - ERROR - [db_query.py:42] - Database execute error: (1146, "Table 'ComputingU.audit_log' doesn't exist"), SQL: 
+            INSERT INTO audit_log 
+            (event_type, user_id, user_role, ip_address, sql_sta
+2025-11-15 14:08:53 - app - ERROR - [audit_logger.py:52] - Failed to log audit event to database: (1146, "Table 'ComputingU.audit_log' doesn't exist")
+2025-11-15 14:08:53 - app - ERROR - [db_query.py:42] - Database execute error: (1146, "Table 'ComputingU.audit_log' doesn't exist"), SQL: 
+            INSERT INTO audit_log 
+            (event_type, user_id, user_role, ip_address, sql_sta
+2025-11-15 14:08:53 - app - ERROR - [audit_logger.py:52] - Failed to log audit event to database: (1146, "Table 'ComputingU.audit_log' doesn't exist")
+2025-11-15 14:08:53 - app - INFO - [api_handler.py:458] - Query executed successfully: user_id=100, role=student, table=students, rows=1, ip=127.0.0.1
+2025-11-15 14:10:13 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:13 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:13 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:13 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:13 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:13 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:13 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:13 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:13 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:13 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:13 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:13 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:14 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:14 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:14 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:14 - app - INFO - [auth.py:90] - Login attempt: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:14 - app - WARNING - [auth.py:191] - Login failed: email=alice.student@university.edu, reason=invalid_credentials, ip=127.0.0.1
+2025-11-15 14:10:14 - app - ERROR - [db_query.py:42] - Database execute error: (1146, "Table 'ComputingU.audit_log' doesn't exist"), SQL: 
+            INSERT INTO audit_log 
+            (event_type, user_id, user_role, ip_address, sql_sta
+2025-11-15 14:10:14 - app - ERROR - [audit_logger.py:52] - Failed to log audit event to database: (1146, "Table 'ComputingU.audit_log' doesn't exist")
+2025-11-15 14:10:14 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:14 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:14 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:14 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:14 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:14 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:14 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:14 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:15 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:15 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:15 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:15 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:15 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:15 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:15 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:15 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:15 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:15 - app - INFO - [auth.py:90] - Login attempt: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:15 - app - WARNING - [auth.py:191] - Login failed: email=alice.student@university.edu, reason=invalid_credentials, ip=127.0.0.1
+2025-11-15 14:10:15 - app - ERROR - [db_query.py:42] - Database execute error: (1146, "Table 'ComputingU.audit_log' doesn't exist"), SQL: 
+            INSERT INTO audit_log 
+            (event_type, user_id, user_role, ip_address, sql_sta
+2025-11-15 14:10:15 - app - ERROR - [audit_logger.py:52] - Failed to log audit event to database: (1146, "Table 'ComputingU.audit_log' doesn't exist")
+2025-11-15 14:10:15 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:15 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:16 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:16 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:16 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:16 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:16 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:16 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:16 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:16 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:16 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:16 - app - INFO - [auth.py:90] - Login attempt: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:16 - app - WARNING - [auth.py:191] - Login failed: email=alice.student@university.edu, reason=invalid_credentials, ip=127.0.0.1
+2025-11-15 14:10:16 - app - ERROR - [db_query.py:42] - Database execute error: (1146, "Table 'ComputingU.audit_log' doesn't exist"), SQL: 
+            INSERT INTO audit_log 
+            (event_type, user_id, user_role, ip_address, sql_sta
+2025-11-15 14:10:16 - app - ERROR - [audit_logger.py:52] - Failed to log audit event to database: (1146, "Table 'ComputingU.audit_log' doesn't exist")
+2025-11-15 14:10:16 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:16 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:16 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:16 - app - INFO - [auth.py:90] - Login attempt: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:17 - app - WARNING - [auth.py:191] - Login failed: email=alice.student@university.edu, reason=invalid_credentials, ip=127.0.0.1
+2025-11-15 14:10:17 - app - ERROR - [db_query.py:42] - Database execute error: (1146, "Table 'ComputingU.audit_log' doesn't exist"), SQL: 
+            INSERT INTO audit_log 
+            (event_type, user_id, user_role, ip_address, sql_sta
+2025-11-15 14:10:17 - app - ERROR - [audit_logger.py:52] - Failed to log audit event to database: (1146, "Table 'ComputingU.audit_log' doesn't exist")
+2025-11-15 14:10:17 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:17 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:17 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:17 - app - INFO - [auth.py:90] - Login attempt: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:17 - app - WARNING - [auth.py:191] - Login failed: email=alice.student@university.edu, reason=invalid_credentials, ip=127.0.0.1
+2025-11-15 14:10:17 - app - ERROR - [db_query.py:42] - Database execute error: (1146, "Table 'ComputingU.audit_log' doesn't exist"), SQL: 
+            INSERT INTO audit_log 
+            (event_type, user_id, user_role, ip_address, sql_sta
+2025-11-15 14:10:17 - app - ERROR - [audit_logger.py:52] - Failed to log audit event to database: (1146, "Table 'ComputingU.audit_log' doesn't exist")
+2025-11-15 14:10:17 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:17 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:17 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:17 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:17 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:17 - app - INFO - [auth.py:90] - Login attempt: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:17 - app - WARNING - [auth.py:191] - Login failed: email=alice.student@university.edu, reason=invalid_credentials, ip=127.0.0.1
+2025-11-15 14:10:17 - app - ERROR - [db_query.py:42] - Database execute error: (1146, "Table 'ComputingU.audit_log' doesn't exist"), SQL: 
+            INSERT INTO audit_log 
+            (event_type, user_id, user_role, ip_address, sql_sta
+2025-11-15 14:10:17 - app - ERROR - [audit_logger.py:52] - Failed to log audit event to database: (1146, "Table 'ComputingU.audit_log' doesn't exist")
+2025-11-15 14:10:18 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:18 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:18 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:18 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:18 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:18 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:18 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:18 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:18 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:18 - app - INFO - [auth.py:90] - Login attempt: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:18 - app - WARNING - [auth.py:191] - Login failed: email=alice.student@university.edu, reason=invalid_credentials, ip=127.0.0.1
+2025-11-15 14:10:18 - app - ERROR - [db_query.py:42] - Database execute error: (1146, "Table 'ComputingU.audit_log' doesn't exist"), SQL: 
+            INSERT INTO audit_log 
+            (event_type, user_id, user_role, ip_address, sql_sta
+2025-11-15 14:10:18 - app - ERROR - [audit_logger.py:52] - Failed to log audit event to database: (1146, "Table 'ComputingU.audit_log' doesn't exist")
+2025-11-15 14:10:18 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:18 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:18 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:18 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:19 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:19 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:19 - app - INFO - [api_handler.py:131] - Login request received: email=alice.student@university.edu, ip=127.0.0.1
+2025-11-15 14:10:19 - app - WARNING - [api_handler.py:173] - Login rejected: invalid password format, email=alice.student@university.edu, ip=127.0.0.1

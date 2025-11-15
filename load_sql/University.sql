@@ -1,3 +1,4 @@
+CREATE DATABASE ComputingU;
 USE ComputingU;
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
@@ -12,7 +13,7 @@ CREATE TABLE guardians (
 GuaID int NOT NULL AUTO_INCREMENT,
 last_name varchar(50) NOT NULL,
 first_name varchar(50) NOT NULL,
-email varchar(100) NOT NULL,
+email varchar(100) NOT NULL UNIQUE,
 phone varbinary(64) NOT NULL,
 password varchar(255) NOT NULL,
 salt varchar(64) NOT NULL,
@@ -62,7 +63,7 @@ first_name varchar(50) NOT NULL,
 gender char(1) NOT NULL,
 Id_No varbinary(255) NOT NULL,
 address blob,
-email varchar(100) NOT NULL,
+email varchar(100) NOT NULL UNIQUE,
 phone varbinary(64) NOT NULL,
 department varchar(50) NOT NULL,
 role varchar(50) NOT NULL,
@@ -92,7 +93,7 @@ first_name varchar(50) NOT NULL,
 gender char(1) NOT NULL,
 Id_No varbinary(255) NOT NULL,
 address blob,
-email varchar(100) NOT NULL,
+email varchar(100) NOT NULL UNIQUE,
 phone varbinary(64) NOT NULL,
 enrollment_year year NOT NULL,
 GuaID int DEFAULT NULL,
