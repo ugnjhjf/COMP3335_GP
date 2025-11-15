@@ -2,8 +2,15 @@
 from db_connector import get_db_connection
 
 def logDataUpdate(user_id, role, sql_text):
-    """Log data update operations to log table"""
-    conn = get_db_connection()
+    """
+    Log data update operations to log table
+    
+    Args:
+        user_id: User ID
+        role: User role (student, guardian, aro, dro)
+        sql_text: SQL statement text
+    """
+    conn = get_db_connection(role)
     try:
         with conn.cursor() as cur:
             cur.execute(
@@ -13,6 +20,38 @@ def logDataUpdate(user_id, role, sql_text):
                 """,
                 (user_id, role, sql_text)
             )
+            conn.commit()
+    finally:
+        conn.close()
+
+def logAccountOperation(ip, user_id, user_role, log_content):
+    """
+    Log account operations to accountLog table
+    
+    Args:
+        ip: IP address
+        user_id: User ID (can be None)
+        user_role: User role (can be None)
+        log_content: Log content description
+    """
+    # Use user_role for DBMS connection, default to 'auth' if None (for login operations)
+    # When user_role is None, it means we're in the login phase and should use auth_user
+    dbms_role = user_role if user_role else 'auth'
+    conn = get_db_connection(dbms_role)
+    try:
+        with conn.cursor() as cur:
+            cur.execute(
+                """
+                INSERT INTO accountLog (ip, user_id, user_role, logContent)
+                VALUES (%s, %s, %s, %s)
+                """,
+                (ip, user_id, user_role, log_content)
+            )
+            conn.commit()
+    except Exception as e:
+        # Log error but don't fail the operation
+        import logging
+        logging.error(f"Failed to log account operation: {e}")
     finally:
         conn.close()
 

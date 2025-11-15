@@ -3,7 +3,6 @@ from functools import lru_cache
 from typing import Any, Dict
 from pathlib import Path
 from dotenv import load_dotenv
-import os
 
 ENCRYPTED_COLUMNS: Dict[str, Dict[str, Dict[str, Any]]] = {
     "students": {
@@ -22,13 +21,53 @@ ENCRYPTED_COLUMNS: Dict[str, Dict[str, Dict[str, Any]]] = {
 }
 
 
+def _find_env_file() -> Path:
+    """
+    Find .env file by searching from current directory up to project root
+    从当前目录向上查找项目根目录的.env文件
+    """
+    current = Path(__file__).resolve().parent  # backend directory
+    root = current.parent  # project root
+    
+    # Try project root first
+    env_path = root / ".env"
+    if env_path.exists():
+        return env_path
+    
+    # Try backend directory
+    env_path = current / ".env"
+    if env_path.exists():
+        return env_path
+    
+    # Try current working directory
+    env_path = Path(".env").resolve()
+    if env_path.exists():
+        return env_path
+    
+    # Return project root path (will be used by load_dotenv to search)
+    return root
+
+
 @lru_cache(maxsize=1)
 def getEncryptionKey() -> str:
-    load_dotenv(dotenv_path=Path(".env"))
+    # Find .env file location
+    env_path = _find_env_file()
+    
+    # Load .env file - load_dotenv will search upward if file not found at exact path
+    if env_path.is_file():
+        load_dotenv(dotenv_path=env_path, override=True)
+    else:
+        # If .env not found, let load_dotenv search from project root
+        load_dotenv(dotenv_path=env_path / ".env", override=True)
+        # Also try without specifying path (searches from current directory upward)
+        load_dotenv(override=True)
+    
     key = os.environ.get("DATA_ENCRYPTION_KEY", "")
     if not key:
         raise RuntimeError(
-            "DATA_ENCRYPTION_KEY environment variable is required to handle encrypted columns."
+            f"DATA_ENCRYPTION_KEY environment variable is required to handle encrypted columns.\n"
+            f"Please ensure .env file exists in project root or backend directory with DATA_ENCRYPTION_KEY set.\n"
+            f"Searched paths: {env_path}, {Path(__file__).parent / '.env'}, {Path('.env').resolve()}"
         )
     return key
 

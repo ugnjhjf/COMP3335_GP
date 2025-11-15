@@ -3,17 +3,14 @@
 # =========================
 # Simple auth and role logic
 # =========================
-# Note: "root" role is for testing purposes only - provides full access to all tables
-VALID_ROLES = {"aro", "student", "guardian", "dro", "root"}
+VALID_ROLES = {"aro", "student", "guardian", "dro"}
 
-# Mock role-table visibility (adjust to your schema)
-# Note: "root" role has access to all tables for testing purposes
+# Role-table visibility mapping
 ROLE_TABLES = {
     "student": ["students", "grades", "disciplinary_records"],
     "guardian": ["guardians", "grades", "disciplinary_records"],
     "aro": ["grades"],
     "dro": ["disciplinary_records"],
-    "root": ["students", "guardians", "grades", "disciplinary_records", "courses", "staffs", "dataUpdateLog"],  # Testing role: full access
 }
 
 RolePrivileges = {
@@ -82,58 +79,6 @@ RolePrivileges = {
             "update": ["date", "description"],
             "delete": True
         },
-    },
-    # Testing role: root has full access to all tables and operations
-    "root": {
-        "students": {
-            "read": True, 
-            "range": "All",  # Can access all records
-            "insert": ['StuID', 'last_name', 'first_name', 'gender', 'Id_No', 'address', 'phone', 'email', 'guardian_relation'],
-            "update": ['last_name', 'first_name', 'gender', 'Id_No', 'address', 'phone', 'email', 'guardian_relation'],
-            "delete": True  # Full delete permission
-        },
-        "guardians": {
-            "read": True, 
-            "range": "All",
-            "insert": ['GuaID', 'last_name', 'first_name', 'email', 'phone'],
-            "update": ['last_name', 'first_name', 'email', 'phone'],
-            "delete": True
-        },
-        "grades": {
-            "read": True, 
-            "range": "All",
-            "insert": ['GradeID', 'StuID', 'CID', 'term', 'grade', 'comments'],
-            "update": ['grade', 'term', 'comments'],
-            "delete": True
-        },
-        "disciplinary_records": {
-            "read": True, 
-            "range": "All",
-            "insert": ['DrID', 'StuID', 'date', 'StfID', 'descriptions'],
-            "update": ['date', 'descriptions'],
-            "delete": True
-        },
-        "courses": {
-            "read": True, 
-            "range": "All",
-            "insert": ['CID', 'course_name', 'description'],
-            "update": ['course_name', 'description'],
-            "delete": True
-        },
-        "staffs": {
-            "read": True, 
-            "range": "All",
-            "insert": ['StfID', 'last_name', 'first_name', 'email', 'phone'],
-            "update": ['last_name', 'first_name', 'email', 'phone'],
-            "delete": True
-        },
-        "dataUpdateLog": {
-            "read": True, 
-            "range": "All",
-            "insert": ['LogID', 'user_id', 'user_role', 'sql_text'],
-            "update": ['sql_text'],
-            "delete": True
-        }
     }
 }
 
@@ -180,6 +125,7 @@ def parse_bearer_role(headers):
     """
     Parse user role and ID from HTTP headers
     Supports both token-based auth and direct header auth (for backward compatibility)
+    Note: Invalid token attempts are logged in api_handler.py when this returns None
     """
     # Try token-based authentication first
     auth_header = headers.get("Authorization", "")
@@ -192,6 +138,7 @@ def parse_bearer_role(headers):
                 "role": session_info["role"],
                 "personId": session_info["user_id"]
             }
+        # Invalid token - will be logged by caller (api_handler.py)
     
     # Fallback to direct header authentication (for backward compatibility)
     role_header = headers.get("X-User-Role")
@@ -204,10 +151,7 @@ def parse_bearer_role(headers):
     return None
 
 def buildRangeFilter(auth, table_name, currentTableName="target"):
-    """Build data range filter conditions based on role privileges
-    
-    Note: "root" role always returns empty filter (full access) since range is "All"
-    """
+    """Build data range filter conditions based on role privileges"""
     role = auth["role"]
     personId = auth.get("personId")
     joinSql = []
@@ -221,7 +165,7 @@ def buildRangeFilter(auth, table_name, currentTableName="target"):
 
     rng = (table_priv.get("range") or "").lower()
 
-    # "All" range means no filtering (full access) - used by root role and admin roles
+    # "All" range means no filtering (full access) - used by admin roles
     if rng == "all":
         return [], "", []
 
