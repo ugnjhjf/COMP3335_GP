@@ -4,10 +4,14 @@ SQL Injection Attack Test
 Test the auth module's protection against SQL injection attacks
 """
 import requests
+import urllib3
 from typing import List, Tuple
 
+# 禁用 SSL 警告（因为使用的是自签名证书）
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
 # Target URL for testing
-BASE_URL = "http://127.0.0.1:8000"
+BASE_URL = "https://127.0.0.1:8000"
 
 def sql_injection_attack(email_payloads: List[str], password: str = "test123") -> Tuple[bool, List[str]]:
     """
@@ -36,7 +40,8 @@ def sql_injection_attack(email_payloads: List[str], password: str = "test123") -
                     "email": payload,
                     "password": password
                 },
-                timeout=5
+                timeout=5,
+                verify=False  # 禁用SSL验证（自签名证书）
             )
             
             # Check response

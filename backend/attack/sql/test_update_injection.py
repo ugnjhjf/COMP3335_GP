@@ -5,13 +5,17 @@ Test SQL injection attacks on update endpoint
 """
 import requests
 import json
+import urllib3
 from typing import Dict, List
+
+# 禁用 SSL 警告（因为使用的是自签名证书）
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # Test user credentials
 TEST_STUDENT_EMAIL = "test_student@example.com"
 TEST_STUDENT_PASSWORD = "StudentTest123"
 
-def test_update_sql_injection(base_url: str = "http://127.0.0.1:8000",
+def test_update_sql_injection(base_url: str = "https://127.0.0.1:8000",
                               auth_token: str = None) -> List[Dict]:
     """
     Test SQL injection attacks on /data/update endpoint
@@ -54,7 +58,8 @@ def test_update_sql_injection(base_url: str = "http://127.0.0.1:8000",
                 f"{base_url}/data/update",
                 headers=headers,
                 json=request_data,
-                timeout=10
+                timeout=10,
+                verify=False  # 禁用SSL验证（自签名证书）
             )
             
             # Check if injection was successful
@@ -233,12 +238,13 @@ def run_update_injection_tests():
     print("\n[Setup] Logging in to get authentication token...")
     try:
         login_response = requests.post(
-            "http://127.0.0.1:8000/auth/login",
+            "https://127.0.0.1:8000/auth/login",
             json={
                 "email": TEST_STUDENT_EMAIL,
                 "password": TEST_STUDENT_PASSWORD
             },
-            timeout=5
+            timeout=5,
+            verify=False  # 禁用SSL验证（自签名证书）
         )
         if login_response.status_code == 200:
             data = login_response.json()

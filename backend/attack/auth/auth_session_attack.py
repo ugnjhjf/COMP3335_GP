@@ -6,10 +6,14 @@ Test the auth module's protection against session fixation, session hijacking, a
 import requests
 import random
 import string
+import urllib3
 from typing import List, Tuple
 
+# 禁用 SSL 警告（因为使用的是自签名证书）
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
 # Target URL for testing
-BASE_URL = "http://127.0.0.1:8000"
+BASE_URL = "https://127.0.0.1:8000"
 
 # Test user credentials from setup_test_user.py
 TEST_STUDENT_EMAIL = "test_student@example.com"
@@ -30,7 +34,8 @@ def get_valid_token() -> str:
                 "email": TEST_STUDENT_EMAIL,
                 "password": TEST_STUDENT_PASSWORD
             },
-            timeout=5
+            timeout=5,
+            verify=False  # 禁用SSL验证（自签名证书）
         )
         
         if response.status_code == 200:
@@ -93,7 +98,8 @@ def session_fixation_attack() -> Tuple[bool, str]:
                     "filters": [],
                     "sort": []
                 },
-                timeout=5
+                timeout=5,
+                verify=False  # 禁用SSL验证（自签名证书）
             )
             
             # If returns 200 and not an error, token might be valid
@@ -216,7 +222,8 @@ def expired_session_attack() -> bool:
                     "filters": [],
                     "sort": []
                 },
-                timeout=5
+                timeout=5,
+                verify=False  # 禁用SSL验证（自签名证书）
             )
             
             if response.status_code == 200:

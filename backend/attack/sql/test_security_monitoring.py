@@ -6,14 +6,18 @@ Test security monitoring and logging functionality
 import requests
 import json
 import time
+import urllib3
 from typing import Dict, List
 import os
+
+# 禁用 SSL 警告（因为使用的是自签名证书）
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # Test user credentials
 TEST_STUDENT_EMAIL = "test_student@example.com"
 TEST_STUDENT_PASSWORD = "StudentTest123"
 
-def test_security_monitoring(base_url: str = "http://127.0.0.1:8000",
+def test_security_monitoring(base_url: str = "https://127.0.0.1:8000",
                              auth_token: str = None) -> List[Dict]:
     """
     Test if security monitoring detects and logs SQL injection attempts
@@ -78,7 +82,8 @@ def test_security_monitoring(base_url: str = "http://127.0.0.1:8000",
                     f"{base_url}{test['endpoint']}",
                     headers=headers,
                     json=test["payload"],
-                    timeout=5
+                    timeout=5,
+                    verify=False  # 禁用SSL验证（自签名证书）
                 )
             
             # Wait a bit for logging
@@ -147,12 +152,13 @@ def run_security_monitoring_tests():
     auth_token = None
     try:
         login_response = requests.post(
-            "http://127.0.0.1:8000/auth/login",
+            "https://127.0.0.1:8000/auth/login",
             json={
                 "email": TEST_STUDENT_EMAIL,
                 "password": TEST_STUDENT_PASSWORD
             },
-            timeout=5
+            timeout=5,
+            verify=False  # 禁用SSL验证（自签名证书）
         )
         if login_response.status_code == 200:
             data = login_response.json()
