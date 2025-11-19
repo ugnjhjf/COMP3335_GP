@@ -1,16 +1,21 @@
 # Deployment Guide
 
-This guide provides step-by-step instructions to deploy the project.
+This guide provides step-by-step instructions to deploy the project in Window 10/11 operating system.
 
 ## Prerequisites
 
-### 1. Install Python
+### 1. Install Python with necessary libraries
 
 Download and install Python 3.8 or higher from [python.org](https://www.python.org/downloads/).
 
 Verify installation:
 ```bash
 python --version
+```
+
+In terminal run the following command:
+```bash
+pip install bcrypt cryptography PyMySQL python-dotenv
 ```
 
 ### 2. Install Docker Desktop
@@ -83,6 +88,13 @@ MYSQL_USER=app_user
 MYSQL_PASSWORD=app_user_password
 ```
 
+#### 3.4 Set encryption key for AES encryption/decryption
+
+In docker-compose.yml, in line 36 add the line
+```sql
+SET @encryption_key = 'c29a02b23662ced73f8c007c877a85c8aab576b1b7f888ac37c364b5a75a681b';
+```
+
 ## Database Setup
 
 ### 4. Start Docker Container
@@ -110,17 +122,7 @@ docker exec -it percona-server mysql -u root -p
 
 When prompted, enter the password: `supersecurepassword`
 
-### 6. Execute Database Script
-
-Copy and paste the entire content of `database_init_sql/University.sql` into the MySQL prompt, then press Enter.
-
-Alternatively, you can execute it directly:
-
-```bash
-docker exec -i percona-server mysql -u root -psupersecurepassword < ../database_init_sql/University.sql
-```
-
-### 7. Verify Database Setup
+### 6. Verify Database Setup
 
 In the MySQL prompt, verify tables were created:
 
@@ -136,9 +138,47 @@ Exit MySQL:
 EXIT;
 ```
 
+### 7. Execute Database Script (If necessary)
+
+If the database fail to show the table.
+
+Copy and paste the entire content of `database_init_sql/University.sql` into the MySQL prompt, then press Enter.
+
+Alternatively, you can execute it directly:
+
+```bash
+docker exec -i percona-server mysql -u root -p supersecurepassword < ../database_init_sql/University.sql
+```
+
 ## Backend Setup
 
-### 8. Install Python Dependencies
+### 8. Setting up the certificate for the application
+
+Open PowerShell as Administrator, Press Win + X, choose Windows PowerShell (Admin).
+
+Install Chocolatey (one-time setup)
+```bash
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+```
+
+Install mkcert via Chocolatey
+```bash
+choco install mkcert
+```
+
+Trust mkcert’s local CA
+```bash
+mkcert -install
+```
+
+Open a new terminal and change to the folder \security,generate development certificates
+```bash
+mkcert -cert-file localhost-cert.pem -key-file localhost-key.pem localhost 127.0.0.1 ::1
+```
+
+replace the cert.pem and key.pem with the content in localhost-cert.pem and localhost-key.pem correspondingly
+
+### 9. Install Python Dependencies
 
 Open a new terminal and navigate to the project root:
 
@@ -147,7 +187,7 @@ cd <project-root>
 pip install -r requirements.txt
 ```
 
-### 9. Start Backend Server
+### 10. Start Backend Server
 
 Navigate to the backend directory and run:
 
@@ -160,7 +200,7 @@ The server will start on `http://127.0.0.1:8000`.
 
 ## Frontend Access
 
-### 10. Open Frontend
+### 11. Open Frontend
 
 Open `frontend/index.html` in your web browser.
 

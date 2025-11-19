@@ -33,7 +33,7 @@ SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0;
 SET NAMES utf8mb4;
 
 
-SET @encryption_key = 'c29a02b23662ced73f8c007c877a85c8aab576b1b7f888ac37c364b5a75a681b';
+
 
 DROP TABLE IF EXISTS guardians;
 CREATE TABLE guardians (
