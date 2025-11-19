@@ -32,6 +32,9 @@ SET @OLD_TIME_ZONE=@@TIME_ZONE; SET TIME_ZONE='+00:00';
 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0;
 SET NAMES utf8mb4;
 
+
+SET @encryption_key = 'c29a02b23662ced73f8c007c877a85c8aab576b1b7f888ac37c364b5a75a681b';
+
 DROP TABLE IF EXISTS guardians;
 CREATE TABLE guardians (
 GuaID int NOT NULL AUTO_INCREMENT,
@@ -45,12 +48,12 @@ PRIMARY KEY (GuaID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 LOCK TABLES guardians WRITE;
-INSERT INTO guardians VALUES
-(1000,'Chow','David','test_guardian@example.com','69364231','c3682fb45354d4c4586fb632f5a0ab7923224873e110007437b324ed05482650','test_salt_guardian_1234567890123456789012'),
-(1001,'Ng','David','david1975@outlook.com','62132899','b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a7b8c9d0e1f2g3','salt_bcd234efg567hij890klm123nop456qrs789tuv012wxy345zab678cde901fgh'),
-(1002,'Wong','Margaret','wong.margaret@hotmail.com','61780798','c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a7b8c9d0e1f2g3h4','salt_cde345fgh678ijk901lmn234opq567rst890uvw123xyz456abc789def012ghi'),
-(1003,'Lee','Linda','lindalee@zoho.com','90145908','d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a7b8c9d0e1f2g3h4i5','salt_def456ghi789jkl012mno345pqr678stu901vwx234yz567abc890def123ghi456jkl'),
-(1004,'Lau','William','williamlau@gmail.com','88361172','e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a7b8c9d0e1f2g3h4i5j6','salt_efg567hij890klm123nop456qrs789tuv012wxy345zab678cde901fgh234ijk567lmn');
+INSERT INTO guardians (GuaID, last_name, first_name, email, phone, password, salt) VALUES
+(1000,'Chow','David','test_guardian@example.com',AES_ENCRYPT('69364231', @encryption_key),'c3682fb45354d4c4586fb632f5a0ab7923224873e110007437b324ed05482650','test_salt_guardian_1234567890123456789012'),
+(1001,'Ng','David','david1975@outlook.com',AES_ENCRYPT('62132899', @encryption_key),'b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a7b8c9d0e1f2g3','salt_bcd234efg567hij890klm123nop456qrs789tuv012wxy345zab678cde901fgh'),
+(1002,'Wong','Margaret','wong.margaret@hotmail.com',AES_ENCRYPT('61780798', @encryption_key),'c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a7b8c9d0e1f2g3h4','salt_cde345fgh678ijk901lmn234opq567rst890uvw123xyz456abc789def012ghi'),
+(1003,'Lee','Linda','lindalee@zoho.com',AES_ENCRYPT('90145908', @encryption_key),'d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a7b8c9d0e1f2g3h4i5','salt_def456ghi789jkl012mno345pqr678stu901vwx234yz567abc890def123ghi456jkl'),
+(1004,'Lau','William','williamlau@gmail.com',AES_ENCRYPT('88361172', @encryption_key),'e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a7b8c9d0e1f2g3h4i5j6','salt_efg567hij890klm123nop456qrs789tuv012wxy345zab678cde901fgh234ijk567lmn');
 UNLOCK TABLES;
 
 DROP TABLE IF EXISTS courses;
@@ -88,12 +91,12 @@ UNIQUE KEY Id_No (Id_No)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 LOCK TABLES staffs WRITE;
-INSERT INTO staffs VALUES
-(5001,'ffd184f832c88502a23b06482a20b925f5769ab08b175be775733f1b5f09dbaa','test_salt_staff_12345678901234567890123456','Tang','Bob','F','N589710','Flat C, 18/F, Hopewell Building, Central','test_staff@example.com','91651177','Academic Affairs','Accountant'),
-(5002,'b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a7b8c9d0e1f2g3','salt_staff_5002_bcd234efg567hij890klm123nop456qrs789tuv012wxy345zab','Chan','Frank','M','G662336','Room 3, 20/F, Landmark Centre, Admiralty','frankchan@school.edu.hk','92351868','Human Resources','Teacher'),
-(5003,'c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a7b8c9d0e1f2g3h4','salt_staff_5003_cde345fgh678ijk901lmn234opq567rst890uvw123xyz456abc','Ng','Elizabeth','M','O947272','Flat A, 15/F, Citibank Tower, Central','elizabethng@school.edu.hk','91642635','Academic Affairs','Technical Support'),
-(5004,'d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a7b8c9d0e1f2g3h4i5','salt_staff_5004_def456ghi789jkl012mno345pqr678stu901vwx234yz567abc','Chan','Alice','M','N609231','Room 3, 20/F, Landmark Centre, Admiralty','alicechan@school.edu.hk','93586084','Human Resources','Administrator'),
-(5005,'e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a7b8c9d0e1f2g3h4i5j6','salt_staff_5005_efg567hij890klm123nop456qrs789tuv012wxy345zab678cde','Tang','Catherine','F','I922157','Room 3, 20/F, Landmark Centre, Admiralty','catherine.tang@school.edu.hk','94785687','Human Resources','Technical Support');
+INSERT INTO staffs (StfID, password, salt, last_name, first_name, gender, Id_No, address, email, phone, department, role) VALUES
+(5001,'ffd184f832c88502a23b06482a20b925f5769ab08b175be775733f1b5f09dbaa','test_salt_staff_12345678901234567890123456','Tang','Bob','F',AES_ENCRYPT('N589710', @encryption_key),AES_ENCRYPT('Flat C, 18/F, Hopewell Building, Central', @encryption_key),'test_staff@example.com',AES_ENCRYPT('91651177', @encryption_key),'Academic Affairs','Accountant'),
+(5002,'b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a7b8c9d0e1f2g3','salt_staff_5002_bcd234efg567hij890klm123nop456qrs789tuv012wxy345zab','Chan','Frank','M',AES_ENCRYPT('G662336', @encryption_key),AES_ENCRYPT('Room 3, 20/F, Landmark Centre, Admiralty', @encryption_key),'frankchan@school.edu.hk',AES_ENCRYPT('92351868', @encryption_key),'Human Resources','Teacher'),
+(5003,'c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a7b8c9d0e1f2g3h4','salt_staff_5003_cde345fgh678ijk901lmn234opq567rst890uvw123xyz456abc','Ng','Elizabeth','M',AES_ENCRYPT('O947272', @encryption_key),AES_ENCRYPT('Flat A, 15/F, Citibank Tower, Central', @encryption_key),'elizabethng@school.edu.hk',AES_ENCRYPT('91642635', @encryption_key),'Academic Affairs','Technical Support'),
+(5004,'d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a7b8c9d0e1f2g3h4i5','salt_staff_5004_def456ghi789jkl012mno345pqr678stu901vwx234yz567abc','Chan','Alice','M',AES_ENCRYPT('N609231', @encryption_key),AES_ENCRYPT('Room 3, 20/F, Landmark Centre, Admiralty', @encryption_key),'alicechan@school.edu.hk',AES_ENCRYPT('93586084', @encryption_key),'Human Resources','Administrator'),
+(5005,'e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a7b8c9d0e1f2g3h4i5j6','salt_staff_5005_efg567hij890klm123nop456qrs789tuv012wxy345zab678cde','Tang','Catherine','F',AES_ENCRYPT('I922157', @encryption_key),AES_ENCRYPT('Room 3, 20/F, Landmark Centre, Admiralty', @encryption_key),'catherine.tang@school.edu.hk',AES_ENCRYPT('94785687', @encryption_key),'Human Resources','Technical Support');
 UNLOCK TABLES;
 
 DROP TABLE IF EXISTS students;
@@ -118,12 +121,12 @@ CONSTRAINT students_ibfk_1 FOREIGN KEY (GuaID) REFERENCES guardians (GuaID) ON D
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 LOCK TABLES students WRITE;
-INSERT INTO students VALUES
-(100,'Chow','Mia','F','U974628','Apartment 5, 12/F, Central Plaza, Sheung Wan','test_student@example.com','41831063',2023,1000,'Mother','f1c26a2dbc7d9f6d932c6199f1501f61c92a59b214545eca3b5cc1bc86bcf2a1','test_salt_student_123456789012345678901234'),
-(101,'Ng','Jack','M','R864544','Unit 2, 25/F, Exchange Plaza, Admiralty','jack.ng@protonmail.com','41931511',2024,1001,'Father','b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a7b8c9d0e1f2g3','salt_stu_101_bcd234efg567hij890klm123nop456qrs789tuv012wxy345zab'),
-(102,'Wong','Noah','M','H961722','Flat C, 18/F, Hopewell Building, Central','noah_wong@zoho.com','62339391',2024,1002,'Mother','c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a7b8c9d0e1f2g3h4','salt_stu_102_cde345fgh678ijk901lmn234opq567rst890uvw123xyz456abc'),
-(103,'Wong','Alice','M','U623481','Room 3, 20/F, Landmark Centre, Admiralty','alice_wong@hotmail.com','81586053',2022,1002,'Mother','d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a7b8c9d0e1f2g3h4i5','salt_stu_103_def456ghi789jkl012mno345pqr678stu901vwx234yz567abc'),
-(104,'Lee','Chloe','F','S518801','Apartment 5, 12/F, Central Plaza, Sheung Wan','chloe_lee@zoho.com','49436733',2022,1003,'Grandparent','e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a7b8c9d0e1f2g3h4i5j6','salt_stu_104_efg567hij890klm123nop456qrs789tuv012wxy345zab678cde');
+INSERT INTO students (StuID, last_name, first_name, gender, Id_No, address, email, phone, enrollment_year, GuaID, guardian_relation, password, salt) VALUES
+(100,'Chow','Mia','F',AES_ENCRYPT('U974628', @encryption_key),AES_ENCRYPT('Apartment 5, 12/F, Central Plaza, Sheung Wan', @encryption_key),'test_student@example.com',AES_ENCRYPT('41831063', @encryption_key),2023,1000,'Mother','f1c26a2dbc7d9f6d932c6199f1501f61c92a59b214545eca3b5cc1bc86bcf2a1','test_salt_student_123456789012345678901234'),
+(101,'Ng','Jack','M',AES_ENCRYPT('R864544', @encryption_key),AES_ENCRYPT('Unit 2, 25/F, Exchange Plaza, Admiralty', @encryption_key),'jack.ng@protonmail.com',AES_ENCRYPT('41931511', @encryption_key),2024,1001,'Father','b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a7b8c9d0e1f2g3','salt_stu_101_bcd234efg567hij890klm123nop456qrs789tuv012wxy345zab'),
+(102,'Wong','Noah','M',AES_ENCRYPT('H961722', @encryption_key),AES_ENCRYPT('Flat C, 18/F, Hopewell Building, Central', @encryption_key),'noah_wong@zoho.com',AES_ENCRYPT('62339391', @encryption_key),2024,1002,'Mother','c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a7b8c9d0e1f2g3h4','salt_stu_102_cde345fgh678ijk901lmn234opq567rst890uvw123xyz456abc'),
+(103,'Wong','Alice','M',AES_ENCRYPT('U623481', @encryption_key),AES_ENCRYPT('Room 3, 20/F, Landmark Centre, Admiralty', @encryption_key),'alice_wong@hotmail.com',AES_ENCRYPT('81586053', @encryption_key),2022,1002,'Mother','d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a7b8c9d0e1f2g3h4i5','salt_stu_103_def456ghi789jkl012mno345pqr678stu901vwx234yz567abc'),
+(104,'Lee','Chloe','F',AES_ENCRYPT('S518801', @encryption_key),AES_ENCRYPT('Apartment 5, 12/F, Central Plaza, Sheung Wan', @encryption_key),'chloe_lee@zoho.com',AES_ENCRYPT('49436733', @encryption_key),2022,1003,'Grandparent','e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a7b8c9d0e1f2g3h4i5j6','salt_stu_104_efg567hij890klm123nop456qrs789tuv012wxy345zab678cde');
 UNLOCK TABLES;
 
 DROP TABLE IF EXISTS grades;
@@ -227,10 +230,10 @@ CREATE TABLE sessions (
   INDEX idx_user_id (user_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-
-GRANT SELECT (StuID, email, password, salt, first_name, last_name) ON ComputingU.students TO 'auth_user'@'localhost', 'auth_user'@'%';
-GRANT SELECT (GuaID, email, password, salt, first_name, last_name) ON ComputingU.guardians TO 'auth_user'@'localhost', 'auth_user'@'%';
-GRANT SELECT (StfID, email, password, salt, role, department, first_name, last_name) ON ComputingU.staffs TO 'auth_user'@'localhost', 'auth_user'@'%';
+GRANT SELECT, UPDATE (StuID, email, password, salt, first_name, last_name) ON ComputingU.students TO 'auth_user'@'localhost', 'auth_user'@'%';
+GRANT SELECT, UPDATE (GuaID, email, password, salt, first_name, last_name) ON ComputingU.guardians TO 'auth_user'@'localhost', 'auth_user'@'%';
+GRANT SELECT, UPDATE (StfID, email, password, salt, role, department, first_name, last_name) ON ComputingU.staffs TO 'auth_user'@'localhost', 'auth_user'@'%';
+ 
 GRANT INSERT ON ComputingU.audit_log TO 'auth_user'@'localhost', 'auth_user'@'%';
 GRANT INSERT ON ComputingU.accountLog TO 'auth_user'@'localhost', 'auth_user'@'%';
 GRANT SELECT, INSERT, UPDATE, DELETE ON ComputingU.sessions TO 'auth_user'@'localhost', 'auth_user'@'%';

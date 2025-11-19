@@ -43,7 +43,7 @@ def processTable(conn, table: str, columns: Tuple[str, ...], key: str) -> None:
 
 def main() -> None:
     key = getEncryptionKey()
-    conn = get_db_connection()
+    conn = get_db_connection('auth')
     try:
         for table, columns_meta in ENCRYPTED_COLUMNS.items():
             processTable(conn, table, tuple(columns_meta.keys()), key)
