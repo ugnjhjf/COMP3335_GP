@@ -230,11 +230,6 @@ def test_common_passwords():
     
     # Test email - using test user from setup_test_user.py
     test_email = "test_student@example.com"
-    test_password = "StudentTest123"  # Expected password from setup_test_user.py
-    
-    # Add the expected password to the list if not already present
-    if test_password not in common_passwords:
-        common_passwords.append(test_password)
     
     success, token = brute_force_attack(test_email, common_passwords)
     
@@ -242,7 +237,8 @@ def test_common_passwords():
         print("\n[Security Warning] System has brute force vulnerability!")
         print("Recommendation: Implement login rate limiting and account locking mechanism")
     else:
-        print("\n[Security Test] Brute force attack successfully prevented")
+        print("\n[Security Test] Brute force attack failed (password not in list)")
+
 
 if __name__ == "__main__":
     print("=" * 60)
