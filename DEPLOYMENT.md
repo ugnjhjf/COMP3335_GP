@@ -91,7 +91,18 @@ docker exec -it percona-server mysql -u root -p
 
 When prompted, enter the password: `supersecurepassword`
 
-### 6. Verify Database Setup
+
+
+### 6. Setup database
+
+Enter MySQL server,
+Set the encryption key first:
+```sql
+SET @encryption_key = 'c29a02b23662ced73f8c007c877a85c8aab576b1b7f888ac37c364b5a75a681b';
+```
+Then, copy and paste the entire content of `<project_root>/load_sql/University.sql` into the MySQL prompt, then press Enter.
+
+### 7. Verify Database Setup
 
 In the MySQL prompt, verify tables were created:
 
@@ -107,28 +118,14 @@ Exit MySQL:
 EXIT;
 ```
 
-### 7. Troubleshooting: empty table in database (If necessary)
-
-If the database fail to show the table. Enter MySQL server,
-Set the encryption key first:
-```sql
-SET @encryption_key = 'c29a02b23662ced73f8c007c877a85c8aab576b1b7f888ac37c364b5a75a681b';
-```
-Then, copy and paste the entire content of `load_sql/University.sql` into the MySQL prompt, then press Enter.
-
-Alternatively, you can execute it directly:
-
-```bash
-docker exec -i percona-server mysql -u root -p supersecurepassword < ../load_sql/University.sql
-```
-
 ## Backend Setup
 
 ### 8. Setting up the certificate for the application
 
 Open PowerShell as **Administrator Mode !!!!**. Press Win + X, choose Windows PowerShell (Admin).
 
-Install Chocolatey (one-time setup)
+
+Enter `<project_root>`. Install Chocolatey (one-time setup)
 ```bash
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 ```
@@ -150,16 +147,7 @@ mkcert -cert-file localhost-cert.pem -key-file localhost-key.pem localhost 127.0
 
 replace the cert.pem and key.pem with the content in localhost-cert.pem and localhost-key.pem correspondingly
 
-### 9. Install Python Dependencies
-
-Open a new terminal and navigate to the project root:
-
-```bash
-cd <project-root>
-pip install -r requirements.txt
-```
-
-### 10. Start Backend Server
+### 9. Start Backend Server
 
 Navigate to the backend directory and run:
 
@@ -169,6 +157,8 @@ python main.py
 ```
 
 The server will start on `http://127.0.0.1:8000`.
+
+> Make sure you have installed requirements.txt
 
 ## Frontend Access
 
