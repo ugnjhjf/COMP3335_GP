@@ -19,7 +19,7 @@ from auth import authenticate_user, create_session, validate_session, logout
 from logger_config import app_logger, log_security_event
 from audit_logger import log_audit_event, log_sql_execution, log_unauthorized_access
 from security_monitor import detect_sql_injection, log_sql_injection_attempt, detect_policy_violation, log_policy_violation
-# Security enhancements - 安全增强模块
+# Security enhancements
 from security import (
     decrypt_password, validate_email, validate_password, 
     sanitize_input, validate_table_name, validate_column_name,
@@ -36,7 +36,7 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
     server_version = "SimpleAPIServer/0.1"
 
     def do_OPTIONS(self):
-        # CORS preflight - CORS预检请求
+        # CORS preflight
         from security import get_allowed_origins, is_origin_allowed
         origin = self.headers.get("Origin", "")
         allowed_origins = get_allowed_origins()
@@ -91,7 +91,7 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                     {"tables": tables, "tableColumns": tableColumns, "rolePrivileges": rolePrivileges},
                 )
             
-            # Public key endpoint for frontend encryption - 前端加密用的公钥端点
+            # Public key endpoint for frontend encryption
             if path == "/auth/public-key":
                 from security import get_public_key_pem
                 public_key = get_public_key_pem()
@@ -105,11 +105,11 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
 
             return json_response(self, 404, {"error": "Not found"})
         except Exception as e:
-            # Log error details but don't expose to client - 记录错误详情但不暴露给客户端
+            # Log error details but don't expose to client
             import logging
             logging.error(f"GET request error: {str(e)}", exc_info=True)
-            traceback.print_exc()  # Keep for development - 开发环境保留
-            # Return generic error message - 返回通用错误信息
+            traceback.print_exc()  # Keep for development
+            # Return generic error message
             return json_response(self, 500, {"error": "Server error occurred"})
 
     def do_POST(self):
@@ -125,13 +125,13 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                 data = read_json(self) or {}
                 email = data.get("email", "").strip()
                 password = data.get("password", "")
-                encrypted_password = data.get("encryptedPassword", "")  # Support encrypted password - 支持加密密码
+                encrypted_password = data.get("encryptedPassword", "")  # Support encrypted password
                 
                 # Log login request
                 app_logger.info(f"Login request received: email={email}, ip={client_ip}")
                 logAccountOperation(client_ip, None, None, f"Login request sent: email={email}")
                 
-                # Input validation - 输入验证
+                # Input validation
                 if not email:
                     app_logger.warning(f"Login rejected: email missing, ip={client_ip}")
                     log_security_event('login_rejected', {'reason': 'email_missing'}, None, client_ip)
@@ -143,20 +143,19 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                     logAccountOperation(client_ip, None, None, f"Login rejected: email={email}, reason=Password missing")
                     return json_response(self, 400, {"ok": False, "error": "Password is required"})
                 
-                # Validate email format - 验证邮箱格式
+                # Validate email format
                 if not validate_email(email):
                     app_logger.warning(f"Login rejected: invalid email format, email={email}, ip={client_ip}")
                     log_security_event('login_rejected', {'email': email, 'reason': 'invalid_email_format'}, None, client_ip)
                     logAccountOperation(client_ip, None, None, f"Login rejected: email={email}, reason=Invalid email format")
                     return json_response(self, 400, {"ok": False, "error": "Invalid email format"})
                 
-                # Decrypt password if encrypted - 如果密码已加密则解密
+                # Decrypt password if encrypted
                 if encrypted_password:
                     decrypted = decrypt_password(encrypted_password)
                     if decrypted:
                         password = decrypted
                     # If decryption fails, fall back to plain password (backward compatibility)
-                    # 如果解密失败，回退到明文密码（向后兼容）
                 
                 # Check for SQL injection attempts in email
                 if detect_sql_injection(email):
@@ -174,7 +173,7 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                     logAccountOperation(client_ip, None, None, f"SQL injection attempt: email={email}, location=login_password")
                     return json_response(self, 400, {"ok": False, "error": "Invalid input"})
                 
-                # Validate password - 验证密码
+                # Validate password
                 if password:
                     is_valid, error_msg = validate_password(password)
                     if not is_valid:
@@ -183,7 +182,7 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                         logAccountOperation(client_ip, None, None, f"Login rejected: email={email}, reason=Invalid password format")
                         return json_response(self, 400, {"ok": False, "error": error_msg})
                 
-                # Sanitize inputs - 清理输入
+                # Sanitize inputs
                 email = sanitize_input(email, max_length=255)
                 password = sanitize_input(password, max_length=128)
                 
@@ -256,7 +255,7 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                 app_logger.info(f"Query request: user_id={auth.get('personId')}, role={auth.get('role')}, table={table}, ip={client_ip}")
                 logAccountOperation(client_ip, auth.get('personId'), auth.get('role'), f"Database query request: table={table}")
 
-                # Validate table name with whitelist - 使用白名单验证表名（更安全）
+                # Validate table name with whitelist
                 allowed_tables = ROLE_TABLES.get(auth["role"], [])
                 if not validate_table_name_whitelist(table, allowed_tables):
                     app_logger.warning(f"Invalid table name in query: user_id={auth.get('personId')}, role={auth.get('role')}, table={table}, ip={client_ip}")
@@ -382,7 +381,7 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                     val = f.get("value", None)
                     if not targetColumn or operator not in OP:
                         continue
-                    # Validate column name - 验证列名
+                    # Validate column name
                     if not validate_column_name(targetColumn):
                         continue
                     try:
@@ -441,7 +440,7 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                     targetColumn = o.get("column")
                     if not targetColumn:
                         continue
-                    # Validate column name - 验证列名
+                    # Validate column name
                     if not validate_column_name(targetColumn):
                         continue
                     try:
@@ -497,7 +496,7 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                 app_logger.info(f"Update request: user_id={auth.get('personId')}, role={auth.get('role')}, table={table}, ip={client_ip}")
                 logAccountOperation(client_ip, auth.get('personId'), auth.get('role'), f"Data update request: table={table}")
                 
-                # Validate table name - 验证表名
+                # Validate table name
                 if not validate_table_name(table):
                     app_logger.warning(f"Invalid table name in update: user_id={auth.get('personId')}, role={auth.get('role')}, table={table}, ip={client_ip}")
                     log_security_event('policy_violation', {'action': 'update', 'resource': table, 'reason': 'invalid_table_name'}, auth.get('personId'), client_ip)
@@ -572,14 +571,14 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                     logAccountOperation(client_ip, auth.get('personId'), auth.get('role'), f"Data update successful: table={table}, rows_affected={rows_affected}")
                     return json_response(self, 200, {"ok": True, "updated": updateValues})
                 except Exception as e:
-                    # Log error details but don't expose to client - 记录错误详情但不暴露给客户端
+                    # Log error details but don't expose to client
                     app_logger.error(f"Update error: user_id={auth.get('personId')}, role={auth.get('role')}, table={table}, error={e}, ip={client_ip}")
                     log_sql_execution('UPDATE', table, auth.get('personId'), auth.get('role'), sql, client_ip, False)
                     logAccountOperation(client_ip, auth.get('personId'), auth.get('role'), f"Data update failed: table={table}, error={str(e)}")
                     import logging
                     logging.error(f"Update error: {str(e)}", exc_info=True)
-                    traceback.print_exc()  # Keep for development - 开发环境保留
-                    # Return generic error message - 返回通用错误信息
+                    traceback.print_exc()  # Keep for development
+                    # Return generic error message
                     return json_response(self, 500, {"ok": False, "error": "Server error occurred"})
             elif path == "/data/delete":
                 # Get client IP address
@@ -601,7 +600,7 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                 app_logger.info(f"Delete request: user_id={auth.get('personId')}, role={auth.get('role')}, table={table}, ip={client_ip}")
                 logAccountOperation(client_ip, auth.get('personId'), auth.get('role'), f"Data delete request: table={table}")
                 
-                # Validate table name with whitelist - 使用白名单验证表名（更安全）
+                # Validate table name with whitelist
                 allowed_tables = ROLE_TABLES.get(auth["role"], [])
                 if not validate_table_name_whitelist(table, allowed_tables):
                     app_logger.warning(f"Invalid table name in delete: user_id={auth.get('personId')}, role={auth.get('role')}, table={table}, ip={client_ip}")
@@ -651,14 +650,14 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                     logAccountOperation(client_ip, auth.get('personId'), auth.get('role'), f"Data delete successful: table={table}, rows_affected={rows_affected}")
                     return json_response(self, 200, {"ok": True, "deleted": key})
                 except Exception as e:
-                    # Log error details but don't expose to client - 记录错误详情但不暴露给客户端
+                    # Log error details but don't expose to client
                     app_logger.error(f"Delete error: user_id={auth.get('personId')}, role={auth.get('role')}, table={table}, error={e}, ip={client_ip}")
                     log_sql_execution('DELETE', table, auth.get('personId'), auth.get('role'), sql, client_ip, False)
                     logAccountOperation(client_ip, auth.get('personId'), auth.get('role'), f"Data delete failed: table={table}, error={str(e)}")
                     import logging
                     logging.error(f"Delete error: {str(e)}", exc_info=True)
-                    traceback.print_exc()  # Keep for development - 开发环境保留
-                    # Return generic error message - 返回通用错误信息
+                    traceback.print_exc()  # Keep for development
+                    # Return generic error message
                     return json_response(self, 500, {"ok": False, "error": "Server error occurred"})
             elif path == "/data/insert":
                 # Get client IP address
@@ -681,7 +680,7 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                 app_logger.info(f"Insert request: user_id={auth.get('personId')}, role={auth.get('role')}, table={table}, ip={client_ip}")
                 logAccountOperation(client_ip, auth.get('personId'), auth.get('role'), f"Data insert request: table={table}")
                 
-                # Validate table name with whitelist - 使用白名单验证表名（更安全）
+                # Validate table name with whitelist
                 allowed_tables = ROLE_TABLES.get(auth["role"], [])
                 if not validate_table_name_whitelist(table, allowed_tables):
                     app_logger.warning(f"Invalid table name in insert: user_id={auth.get('personId')}, role={auth.get('role')}, table={table}, ip={client_ip}")
@@ -704,7 +703,7 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                 if set(updateValues.keys()) != set(allowed_insert_columns):
                     return json_response(self, 401, {"ok": False, "error": "Unauthorized"})
                 
-                # Validate and escape column names - 验证并转义列名
+                # Validate and escape column names
                 updateValueColumns = list(updateValues.keys())
                 for col in updateValueColumns:
                     if not validate_column_name(col):
@@ -751,23 +750,23 @@ class SimpleAPIServer(BaseHTTPRequestHandler):
                     logAccountOperation(client_ip, auth.get('personId'), auth.get('role'), f"Data insert successful: table={table}, rows_affected={rows_affected}")
                     return json_response(self, 200, {"ok": True, "insert": updateValueColumns})
                 except Exception as e:
-                    # Log error details but don't expose to client - 记录错误详情但不暴露给客户端
+                    # Log error details but don't expose to client
                     app_logger.error(f"Insert error: user_id={auth.get('personId')}, role={auth.get('role')}, table={table}, error={e}, ip={client_ip}")
                     log_sql_execution('INSERT', table, auth.get('personId'), auth.get('role'), sql, client_ip, False)
                     logAccountOperation(client_ip, auth.get('personId'), auth.get('role'), f"Data insert failed: table={table}, error={str(e)}")
                     import logging
                     logging.error(f"Insert error: {str(e)}", exc_info=True)
-                    traceback.print_exc()  # Keep for development - 开发环境保留
-                    # Return generic error message - 返回通用错误信息
+                    traceback.print_exc()  # Keep for development
+                    # Return generic error message
                     return json_response(self, 500, {"ok": False, "error": "Server error occurred"})
 
             return json_response(self, 404, {"error": "Not found"})
         except Exception as e:
-            # Log error details but don't expose to client - 记录错误详情但不暴露给客户端
+            # Log error details but don't expose to client
             import logging
             logging.error(f"POST request error: {str(e)}", exc_info=True)
-            traceback.print_exc()  # Keep for development - 开发环境保留
-            # Return generic error message - 返回通用错误信息
+            traceback.print_exc()  # Keep for development
+            # Return generic error message
             return json_response(self, 500, {"error": "Server error occurred"})
 
     def log_message(self, format, *args):

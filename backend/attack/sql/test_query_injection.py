@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 """
 Test SQL injection attacks on query endpoint
-测试查询端点的SQL注入攻击
 """
 import requests
 import json
 import urllib3
 from typing import Dict, List
 
-# 禁用 SSL 警告（因为使用的是自签名证书）
+# Disable SSL warnings (using self-signed certificate)
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # Test user credentials
@@ -20,7 +19,7 @@ def get_query_injection_payloads():
     return [
         {
             "name": "Filter value injection - OR",
-            "description": "过滤器值注入 - OR",
+            "description": "Filter value injection - OR",
             "table": "students",
             "filters": [{
                 "column": "email",
@@ -30,7 +29,7 @@ def get_query_injection_payloads():
         },
         {
             "name": "Filter value injection - UNION",
-            "description": "过滤器值注入 - UNION",
+            "description": "Filter value injection - UNION",
             "table": "students",
             "filters": [{
                 "column": "email",
@@ -40,7 +39,7 @@ def get_query_injection_payloads():
         },
         {
             "name": "Filter value injection - Comment",
-            "description": "过滤器值注入 - 注释",
+            "description": "Filter value injection - Comment",
             "table": "students",
             "filters": [{
                 "column": "email",
@@ -50,13 +49,13 @@ def get_query_injection_payloads():
         },
         {
             "name": "Table name injection",
-            "description": "表名注入",
+            "description": "Table name injection",
             "table": "students; DROP TABLE students; --",
             "filters": []
         },
         {
             "name": "Column name injection",
-            "description": "列名注入",
+            "description": "Column name injection",
             "table": "students",
             "filters": [{
                 "column": "email; DROP TABLE students; --",
@@ -66,7 +65,7 @@ def get_query_injection_payloads():
         },
         {
             "name": "Operator injection",
-            "description": "操作符注入",
+            "description": "Operator injection",
             "table": "students",
             "filters": [{
                 "column": "email",
@@ -76,7 +75,7 @@ def get_query_injection_payloads():
         },
         {
             "name": "LIKE injection",
-            "description": "LIKE注入",
+            "description": "LIKE injection",
             "table": "students",
             "filters": [{
                 "column": "email",
@@ -86,7 +85,7 @@ def get_query_injection_payloads():
         },
         {
             "name": "IN injection",
-            "description": "IN注入",
+            "description": "IN injection",
             "table": "students",
             "filters": [{
                 "column": "StuID",
@@ -101,7 +100,6 @@ def test_query_sql_injection(base_url: str = "https://127.0.0.1:8000",
                              auth_token: str = None) -> List[Dict]:
     """
     Test SQL injection attacks on /performQuery endpoint
-    测试 /performQuery 端点的SQL注入攻击
     
     Args:
         base_url: Base URL of the API server
@@ -125,7 +123,6 @@ def test_query_sql_injection(base_url: str = "https://127.0.0.1:8000",
     }
     
     # SQL injection payloads for query filters
-    # 查询过滤器的SQL注入载荷
     injection_payloads = get_query_injection_payloads()
     
     for payload in injection_payloads:
@@ -142,44 +139,36 @@ def test_query_sql_injection(base_url: str = "https://127.0.0.1:8000",
                 headers=headers,
                 json=request_data,
                 timeout=10,
-                verify=False  # 禁用SSL验证（自签名证书）
+                verify=False  # Disable SSL verification (self-signed certificate)
             )
             
             # Check if injection was successful
-            # 检查注入是否成功
             is_vulnerable = False
             is_protected = False  # Initialize protection status
             vulnerability_indicators = []
             
             # Check response status
-            # 检查响应状态
             if response.status_code == 200:
                 try:
                     data = response.json()
                     # If we get unexpected data, might be vulnerable
-                    # 如果得到意外数据，可能易受攻击
                     if "results" in data:
                         result_count = len(data["results"])
                         # If we get a very large result set, might be vulnerable (OR injection succeeded)
-                        # 如果得到非常大的结果集，可能易受攻击（OR注入成功）
                         if result_count > 100:
                             is_vulnerable = True
                             vulnerability_indicators.append(f"Unexpected large result set: {result_count} records")
                         # If we get empty or small result set, likely protected (parameterized query worked)
-                        # 如果得到空或小的结果集，可能受保护（参数化查询正常工作）
                         elif result_count == 0 or result_count <= 10:
                             # Parameterized queries treat injection as literal string, so no matches found
-                            # 参数化查询将注入视为字面字符串，所以找不到匹配
                             is_protected = True
                     elif "error" in data:
                         # Response has error, likely protected
-                        # 响应有错误，可能受保护
                         is_protected = True
                 except:
                     pass
             
             # Check for SQL error messages
-            # 检查SQL错误消息
             response_text = response.text.lower()
             sql_error_patterns = [
                 "sql syntax",
@@ -197,9 +186,7 @@ def test_query_sql_injection(base_url: str = "https://127.0.0.1:8000",
                     break
             
             # Check if request was properly rejected
-            # 检查请求是否被正确拒绝
             # Check response content for validation errors
-            # 检查响应内容中的验证错误
             response_text_lower = response.text.lower()
             has_validation_error = any(keyword in response_text_lower for keyword in [
                 "invalid", "error", "forbidden", "unauthorized", 
@@ -207,7 +194,6 @@ def test_query_sql_injection(base_url: str = "https://127.0.0.1:8000",
             ])
             
             # Combine protection checks (don't overwrite previous is_protected)
-            # 组合保护检查（不要覆盖之前的is_protected）
             is_protected = is_protected or (
                 response.status_code == 400 or  # Bad request
                 response.status_code == 403 or  # Forbidden
@@ -216,9 +202,7 @@ def test_query_sql_injection(base_url: str = "https://127.0.0.1:8000",
             )
             
             # Additional check: if status is 200 with empty/small results, protected
-            # 额外检查：如果状态是200且有空/小结果，受保护
             # (This is already handled above, but keep for clarity)
-            # （上面已经处理了，但保留以保持清晰）
             
             result = {
                 "test_name": payload["name"],
@@ -279,7 +263,7 @@ def run_query_injection_tests():
                 "password": TEST_STUDENT_PASSWORD
             },
             timeout=5,
-            verify=False  # 禁用SSL验证（自签名证书）
+            verify=False  # Disable SSL verification (self-signed certificate)
         )
         if login_response.status_code == 200:
             data = login_response.json()

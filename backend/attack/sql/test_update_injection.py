@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 """
 Test SQL injection attacks on update endpoint
-测试更新端点的SQL注入攻击
 """
 import requests
 import json
 import urllib3
 from typing import Dict, List
 
-# 禁用 SSL 警告（因为使用的是自签名证书）
+# Disable SSL warnings (using self-signed certificate)
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # Test user credentials
@@ -19,7 +18,6 @@ def test_update_sql_injection(base_url: str = "https://127.0.0.1:8000",
                               auth_token: str = None) -> List[Dict]:
     """
     Test SQL injection attacks on /data/update endpoint
-    测试 /data/update 端点的SQL注入攻击
     
     Args:
         base_url: Base URL of the API server
@@ -43,7 +41,6 @@ def test_update_sql_injection(base_url: str = "https://127.0.0.1:8000",
     }
     
     # SQL injection payloads for update operations
-    # 更新操作的SQL注入载荷
     injection_payloads = get_update_injection_payloads()
     
     for payload in injection_payloads:
@@ -59,39 +56,31 @@ def test_update_sql_injection(base_url: str = "https://127.0.0.1:8000",
                 headers=headers,
                 json=request_data,
                 timeout=10,
-                verify=False  # 禁用SSL验证（自签名证书）
+                verify=False  # Disable SSL verification (self-signed certificate)
             )
             
             # Check if injection was successful
-            # 检查注入是否成功
             is_vulnerable = False
             is_protected = False  # Initialize protection status
             vulnerability_indicators = []
             
             # Check response status
-            # 检查响应状态
             if response.status_code == 200:
                 try:
                     data = response.json()
                     if data.get("ok"):
                         # With parameterized queries, malicious payload is treated as literal string
-                        # 使用参数化查询时，恶意载荷被视为字面字符串
                         # So update might return ok but the malicious SQL is just stored as data (protected)
-                        # 所以更新可能返回ok但恶意SQL只是作为数据存储（受保护）
                         # This is actually safe - parameterized queries prevent SQL injection
-                        # 这实际上是安全的 - 参数化查询防止SQL注入
                         # We'll mark as protected since parameterized queries handle this safely
-                        # 我们将标记为受保护，因为参数化查询安全地处理了这种情况
                         is_protected = True
                     elif "error" in data or not data.get("ok"):
                         # Response has error or ok=false, likely protected
-                        # 响应有错误或ok=false，可能受保护
                         is_protected = True
                 except:
                     pass
             
             # Check for SQL error messages
-            # 检查SQL错误消息
             response_text = response.text.lower()
             sql_error_patterns = [
                 "sql syntax",
@@ -107,9 +96,7 @@ def test_update_sql_injection(base_url: str = "https://127.0.0.1:8000",
                     break
             
             # Check if request was properly rejected
-            # 检查请求是否被正确拒绝
             # Check response content for validation errors
-            # 检查响应内容中的验证错误
             response_text_lower = response.text.lower()
             has_validation_error = any(keyword in response_text_lower for keyword in [
                 "invalid", "error", "forbidden", "unauthorized", 
@@ -117,7 +104,6 @@ def test_update_sql_injection(base_url: str = "https://127.0.0.1:8000",
             ])
             
             # Combine protection checks (don't overwrite previous is_protected)
-            # 组合保护检查（不要覆盖之前的is_protected）
             is_protected = is_protected or (
                 response.status_code == 400 or  # Bad request
                 response.status_code == 403 or  # Forbidden
@@ -173,7 +159,7 @@ def get_update_injection_payloads():
     return [
         {
             "name": "Update value injection - OR",
-            "description": "更新值注入 - OR",
+            "description": "Update value injection - OR",
             "table": "students",
             "key": {"StuID": 100},
             "updateValues": {
@@ -182,7 +168,7 @@ def get_update_injection_payloads():
         },
         {
             "name": "Update value injection - Comment",
-            "description": "更新值注入 - 注释",
+            "description": "Update value injection - Comment",
             "table": "students",
             "key": {"StuID": 100},
             "updateValues": {
@@ -191,7 +177,7 @@ def get_update_injection_payloads():
         },
         {
             "name": "Update value injection - Stacked",
-            "description": "更新值注入 - 堆叠",
+            "description": "Update value injection - Stacked",
             "table": "students",
             "key": {"StuID": 100},
             "updateValues": {
@@ -200,7 +186,7 @@ def get_update_injection_payloads():
         },
         {
             "name": "Table name injection",
-            "description": "表名注入",
+            "description": "Table name injection",
             "table": "students; DROP TABLE students; --",
             "key": {"StuID": 100},
             "updateValues": {
@@ -209,7 +195,7 @@ def get_update_injection_payloads():
         },
         {
             "name": "Column name injection",
-            "description": "列名注入",
+            "description": "Column name injection",
             "table": "students",
             "key": {"StuID": 100},
             "updateValues": {
@@ -218,7 +204,7 @@ def get_update_injection_payloads():
         },
         {
             "name": "Primary key injection",
-            "description": "主键注入",
+            "description": "Primary key injection",
             "table": "students",
             "key": {"StuID": "100' OR '1'='1"},
             "updateValues": {
@@ -244,7 +230,7 @@ def run_update_injection_tests():
                 "password": TEST_STUDENT_PASSWORD
             },
             timeout=5,
-            verify=False  # 禁用SSL验证（自签名证书）
+            verify=False  # Disable SSL verification (self-signed certificate)
         )
         if login_response.status_code == 200:
             data = login_response.json()

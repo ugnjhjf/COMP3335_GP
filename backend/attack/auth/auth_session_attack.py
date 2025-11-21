@@ -9,7 +9,7 @@ import string
 import urllib3
 from typing import List, Tuple
 
-# 禁用 SSL 警告（因为使用的是自签名证书）
+# Disable SSL warnings (using self-signed certificate)
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # Target URL for testing
@@ -35,7 +35,7 @@ def get_valid_token() -> str:
                 "password": TEST_STUDENT_PASSWORD
             },
             timeout=5,
-            verify=False  # 禁用SSL验证（自签名证书）
+            verify=False  # Disable SSL verification (self-signed certificate)
         )
         
         if response.status_code == 200:
@@ -99,7 +99,7 @@ def session_fixation_attack() -> Tuple[bool, str]:
                     "sort": []
                 },
                 timeout=5,
-                verify=False  # 禁用SSL验证（自签名证书）
+                verify=False  # Disable SSL verification (self-signed certificate)
             )
             
             # If returns 200 and not an error, token might be valid
@@ -223,7 +223,7 @@ def expired_session_attack() -> bool:
                     "sort": []
                 },
                 timeout=5,
-                verify=False  # 禁用SSL验证（自签名证书）
+                verify=False  # Disable SSL verification (self-signed certificate)
             )
             
             if response.status_code == 200:

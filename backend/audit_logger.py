@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 """
 Audit logging module for comprehensive database access monitoring
-审计日志模块，用于全面的数据库访问监控
 """
 from typing import Optional, Dict
 from datetime import datetime
 from logger_config import app_logger, log_security_event
 from db_query import db_execute
 
-# Audit log table name - 审计日志表名
+# Audit log table name
 AUDIT_LOG_TABLE = 'audit_log'
 
 def log_audit_event(event_type: str, details: Dict, user_id: Optional[str] = None,
@@ -16,7 +15,6 @@ def log_audit_event(event_type: str, details: Dict, user_id: Optional[str] = Non
                    sql: Optional[str] = None):
     """
     Log audit event to database
-    将审计事件记录到数据库
     
     Args:
         event_type: Type of event (login, query, update, delete, etc.)
@@ -27,7 +25,7 @@ def log_audit_event(event_type: str, details: Dict, user_id: Optional[str] = Non
         sql: SQL statement if applicable
     """
     try:
-        # Insert into audit log table - 插入到审计日志表
+        # Insert into audit log table
         db_execute(
             f"""
             INSERT INTO {AUDIT_LOG_TABLE} 
@@ -39,16 +37,16 @@ def log_audit_event(event_type: str, details: Dict, user_id: Optional[str] = Non
                 user_id,
                 user_role,
                 ip_address,
-                sql[:1000] if sql else None,  # Limit SQL length - 限制SQL长度
-                str(details)[:500] if details else None,  # Limit details length - 限制详情长度
+                sql[:1000] if sql else None,  # Limit SQL length
+                str(details)[:500] if details else None,  # Limit details length
             )
         )
         
-        # Also log to file - 同时记录到文件
+        # Also log to file
         app_logger.info(f"AUDIT: {event_type} - user={user_id}, role={user_role}, ip={ip_address}")
         
     except Exception as e:
-        # Fallback to file logging if database fails - 如果数据库失败则回退到文件日志
+        # Fallback to file logging if database fails
         app_logger.error(f"Failed to log audit event to database: {e}")
         log_security_event(event_type, details, user_id, ip_address)
 
@@ -56,7 +54,6 @@ def log_database_connection(user_id: Optional[str] = None, user_role: Optional[s
                           ip_address: Optional[str] = None, success: bool = True):
     """
     Log database connection attempts
-    记录数据库连接尝试
     
     Args:
         user_id: User ID
@@ -77,7 +74,6 @@ def log_sql_execution(operation: str, table: str, user_id: Optional[str] = None,
                      ip_address: Optional[str] = None, success: bool = True):
     """
     Log SQL execution
-    记录SQL执行
     
     Args:
         operation: Operation type (SELECT, INSERT, UPDATE, DELETE)
@@ -103,7 +99,6 @@ def log_unauthorized_access(attempted_action: str, user_id: Optional[str] = None
                            resource: Optional[str] = None):
     """
     Log unauthorized access attempts
-    记录未授权访问尝试
     
     Args:
         attempted_action: Action that was attempted

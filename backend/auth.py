@@ -13,21 +13,18 @@ from audit_logger import log_audit_event
 from logger import logAccountOperation
 
 # Session storage - supports both in-memory and database
-# 会话存储 - 支持内存和数据库两种方式
 # Format: {token: {"user_id": str, "role": str, "name": str, "expires_at": float}}
 ACTIVE_SESSIONS = {}
 
 # Session expiration time (in seconds) - 2 hours (reduced from 24 hours for security)
-# 会话过期时间（秒）- 2小时（从24小时减少以提高安全性）
 SESSION_EXPIRY = 2 * 60 * 60
 
-# Use database for session storage if enabled - 如果启用则使用数据库存储会话
+# Use database for session storage if enabled
 USE_DB_SESSIONS = os.getenv('USE_DB_SESSIONS', 'false').lower() == 'true'
 
 def hash_password(password, salt=None):
     """
     Hash password using bcrypt (more secure than SHA-256)
-    使用bcrypt哈希密码（比SHA-256更安全）
     
     Args:
         password: Plain text password
@@ -36,8 +33,8 @@ def hash_password(password, salt=None):
     Returns:
         Hashed password string
     """
-    # Use bcrypt for password hashing - 使用bcrypt进行密码哈希
-    # bcrypt automatically handles salt generation - bcrypt自动处理盐值生成
+    # Use bcrypt for password hashing
+    # bcrypt automatically handles salt generation
     password_bytes = password.encode('utf-8')
     hashed = bcrypt.hashpw(password_bytes, bcrypt.gensalt())
     return hashed.decode('utf-8')
@@ -45,14 +42,12 @@ def hash_password(password, salt=None):
 def verify_password(password, salt, hashed_password):
     """
     Verify password against hashed password
-    验证密码与哈希密码是否匹配
     
     Supports both bcrypt (new) and SHA-256 (legacy) for backward compatibility
-    支持bcrypt（新）和SHA-256（旧）以保持向后兼容性
     """
     password_bytes = password.encode('utf-8')
     
-    # Try bcrypt first (new format) - 先尝试bcrypt（新格式）
+    # Try bcrypt first (new format)
     try:
         hashed_bytes = hashed_password.encode('utf-8')
         if bcrypt.checkpw(password_bytes, hashed_bytes):
@@ -60,8 +55,8 @@ def verify_password(password, salt, hashed_password):
     except Exception:
         pass
     
-    # Fallback to SHA-256 for legacy passwords - 回退到SHA-256以支持旧密码
-    # This allows gradual migration - 这允许逐步迁移
+    # Fallback to SHA-256 for legacy passwords
+    # This allows gradual migration
     legacy_hash = hashlib.sha256((password + salt).encode('utf-8')).hexdigest()
     return legacy_hash == hashed_password
 
@@ -212,7 +207,6 @@ def authenticate_user(email, password, ip_address=None):
 def create_session(user_info):
     """
     Create a new session for authenticated user
-    为已认证用户创建新会话
     
     Args:
         user_info: Dict with user_id, role, name, user_type
@@ -229,10 +223,10 @@ def create_session(user_info):
         "expires_at": time.time() + SESSION_EXPIRY
     }
     
-    # Store in memory - 存储在内存中
+    # Store in memory
     ACTIVE_SESSIONS[token] = session_data
     
-    # Also store in database if enabled - 如果启用则也存储在数据库中
+    # Also store in database if enabled
     if USE_DB_SESSIONS:
         try:
             from db_query import db_execute
@@ -253,7 +247,6 @@ def create_session(user_info):
 def validate_session(token):
     """
     Validate session token and return user info
-    验证会话令牌并返回用户信息
     
     Args:
         token: Session token
@@ -264,10 +257,10 @@ def validate_session(token):
     if not token:
         return None
     
-    # Try memory first - 先尝试内存
+    # Try memory first
     session = ACTIVE_SESSIONS.get(token)
     
-    # If not in memory and DB sessions enabled, try database - 如果不在内存中且启用了数据库会话，尝试数据库
+    # If not in memory and DB sessions enabled, try database
     if not session and USE_DB_SESSIONS:
         try:
             # Use 'student' role as default for session queries (all roles have INSERT on sessions)
@@ -282,7 +275,7 @@ def validate_session(token):
                     "role": result[0]["role"],
                     "expires_at": result[0]["expires_at"].timestamp() if hasattr(result[0]["expires_at"], 'timestamp') else time.time() + SESSION_EXPIRY
                 }
-                # Cache in memory - 缓存在内存中
+                # Cache in memory
                 ACTIVE_SESSIONS[token] = session
         except Exception as e:
             app_logger.warning(f"Failed to validate session from database: {e}")
@@ -290,7 +283,7 @@ def validate_session(token):
     if not session:
         return None
     
-    # Check expiration - 检查过期
+    # Check expiration
     if time.time() > session["expires_at"]:
         if token in ACTIVE_SESSIONS:
             del ACTIVE_SESSIONS[token]
@@ -312,14 +305,13 @@ def validate_session(token):
 def logout(token):
     """
     Remove session token
-    移除会话令牌
     """
     removed = False
     if token in ACTIVE_SESSIONS:
         del ACTIVE_SESSIONS[token]
         removed = True
     
-    # Also remove from database if enabled - 如果启用则也从数据库移除
+    # Also remove from database if enabled
     if USE_DB_SESSIONS:
         try:
             from db_query import db_execute

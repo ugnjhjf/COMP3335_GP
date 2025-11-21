@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
 """
 Main SQL security test runner
-SQL安全测试主运行程序
 
 This script runs comprehensive SQL injection tests against the API
-此脚本对API运行全面的SQL注入测试
 """
 import sys
 import os
@@ -14,11 +12,9 @@ from datetime import datetime
 from typing import Dict, List
 
 # Add parent directory to path for imports
-# 将父目录添加到路径以便导入
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 # Import test functions
-# 导入测试函数
 from attack.sql.test_query_injection import test_query_sql_injection
 from attack.sql.test_update_injection import test_update_sql_injection
 from attack.sql.test_insert_injection import test_insert_sql_injection
@@ -28,7 +24,6 @@ from attack.sql.test_security_monitoring import test_security_monitoring
 def get_auth_token(base_url: str, email: str = None, password: str = None) -> str:
     """
     Get authentication token for testing
-    获取用于测试的认证令牌
     
     Args:
         base_url: Base URL of the API server
@@ -39,9 +34,7 @@ def get_auth_token(base_url: str, email: str = None, password: str = None) -> st
         Authentication token or None
     """
     # Default test credentials (adjust as needed)
-    # 默认测试凭据（根据需要调整）
     # Use credentials from setup_test_user.py if available
-    # 如果可用，使用 setup_test_user.py 创建的凭据
     test_email = email or "test_student@example.com"
     test_password = password or "StudentTest123"
     
@@ -74,7 +67,6 @@ def get_auth_token(base_url: str, email: str = None, password: str = None) -> st
                 print(f"  Error message: {error_msg}")
                 
                 # Provide helpful hints for common errors
-                # 为常见错误提供有用的提示
                 if response.status_code == 400:
                     if "password" in error_msg.lower() and "8 characters" in error_msg.lower():
                         print("\n  💡 Password validation failed. The test user may not exist.")
@@ -111,7 +103,6 @@ def run_all_tests(base_url: str = "http://127.0.0.1:8000",
                   test_password: str = None) -> Dict:
     """
     Run all SQL security tests
-    运行所有SQL安全测试
     
     Args:
         base_url: Base URL of the API server
@@ -122,7 +113,7 @@ def run_all_tests(base_url: str = "http://127.0.0.1:8000",
         Dictionary containing all test results
     """
     print("=" * 80)
-    print("SQL Security Test Suite - SQL安全测试套件")
+    print("SQL Security Test Suite")
     print("=" * 80)
     print(f"Target URL: {base_url}")
     print(f"Test Time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
@@ -130,16 +121,12 @@ def run_all_tests(base_url: str = "http://127.0.0.1:8000",
     print()
     
     # Get authentication token
-    # 获取认证令牌
     print("Step 1: Getting authentication token...")
-    print("步骤1: 获取认证令牌...")
     auth_token = get_auth_token(base_url, test_email, test_password)
     if auth_token:
         print("✓ Authentication token obtained")
-        print("✓ 已获取认证令牌")
     else:
         print("✗ Could not get authentication token - some tests will be skipped")
-        print("✗ 无法获取认证令牌 - 部分测试将被跳过")
     print()
     
     all_results = {
@@ -149,76 +136,56 @@ def run_all_tests(base_url: str = "http://127.0.0.1:8000",
     }
     
     # Note: Login injection tests are now in auth/auth_sql_injection_attack.py
-    # 注意：登录注入测试现在在 auth/auth_sql_injection_attack.py 中
     
     # Test 1: Query injection
-    # 测试1: 查询注入
     if auth_token:
         print("Test 1: Testing query endpoint SQL injection...")
-        print("测试1: 测试查询端点SQL注入...")
         query_results = test_query_sql_injection(base_url, auth_token)
         all_results["tests"]["query_injection"] = query_results
         print(f"  Completed: {len(query_results)} tests")
-        print(f"  完成: {len(query_results)} 个测试")
     else:
         print("Test 1: Skipped (no auth token)")
-        print("测试1: 已跳过（无认证令牌）")
         all_results["tests"]["query_injection"] = []
     print()
     
     # Test 2: Update injection
-    # 测试2: 更新注入
     if auth_token:
         print("Test 2: Testing update endpoint SQL injection...")
-        print("测试2: 测试更新端点SQL注入...")
         update_results = test_update_sql_injection(base_url, auth_token)
         all_results["tests"]["update_injection"] = update_results
         print(f"  Completed: {len(update_results)} tests")
-        print(f"  完成: {len(update_results)} 个测试")
     else:
         print("Test 2: Skipped (no auth token)")
-        print("测试2: 已跳过（无认证令牌）")
         all_results["tests"]["update_injection"] = []
     print()
     
     # Test 3: Insert injection
-    # 测试3: 插入注入
     if auth_token:
         print("Test 3: Testing insert endpoint SQL injection...")
-        print("测试3: 测试插入端点SQL注入...")
         insert_results = test_insert_sql_injection(base_url, auth_token)
         all_results["tests"]["insert_injection"] = insert_results
         print(f"  Completed: {len(insert_results)} tests")
-        print(f"  完成: {len(insert_results)} 个测试")
     else:
         print("Test 3: Skipped (no auth token)")
-        print("测试3: 已跳过（无认证令牌）")
         all_results["tests"]["insert_injection"] = []
     print()
     
     # Test 4: Delete injection
-    # 测试4: 删除注入
     if auth_token:
         print("Test 4: Testing delete endpoint SQL injection...")
-        print("测试4: 测试删除端点SQL注入...")
         delete_results = test_delete_sql_injection(base_url, auth_token)
         all_results["tests"]["delete_injection"] = delete_results
         print(f"  Completed: {len(delete_results)} tests")
-        print(f"  完成: {len(delete_results)} 个测试")
     else:
         print("Test 4: Skipped (no auth token)")
-        print("测试4: 已跳过（无认证令牌）")
         all_results["tests"]["delete_injection"] = []
     print()
     
     # Test 5: Security monitoring
-    # 测试5: 安全监控
     print("Test 5: Testing security monitoring...")
-    print("测试5: 测试安全监控...")
     monitoring_results = test_security_monitoring(base_url, auth_token)
     all_results["tests"]["security_monitoring"] = monitoring_results
     print(f"  Completed: {len(monitoring_results)} tests")
-    print(f"  完成: {len(monitoring_results)} 个测试")
     print()
     
     return all_results
@@ -226,7 +193,6 @@ def run_all_tests(base_url: str = "http://127.0.0.1:8000",
 def generate_report(results: Dict) -> str:
     """
     Generate a human-readable test report
-    生成人类可读的测试报告
     
     Args:
         results: Test results dictionary
@@ -236,7 +202,7 @@ def generate_report(results: Dict) -> str:
     """
     report = []
     report.append("=" * 80)
-    report.append("SQL Security Test Report - SQL安全测试报告")
+    report.append("SQL Security Test Report")
     report.append("=" * 80)
     report.append(f"Test Time: {results['test_time']}")
     report.append(f"Target: {results['base_url']}")
@@ -244,7 +210,6 @@ def generate_report(results: Dict) -> str:
     report.append("")  # Empty line
     
     # Count vulnerabilities
-    # 统计漏洞
     total_tests = 0
     vulnerable_tests = 0
     protected_tests = 0
@@ -283,9 +248,8 @@ def generate_report(results: Dict) -> str:
                     report.append(f"     - Response code: {test['response_code']}")
     
     # Summary
-    # 摘要
     report.append("\n" + "=" * 80)
-    report.append("SUMMARY - 摘要")
+    report.append("SUMMARY")
     report.append("=" * 80)
     report.append(f"Total Tests: {total_tests}")
     report.append(f"Vulnerable: {vulnerable_tests} ❌")
@@ -295,10 +259,8 @@ def generate_report(results: Dict) -> str:
     
     if vulnerable_tests > 0:
         report.append("\n⚠️  WARNING: Vulnerabilities detected!")
-        report.append("⚠️  警告: 检测到漏洞！")
     else:
         report.append("\n✅ All tests passed - No vulnerabilities detected")
-        report.append("✅ 所有测试通过 - 未检测到漏洞")
     
     return "\n".join(report)
 
@@ -317,16 +279,13 @@ def main():
     args = parser.parse_args()
     
     # Run tests
-    # 运行测试
     results = run_all_tests(args.url, args.email, args.password)
     
     # Generate report
-    # 生成报告
     report = generate_report(results)
     print("\n" + report)
     
     # Save results
-    # 保存结果
     if args.output:
         with open(args.output, 'w', encoding='utf-8') as f:
             json.dump(results, f, indent=2, ensure_ascii=False)
@@ -338,7 +297,6 @@ def main():
         print(f"Report saved to: {args.report}")
     
     # Exit code based on vulnerabilities
-    # 根据漏洞设置退出代码
     vulnerable_count = sum(
         sum(1 for t in tests if t.get("status") == "VULNERABLE")
         for tests in results["tests"].values()

@@ -7,7 +7,7 @@ import requests
 import urllib3
 from typing import List, Tuple
 
-# 禁用 SSL 警告（因为使用的是自签名证书）
+# Disable SSL warnings (using self-signed certificate)
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # Target URL for testing
@@ -41,7 +41,7 @@ def sql_injection_attack(email_payloads: List[str], password: str = "test123") -
                     "password": password
                 },
                 timeout=5,
-                verify=False  # 禁用SSL验证（自签名证书）
+                verify=False  # Disable SSL verification (self-signed certificate)
             )
             
             # Check response

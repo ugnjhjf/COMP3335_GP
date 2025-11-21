@@ -4,10 +4,10 @@ import os
 from logger_config import app_logger
 
 # =========================
-# Database configuration - 数据库配置
+# Database configuration
 # =========================
-# Use environment variables for sensitive data - 使用环境变量存储敏感数据
-# Fallback to default values for backward compatibility - 回退到默认值以保持向后兼容
+# Use environment variables for sensitive data
+# Fallback to default values for backward compatibility
 DB_CONFIG = {
     'host': os.getenv('DB_HOST', '127.0.0.1'),
     'port': int(os.getenv('DB_PORT', '3306')),
@@ -15,7 +15,7 @@ DB_CONFIG = {
     'charset': os.getenv('DB_CHARSET', 'utf8mb4')
 }
 
-# Role-based DBMS user mapping - 基于角色的数据库用户映射
+# Role-based DBMS user mapping
 # Passwords are hardcoded for development/test (as per plan option b)
 DBMS_USERS = {
     'auth': {'user': 'auth_user', 'password': 'auth_user_password'},  # For login authentication only
@@ -28,7 +28,6 @@ DBMS_USERS = {
 def _create_connection(role=None):
     """
     Create a new database connection using role-specific DBMS user
-    使用基于角色的数据库用户创建新的数据库连接
     
     Args:
         role: User role (auth, student, guardian, aro, dro). If None, defaults to 'student'
@@ -57,7 +56,6 @@ def _create_connection(role=None):
 def get_db_connection(role=None):
     """
     Get database connection using role-specific DBMS user
-    使用基于角色的数据库用户获取数据库连接
     
     Args:
         role: User role (auth, student, guardian, aro, dro). If None, defaults to 'student'
@@ -75,7 +73,6 @@ def get_db_connection(role=None):
 def test_db_connection(role='student'):
     """
     Test if database connection is successful
-    测试数据库连接是否成功
     
     Args:
         role: User role to test connection with (defaults to 'student'). Can be 'auth', 'student', 'guardian', 'aro', or 'dro'

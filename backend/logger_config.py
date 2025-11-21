@@ -1,25 +1,23 @@
 #!/usr/bin/env python3
 """
 Structured logging configuration module
-结构化日志配置模块
 """
 import logging
 import os
 from logging.handlers import RotatingFileHandler
 from datetime import datetime
 
-# Configure logging - 配置日志
+# Configure logging
 LOG_DIR = os.getenv('LOG_DIR', 'logs')
 LOG_FILE = os.path.join(LOG_DIR, 'app.log')
 LOG_LEVEL = os.getenv('LOG_LEVEL', 'INFO').upper()
 
-# Create log directory if it doesn't exist - 如果日志目录不存在则创建
+# Create log directory if it doesn't exist
 os.makedirs(LOG_DIR, exist_ok=True)
 
 def setup_logger(name='app', log_file=LOG_FILE, level=LOG_LEVEL):
     """
     Setup structured logger with file rotation
-    设置带文件轮转的结构化日志记录器
     
     Args:
         name: Logger name
@@ -32,12 +30,12 @@ def setup_logger(name='app', log_file=LOG_FILE, level=LOG_LEVEL):
     logger = logging.getLogger(name)
     logger.setLevel(getattr(logging, level, logging.INFO))
     
-    # Prevent duplicate handlers - 防止重复处理器
+    # Prevent duplicate handlers
     if logger.handlers:
         return logger
     
-    # File handler with rotation - 带轮转的文件处理器
-    # Max 10MB per file, keep 5 backup files - 每个文件最大10MB，保留5个备份文件
+    # File handler with rotation
+    # Max 10MB per file, keep 5 backup files
     file_handler = RotatingFileHandler(
         log_file,
         maxBytes=10 * 1024 * 1024,  # 10MB
@@ -46,11 +44,11 @@ def setup_logger(name='app', log_file=LOG_FILE, level=LOG_LEVEL):
     )
     file_handler.setLevel(getattr(logging, level, logging.INFO))
     
-    # Console handler for development - 开发环境的控制台处理器
+    # Console handler for development
     console_handler = logging.StreamHandler()
-    console_handler.setLevel(logging.WARNING)  # Only warnings and errors to console - 只输出警告和错误到控制台
+    console_handler.setLevel(logging.WARNING)  # Only warnings and errors to console
     
-    # Formatter with timestamp and details - 带时间戳和详细信息的格式化器
+    # Formatter with timestamp and details
     formatter = logging.Formatter(
         '%(asctime)s - %(name)s - %(levelname)s - [%(filename)s:%(lineno)d] - %(message)s',
         datefmt='%Y-%m-%d %H:%M:%S'
@@ -64,13 +62,12 @@ def setup_logger(name='app', log_file=LOG_FILE, level=LOG_LEVEL):
     
     return logger
 
-# Create default logger - 创建默认日志记录器
+# Create default logger
 app_logger = setup_logger('app')
 
 def log_security_event(event_type, details, user_id=None, ip_address=None):
     """
     Log security-related events
-    记录安全相关事件
     
     Args:
         event_type: Type of security event (e.g., 'login_attempt', 'sql_injection_attempt')
@@ -91,7 +88,6 @@ def log_security_event(event_type, details, user_id=None, ip_address=None):
 def log_database_operation(operation, table, user_id, role, sql=None):
     """
     Log database operations for audit trail
-    记录数据库操作以进行审计追踪
     
     Args:
         operation: Operation type (SELECT, INSERT, UPDATE, DELETE)

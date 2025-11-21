@@ -24,7 +24,6 @@ ENCRYPTED_COLUMNS: Dict[str, Dict[str, Dict[str, Any]]] = {
 def _find_env_file() -> Path:
     """
     Find .env file by searching from current directory up to project root
-    从当前目录向上查找项目根目录的.env文件
     """
     current = Path(__file__).resolve().parent  # backend directory
     root = current.parent  # project root

@@ -5,7 +5,6 @@ from logger_config import app_logger, log_database_operation
 def db_query(sql, params=None, role=None):
     """
     Execute query SQL and return results
-    执行查询SQL并返回结果
     
     Args:
         sql: SQL query string
@@ -17,7 +16,7 @@ def db_query(sql, params=None, role=None):
         with conn.cursor() as cur:
             cur.execute(sql, params or ())
             result = cur.fetchall()
-            # Log database operation - 记录数据库操作
+            # Log database operation
             log_database_operation('SELECT', 'unknown', 'system', role or 'system', sql)
             return result
     except Exception as e:
@@ -29,7 +28,6 @@ def db_query(sql, params=None, role=None):
 def db_execute(sql, params=None, role=None):
     """
     Execute update SQL and return affected row count
-    执行更新SQL并返回受影响的行数
     
     Args:
         sql: SQL statement string
@@ -41,7 +39,7 @@ def db_execute(sql, params=None, role=None):
         with conn.cursor() as cur:
             cur.execute(sql, params or ())
             result = cur.rowcount
-            # Log database operation - 记录数据库操作
+            # Log database operation
             log_database_operation('EXECUTE', 'unknown', 'system', role or 'system', sql)
             return result
     except Exception as e:
@@ -58,14 +56,13 @@ def getTableColumns(table_name, role=None):
         table_name: Name of the table
         role: User role for DBMS user selection (student, guardian, aro, dro)
     """
-    # Use parameterized query to prevent SQL injection - 使用参数化查询防止SQL注入
+    # Use parameterized query to prevent SQL injection
     # Note: SHOW COLUMNS doesn't support parameters, so we validate table_name first
-    # 注意：SHOW COLUMNS不支持参数，所以先验证表名
     from security import validate_table_name
     if not validate_table_name(table_name):
         raise ValueError(f"Invalid table name: {table_name}")
-    # Escape table name to prevent injection - 转义表名防止注入
-    # Since table_name is validated, this is safe - 由于表名已验证，这是安全的
+    # Escape table name to prevent injection
+    # Since table_name is validated, this is safe
     rows = db_query(f"SHOW COLUMNS FROM `{table_name}`", role=role)
     return rows
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import json
-# Security enhancements - 安全增强模块
+# Security enhancements
 from security import get_allowed_origins, is_origin_allowed
 
 def json_response(handler, status, data, headers=None):
@@ -9,7 +9,7 @@ def json_response(handler, status, data, headers=None):
     handler.send_response(status)
     handler.send_header("Content-Type", "application/json; charset=utf-8")
     handler.send_header("Content-Length", str(len(body)))
-    # CORS configuration - 可配置的CORS设置
+    # CORS configuration
     origin = handler.headers.get("Origin", "")
     allowed_origins = get_allowed_origins()
     if '*' in allowed_origins or is_origin_allowed(origin):
@@ -29,7 +29,7 @@ def text_response(handler, status, text, content_type="text/plain; charset=utf-8
     handler.send_response(status)
     handler.send_header("Content-Type", content_type)
     handler.send_header("Content-Length", str(len(body)))
-    # CORS configuration - 可配置的CORS设置
+    # CORS configuration
     origin = handler.headers.get("Origin", "")
     allowed_origins = get_allowed_origins()
     if '*' in allowed_origins or is_origin_allowed(origin):
@@ -46,8 +46,8 @@ def read_json(handler):
     if length == 0:
         return {}
     
-    # Limit request body size to prevent DoS - 限制请求体大小防止DoS攻击
-    MAX_BODY_SIZE = 10 * 1024 * 1024  # 10MB - 10MB
+    # Limit request body size to prevent DoS
+    MAX_BODY_SIZE = 10 * 1024 * 1024  # 10MB
     if length > MAX_BODY_SIZE:
         raise ValueError(f"Request body too large: {length} bytes (max: {MAX_BODY_SIZE} bytes)")
     
