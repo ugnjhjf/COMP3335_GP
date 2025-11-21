@@ -14,8 +14,11 @@ python --version
 ```
 
 In terminal run the following command:
-```bash
-pip install bcrypt cryptography PyMySQL python-dotenv
+```shell
+#Run at project root
+pip install -r requirements.txt
+# OR
+python -m pip install -r requirements.txt
 ```
 
 ### 2. Install Docker Desktop
@@ -34,63 +37,29 @@ docker-compose --version
 
 Create three `.env` files with the following content:
 
-#### 3.1 Project Root `.env`
-
-Create `.env` in the project root directory:
-
-```env
-# Database Configuration
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_NAME=ComputingU
-DB_CHARSET=utf8mb4
-
-# Data Encryption Key (Required)
-DATA_ENCRYPTION_KEY=my_secret_encryption_key_12345678901234567890123456789012
-
-# Optional Settings
-USE_DB_SESSIONS=false
-RSA_KEY_ID=default
-CORS_ALLOWED_ORIGINS=http://localhost:8000,http://127.0.0.1:8000
-```
-
-#### 3.2 Backend `.env`
+#### 3.1 Backend `.env`
 
 Create `backend/.env` with the same content as above:
 
 ```env
-# Database Configuration
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_NAME=ComputingU
-DB_CHARSET=utf8mb4
-
-# Data Encryption Key (Required)
-DATA_ENCRYPTION_KEY=my_secret_encryption_key_12345678901234567890123456789012
-
-# Optional Settings
-USE_DB_SESSIONS=false
-RSA_KEY_ID=default
-CORS_ALLOWED_ORIGINS=http://localhost:8000,http://127.0.0.1:8000
+DATA_ENCRYPTION_KEY=c29a02b23662ced73f8c007c877a85c8aab576b1b7f888ac37c364b5a75a681b
 ```
 
-#### 3.3 Percona Compose `.env`
+#### 3.2 Percona Compose `.env`
 
 Create `percona-compose/.env`:
 
 ```env
-# MySQL Root Password
 MYSQL_ROOT_PASSWORD=supersecurepassword
-
-# Database Configuration
 MYSQL_DATABASE=ComputingU
-MYSQL_USER=app_user
-MYSQL_PASSWORD=app_user_password
+MYSQL_USER=myuser
+MYSQL_PASSWORD=myuserpassword
+DATA_ENCRYPTION_KEY=c29a02b23662ced73f8c007c877a85c8aab576b1b7f888ac37c364b5a75a681b
 ```
 
 #### 3.4 Set encryption key for AES encryption/decryption
 
-In docker-compose.yml, in line 36 add the line
+In `load_sql/university.sql`, replace the following code at line 4
 ```sql
 SET @encryption_key = 'c29a02b23662ced73f8c007c877a85c8aab576b1b7f888ac37c364b5a75a681b';
 ```
@@ -102,7 +71,7 @@ SET @encryption_key = 'c29a02b23662ced73f8c007c877a85c8aab576b1b7f888ac37c364b5a
 Open a terminal and navigate to the `percona-compose` directory:
 
 ```bash
-cd percona-compose
+cd <project_root>/percona-compose
 docker-compose up -d
 ```
 
@@ -138,23 +107,26 @@ Exit MySQL:
 EXIT;
 ```
 
-### 7. Execute Database Script (If necessary)
+### 7. Troubleshooting: empty table in database (If necessary)
 
-If the database fail to show the table.
-
-Copy and paste the entire content of `database_init_sql/University.sql` into the MySQL prompt, then press Enter.
+If the database fail to show the table. Enter MySQL server,
+Set the encryption key first:
+```sql
+SET @encryption_key = 'c29a02b23662ced73f8c007c877a85c8aab576b1b7f888ac37c364b5a75a681b';
+```
+Then, copy and paste the entire content of `load_sql/University.sql` into the MySQL prompt, then press Enter.
 
 Alternatively, you can execute it directly:
 
 ```bash
-docker exec -i percona-server mysql -u root -p supersecurepassword < ../database_init_sql/University.sql
+docker exec -i percona-server mysql -u root -p supersecurepassword < ../load_sql/University.sql
 ```
 
 ## Backend Setup
 
 ### 8. Setting up the certificate for the application
 
-Open PowerShell as Administrator, Press Win + X, choose Windows PowerShell (Admin).
+Open PowerShell as **Administrator Mode !!!!**. Press Win + X, choose Windows PowerShell (Admin).
 
 Install Chocolatey (one-time setup)
 ```bash
@@ -171,7 +143,7 @@ Trust mkcert’s local CA
 mkcert -install
 ```
 
-Open a new terminal and change to the folder \security,generate development certificates
+Open a new terminal and change directory to `<project_root>/security`,generate development certificates
 ```bash
 mkcert -cert-file localhost-cert.pem -key-file localhost-key.pem localhost 127.0.0.1 ::1
 ```
@@ -192,7 +164,7 @@ pip install -r requirements.txt
 Navigate to the backend directory and run:
 
 ```bash
-cd backend
+cd <project-root>/backend
 python main.py
 ```
 
@@ -220,7 +192,7 @@ Use these credentials to test the system:
 
 - **Database connection error**: Ensure Docker container is running (`docker ps`)
 - **Port 3306 already in use**: Stop other MySQL instances or change the port in `docker-compose.yml`
-- **Encryption key error**: Ensure `.env` files exist with `DATA_ENCRYPTION_KEY` set
+- **Encryption key error**: Ensure `.env`，`university.sql` files exist with `DATA_ENCRYPTION_KEY` set
 - **Module not found**: Run `pip install -r requirements.txt` again
 
 ## Stopping the System
