@@ -1596,3 +1596,1071 @@
 2025-11-19 20:10:04 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
 2025-11-19 20:10:04 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
 2025-11-19 20:10:05 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:13:07 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: test_token_12345
+2025-11-19 20:13:07 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: admin_token
+2025-11-19 20:13:07 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: session_token
+2025-11-19 20:13:08 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: 12345678901234567890...
+2025-11-19 20:13:08 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: aaaaaaaaaaaaaaaaaaaa...
+2025-11-19 20:13:08 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: 11111111111111111111...
+2025-11-19 20:13:08 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: adminadminadminadmin...
+2025-11-19 20:13:08 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: newQ6I1hJ7UQ2OMluBIW...
+2025-11-19 20:13:08 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: v0vin7TnFCiUmHsQayz6...
+2025-11-19 20:13:08 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: AId4I9VSxheZF6tPk_Eg...
+2025-11-19 20:13:08 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: hYHies1pUhqzN3WkSji-...
+2025-11-19 20:13:08 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: 0TJcIEy_peUeieEbDSHr...
+2025-11-19 20:13:08 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: G-Q_5YkNE2fII-ZTsI7o...
+2025-11-19 20:13:08 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: nziGUNJ9SNRckoQQacFC...
+2025-11-19 20:13:08 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: TtYQleNUem_l3bFW2ys2...
+2025-11-19 20:13:08 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: hk6DgTGciZ8ayzkX_YAL...
+2025-11-19 20:13:08 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: c2uMuk6_0F5FBUgvgpmZ...
+2025-11-19 20:13:08 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: expired_token_12345
+2025-11-19 20:13:08 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: old_session_token
+2025-11-19 20:13:08 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: invalid_token_123
+2025-11-19 20:13:09 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:13:09 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:13:09 - app - INFO - [auth.py:115] - Login successful: user_id=100, role=student, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:13:09 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:13:09 - app - INFO - [audit_logger.py:48] - AUDIT: login_success - user=100, role=student, ip=127.0.0.1
+2025-11-19 20:13:09 - app - INFO - [auth.py:250] - Session created for user 100 with role student
+2025-11-19 20:13:09 - app - INFO - [api_handler.py:202] - Session created for login: user_id=100, role=student, ip=127.0.0.1
+2025-11-19 20:13:19 - app - INFO - [api_handler.py:131] - Login request received: email=admin' OR '1'='1, ip=127.0.0.1
+2025-11-19 20:13:19 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin' OR '1'='1, ip=127.0.0.1
+2025-11-19 20:13:19 - app - INFO - [api_handler.py:131] - Login request received: email=admin' OR '1'='1'--, ip=127.0.0.1
+2025-11-19 20:13:19 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin' OR '1'='1'--, ip=127.0.0.1
+2025-11-19 20:13:19 - app - INFO - [api_handler.py:131] - Login request received: email=admin' OR '1'='1'#, ip=127.0.0.1
+2025-11-19 20:13:19 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin' OR '1'='1'#, ip=127.0.0.1
+2025-11-19 20:13:19 - app - INFO - [api_handler.py:131] - Login request received: email=admin' OR '1'='1'/*, ip=127.0.0.1
+2025-11-19 20:13:19 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin' OR '1'='1'/*, ip=127.0.0.1
+2025-11-19 20:13:20 - app - INFO - [api_handler.py:131] - Login request received: email=' OR 1=1--, ip=127.0.0.1
+2025-11-19 20:13:20 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=' OR 1=1--, ip=127.0.0.1
+2025-11-19 20:13:20 - app - INFO - [api_handler.py:131] - Login request received: email=' OR '1'='1, ip=127.0.0.1
+2025-11-19 20:13:20 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=' OR '1'='1, ip=127.0.0.1
+2025-11-19 20:13:20 - app - INFO - [api_handler.py:131] - Login request received: email=' OR 1=1#, ip=127.0.0.1
+2025-11-19 20:13:20 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=' OR 1=1#, ip=127.0.0.1
+2025-11-19 20:13:20 - app - INFO - [api_handler.py:131] - Login request received: email=' OR 'a'='a, ip=127.0.0.1
+2025-11-19 20:13:20 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=' OR 'a'='a, ip=127.0.0.1
+2025-11-19 20:13:20 - app - INFO - [api_handler.py:131] - Login request received: email=' OR ''=', ip=127.0.0.1
+2025-11-19 20:13:20 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=' OR ''=', ip=127.0.0.1
+2025-11-19 20:13:20 - app - INFO - [api_handler.py:131] - Login request received: email=admin' UNION SELECT NULL--, ip=127.0.0.1
+2025-11-19 20:13:20 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin' UNION SELECT NULL--, ip=127.0.0.1
+2025-11-19 20:13:20 - app - INFO - [api_handler.py:131] - Login request received: email=' UNION SELECT * FROM users--, ip=127.0.0.1
+2025-11-19 20:13:20 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=' UNION SELECT * FROM users--, ip=127.0.0.1
+2025-11-19 20:13:20 - app - INFO - [api_handler.py:131] - Login request received: email=' OR '1'='1' AND '1'='1, ip=127.0.0.1
+2025-11-19 20:13:20 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=' OR '1'='1' AND '1'='1, ip=127.0.0.1
+2025-11-19 20:13:20 - app - INFO - [api_handler.py:131] - Login request received: email=' OR '1'='1' AND '1'='2, ip=127.0.0.1
+2025-11-19 20:13:20 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=' OR '1'='1' AND '1'='2, ip=127.0.0.1
+2025-11-19 20:13:20 - app - INFO - [api_handler.py:131] - Login request received: email=admin'; WAITFOR DELAY '00:00:05'--, ip=127.0.0.1
+2025-11-19 20:13:20 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin'; WAITFOR DELAY '00:00:05'--, ip=127.0.0.1
+2025-11-19 20:13:20 - app - INFO - [api_handler.py:131] - Login request received: email=admin'; SLEEP(5)--, ip=127.0.0.1
+2025-11-19 20:13:20 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin'; SLEEP(5)--, ip=127.0.0.1
+2025-11-19 20:13:20 - app - INFO - [api_handler.py:131] - Login request received: email=' OR SLEEP(5)--, ip=127.0.0.1
+2025-11-19 20:13:20 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=' OR SLEEP(5)--, ip=127.0.0.1
+2025-11-19 20:13:21 - app - INFO - [api_handler.py:131] - Login request received: email=admin'; DROP TABLE users--, ip=127.0.0.1
+2025-11-19 20:13:21 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin'; DROP TABLE users--, ip=127.0.0.1
+2025-11-19 20:13:21 - app - INFO - [api_handler.py:131] - Login request received: email='; DELETE FROM users--, ip=127.0.0.1
+2025-11-19 20:13:21 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email='; DELETE FROM users--, ip=127.0.0.1
+2025-11-19 20:13:21 - app - INFO - [api_handler.py:131] - Login request received: email=admin'/**/OR/**/1=1--, ip=127.0.0.1
+2025-11-19 20:13:21 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin'/**/OR/**/1=1--, ip=127.0.0.1
+2025-11-19 20:13:21 - app - INFO - [api_handler.py:131] - Login request received: email=admin'/*comment*/OR/*comment*/1=1--, ip=127.0.0.1
+2025-11-19 20:13:21 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin'/*comment*/OR/*comment*/1=1--, ip=127.0.0.1
+2025-11-19 20:13:21 - app - INFO - [api_handler.py:131] - Login request received: email=admin%27%20OR%20%271%27%3D%271, ip=127.0.0.1
+2025-11-19 20:13:21 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin%27%20OR%20%271%27%3D%271, ip=127.0.0.1
+2025-11-19 20:13:21 - app - INFO - [api_handler.py:131] - Login request received: email=admin' OR CHAR(49)=CHAR(49)--, ip=127.0.0.1
+2025-11-19 20:13:21 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin' OR CHAR(49)=CHAR(49)--, ip=127.0.0.1
+2025-11-19 20:13:21 - app - INFO - [api_handler.py:131] - Login request received: email=admin') OR ('1'='1, ip=127.0.0.1
+2025-11-19 20:13:21 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin') OR ('1'='1, ip=127.0.0.1
+2025-11-19 20:13:21 - app - INFO - [api_handler.py:131] - Login request received: email=admin' OR 1=1 LIMIT 1--, ip=127.0.0.1
+2025-11-19 20:13:21 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin' OR 1=1 LIMIT 1--, ip=127.0.0.1
+2025-11-19 20:13:21 - app - INFO - [api_handler.py:131] - Login request received: email=' OR 1=1 LIMIT 1--, ip=127.0.0.1
+2025-11-19 20:13:21 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=' OR 1=1 LIMIT 1--, ip=127.0.0.1
+2025-11-19 20:13:21 - app - INFO - [api_handler.py:131] - Login request received: email=admin' OR 'x'='x, ip=127.0.0.1
+2025-11-19 20:13:21 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin' OR 'x'='x, ip=127.0.0.1
+2025-11-19 20:26:29 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-19 20:26:29 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:26:29 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-19 20:26:29 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:26:29 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-19 20:26:29 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=students, rows=1, ip=127.0.0.1
+2025-11-19 20:29:54 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:54 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:54 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:54 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:54 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:54 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:54 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:54 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:54 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:54 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:54 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:54 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:54 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:54 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:54 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:54 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:54 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:54 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:54 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:54 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:54 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:54 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:54 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:54 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:54 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:54 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:54 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:29:54 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:29:54 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-19 20:29:54 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:29:54 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:54 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:54 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:55 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:55 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:55 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:55 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:55 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:55 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:55 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:55 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:55 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:55 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:29:55 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:29:55 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-19 20:29:55 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:29:55 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:55 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:55 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:55 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:55 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:29:55 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:29:55 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-19 20:29:55 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:29:55 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:55 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:55 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:55 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:55 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:29:55 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:29:55 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-19 20:29:56 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:29:56 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:56 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:56 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:56 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:56 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:56 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:56 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:29:56 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:29:56 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-19 20:29:56 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:29:56 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:56 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:56 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:56 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:56 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:56 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:56 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:56 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:56 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:56 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:56 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:29:56 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:29:56 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-19 20:29:56 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:29:56 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:56 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:56 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:56 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:56 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:56 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:56 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:56 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:57 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:57 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:57 - app - INFO - [auth.py:115] - Login successful: user_id=100, role=student, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:57 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:29:57 - app - INFO - [audit_logger.py:48] - AUDIT: login_success - user=100, role=student, ip=127.0.0.1
+2025-11-19 20:29:57 - app - INFO - [auth.py:250] - Session created for user 100 with role student
+2025-11-19 20:29:57 - app - INFO - [api_handler.py:202] - Session created for login: user_id=100, role=student, ip=127.0.0.1
+2025-11-19 20:29:57 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:57 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:57 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:57 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:57 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:57 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:57 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:57 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:29:57 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:29:57 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:29:57 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-19 20:29:57 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:33:47 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:47 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:47 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:47 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:47 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:47 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:47 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:47 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:47 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:47 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:47 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:47 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:47 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:47 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:47 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:33:47 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:33:47 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-19 20:33:47 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:33:47 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:47 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:47 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:47 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:47 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:47 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:47 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:47 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:47 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:48 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:48 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:48 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:48 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:33:48 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:33:48 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-19 20:33:48 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:33:48 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:48 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:48 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:48 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:48 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:48 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:48 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:48 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:48 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:48 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:48 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:48 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:48 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:48 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:48 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:48 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:48 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:33:48 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:33:48 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-19 20:33:48 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:33:48 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:48 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:48 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:48 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:49 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:33:49 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:33:49 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-19 20:33:49 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:33:49 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:49 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:49 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:49 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:49 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:49 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:49 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:33:49 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:33:49 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-19 20:33:49 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:33:49 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:49 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:49 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:49 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:49 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:49 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:49 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:49 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:49 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:49 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:49 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:33:49 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:33:49 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-19 20:33:49 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:33:49 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:49 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:49 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:49 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:49 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:49 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:49 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:50 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:50 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:50 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:50 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:50 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:50 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:50 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:50 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:50 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:50 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:50 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:33:50 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:33:50 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:33:50 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-19 20:33:50 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:34:48 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:48 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:48 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:48 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:48 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:48 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:48 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:48 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:48 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:48 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:48 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:48 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:48 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:34:48 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:34:48 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-19 20:34:48 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:34:48 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:48 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:48 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:48 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:48 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:48 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:48 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:48 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:48 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:48 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:49 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:49 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:49 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:49 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:49 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:34:49 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:34:49 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-19 20:34:49 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:34:49 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:49 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:49 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:49 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:49 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:49 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:49 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:49 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:49 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:49 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:49 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:49 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:49 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:34:49 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:34:49 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-19 20:34:49 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:34:49 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:49 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:49 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:49 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:49 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:34:49 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:34:49 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-19 20:34:50 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:34:50 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:50 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:50 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:50 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:50 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:34:50 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:34:50 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-19 20:34:50 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:34:50 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:50 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:50 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:50 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:50 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:50 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:50 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:34:50 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:34:50 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-19 20:34:50 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:34:50 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:50 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:50 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:50 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:50 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:50 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:50 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:50 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:50 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:50 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:50 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:34:50 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:34:50 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-19 20:34:51 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:34:51 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:51 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:51 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:51 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:51 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:51 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:51 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:51 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:51 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:51 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:51 - app - INFO - [auth.py:115] - Login successful: user_id=100, role=student, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:51 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:34:51 - app - INFO - [audit_logger.py:48] - AUDIT: login_success - user=100, role=student, ip=127.0.0.1
+2025-11-19 20:34:51 - app - INFO - [auth.py:250] - Session created for user 100 with role student
+2025-11-19 20:34:51 - app - INFO - [api_handler.py:202] - Session created for login: user_id=100, role=student, ip=127.0.0.1
+2025-11-19 20:34:51 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:51 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:51 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:51 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:51 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:51 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:51 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:34:51 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:01 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:01 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:01 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:01 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:01 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:01 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:01 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:01 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:01 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:01 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:01 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:01 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:01 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:01 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:01 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:01 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:01 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:01 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:01 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:01 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:01 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:01 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:01 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:01 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:01 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:02 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:02 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:40:02 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:40:02 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-19 20:40:02 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:40:02 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:02 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:02 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:02 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:02 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:02 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:02 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:02 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:02 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:02 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:02 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:02 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:02 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:40:02 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:40:02 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-19 20:40:02 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:40:02 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:02 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:02 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:02 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:02 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:40:02 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:40:02 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-19 20:40:02 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:40:02 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:02 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:02 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:03 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:03 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:40:03 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:40:03 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-19 20:40:03 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:40:03 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:03 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:03 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:03 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:03 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:03 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:03 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:40:03 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:40:03 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-19 20:40:03 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:40:03 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:03 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:03 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:03 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:03 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:03 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:03 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:03 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:03 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:03 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:03 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:40:03 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:40:03 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-19 20:40:03 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:40:03 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:03 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:03 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:03 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:03 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:04 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:04 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:04 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:04 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:04 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:04 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:04 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:04 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:04 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:04 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:04 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:40:04 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:40:04 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:40:04 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-19 20:40:04 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:41:21 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:41:21 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:41:21 - app - INFO - [auth.py:115] - Login successful: user_id=100, role=student, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:41:21 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:41:21 - app - INFO - [audit_logger.py:48] - AUDIT: login_success - user=100, role=student, ip=127.0.0.1
+2025-11-19 20:41:21 - app - INFO - [auth.py:250] - Session created for user 100 with role student
+2025-11-19 20:41:21 - app - INFO - [api_handler.py:202] - Session created for login: user_id=100, role=student, ip=127.0.0.1
+2025-11-19 20:41:21 - app - INFO - [api_handler.py:601] - Delete request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-19 20:41:21 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:41:21 - app - INFO - [audit_logger.py:48] - AUDIT: sql_delete_success - user=100, role=student, ip=127.0.0.1
+2025-11-19 20:41:21 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:41:21 - app - INFO - [audit_logger.py:48] - AUDIT: delete - user=100, role=student, ip=127.0.0.1
+2025-11-19 20:41:21 - app - ERROR - [db_query.py:48] - Database execute error: (1142, "DELETE command denied to user 'student'@'172.18.0.1' for table 'students'"), SQL: DELETE target FROM `students` target WHERE target.`StuID` = %s AND target.`StuID` = %s
+2025-11-19 20:41:21 - app - ERROR - [api_handler.py:655] - Delete error: user_id=100, role=student, table=students, error=(1142, "DELETE command denied to user 'student'@'172.18.0.1' for table 'students'"), ip=127.0.0.1
+2025-11-19 20:41:21 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:41:21 - app - INFO - [audit_logger.py:48] - AUDIT: sql_delete_failure - user=100, role=student, ip=127.0.0.1
+2025-11-19 20:41:22 - app - INFO - [api_handler.py:601] - Delete request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-19 20:41:22 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:41:22 - app - INFO - [audit_logger.py:48] - AUDIT: sql_delete_success - user=100, role=student, ip=127.0.0.1
+2025-11-19 20:41:22 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:41:22 - app - INFO - [audit_logger.py:48] - AUDIT: delete - user=100, role=student, ip=127.0.0.1
+2025-11-19 20:41:22 - app - ERROR - [db_query.py:48] - Database execute error: (1142, "DELETE command denied to user 'student'@'172.18.0.1' for table 'students'"), SQL: DELETE target FROM `students` target WHERE target.`StuID` = %s AND target.`StuID` = %s
+2025-11-19 20:41:22 - app - ERROR - [api_handler.py:655] - Delete error: user_id=100, role=student, table=students, error=(1142, "DELETE command denied to user 'student'@'172.18.0.1' for table 'students'"), ip=127.0.0.1
+2025-11-19 20:41:22 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:41:22 - app - INFO - [audit_logger.py:48] - AUDIT: sql_delete_failure - user=100, role=student, ip=127.0.0.1
+2025-11-19 20:41:22 - app - INFO - [api_handler.py:601] - Delete request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-19 20:41:22 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:41:22 - app - INFO - [audit_logger.py:48] - AUDIT: sql_delete_success - user=100, role=student, ip=127.0.0.1
+2025-11-19 20:41:22 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:41:22 - app - INFO - [audit_logger.py:48] - AUDIT: delete - user=100, role=student, ip=127.0.0.1
+2025-11-19 20:41:22 - app - ERROR - [db_query.py:48] - Database execute error: (1142, "DELETE command denied to user 'student'@'172.18.0.1' for table 'students'"), SQL: DELETE target FROM `students` target WHERE target.`StuID` = %s AND target.`StuID` = %s
+2025-11-19 20:41:22 - app - ERROR - [api_handler.py:655] - Delete error: user_id=100, role=student, table=students, error=(1142, "DELETE command denied to user 'student'@'172.18.0.1' for table 'students'"), ip=127.0.0.1
+2025-11-19 20:41:22 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:41:22 - app - INFO - [audit_logger.py:48] - AUDIT: sql_delete_failure - user=100, role=student, ip=127.0.0.1
+2025-11-19 20:41:22 - app - INFO - [api_handler.py:601] - Delete request: user_id=100, role=student, table=students; DROP TABLE students; --, ip=127.0.0.1
+2025-11-19 20:41:22 - app - WARNING - [api_handler.py:607] - Invalid table name in delete: user_id=100, role=student, table=students; DROP TABLE students; --, ip=127.0.0.1
+2025-11-19 20:41:22 - app - INFO - [api_handler.py:601] - Delete request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-19 20:43:43 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:43:43 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:43:43 - app - INFO - [auth.py:115] - Login successful: user_id=100, role=student, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:43:43 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:43:44 - app - INFO - [audit_logger.py:48] - AUDIT: login_success - user=100, role=student, ip=127.0.0.1
+2025-11-19 20:43:44 - app - INFO - [auth.py:250] - Session created for user 100 with role student
+2025-11-19 20:43:44 - app - INFO - [api_handler.py:202] - Session created for login: user_id=100, role=student, ip=127.0.0.1
+2025-11-19 20:43:44 - app - INFO - [api_handler.py:601] - Delete request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-19 20:43:44 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:43:44 - app - INFO - [audit_logger.py:48] - AUDIT: sql_delete_success - user=100, role=student, ip=127.0.0.1
+2025-11-19 20:43:44 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:43:44 - app - INFO - [audit_logger.py:48] - AUDIT: delete - user=100, role=student, ip=127.0.0.1
+2025-11-19 20:43:44 - app - ERROR - [db_query.py:48] - Database execute error: (1142, "DELETE command denied to user 'student'@'172.18.0.1' for table 'students'"), SQL: DELETE target FROM `students` target WHERE target.`StuID` = %s AND target.`StuID` = %s
+2025-11-19 20:43:44 - app - ERROR - [api_handler.py:655] - Delete error: user_id=100, role=student, table=students, error=(1142, "DELETE command denied to user 'student'@'172.18.0.1' for table 'students'"), ip=127.0.0.1
+2025-11-19 20:43:44 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:43:44 - app - INFO - [audit_logger.py:48] - AUDIT: sql_delete_failure - user=100, role=student, ip=127.0.0.1
+2025-11-19 20:43:44 - app - INFO - [api_handler.py:601] - Delete request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-19 20:43:44 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:43:44 - app - INFO - [audit_logger.py:48] - AUDIT: sql_delete_success - user=100, role=student, ip=127.0.0.1
+2025-11-19 20:43:44 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:43:44 - app - INFO - [audit_logger.py:48] - AUDIT: delete - user=100, role=student, ip=127.0.0.1
+2025-11-19 20:43:44 - app - ERROR - [db_query.py:48] - Database execute error: (1142, "DELETE command denied to user 'student'@'172.18.0.1' for table 'students'"), SQL: DELETE target FROM `students` target WHERE target.`StuID` = %s AND target.`StuID` = %s
+2025-11-19 20:43:44 - app - ERROR - [api_handler.py:655] - Delete error: user_id=100, role=student, table=students, error=(1142, "DELETE command denied to user 'student'@'172.18.0.1' for table 'students'"), ip=127.0.0.1
+2025-11-19 20:43:44 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:43:44 - app - INFO - [audit_logger.py:48] - AUDIT: sql_delete_failure - user=100, role=student, ip=127.0.0.1
+2025-11-19 20:43:44 - app - INFO - [api_handler.py:601] - Delete request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-19 20:43:44 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:43:44 - app - INFO - [audit_logger.py:48] - AUDIT: sql_delete_success - user=100, role=student, ip=127.0.0.1
+2025-11-19 20:43:44 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:43:44 - app - INFO - [audit_logger.py:48] - AUDIT: delete - user=100, role=student, ip=127.0.0.1
+2025-11-19 20:43:44 - app - ERROR - [db_query.py:48] - Database execute error: (1142, "DELETE command denied to user 'student'@'172.18.0.1' for table 'students'"), SQL: DELETE target FROM `students` target WHERE target.`StuID` = %s AND target.`StuID` = %s
+2025-11-19 20:43:44 - app - ERROR - [api_handler.py:655] - Delete error: user_id=100, role=student, table=students, error=(1142, "DELETE command denied to user 'student'@'172.18.0.1' for table 'students'"), ip=127.0.0.1
+2025-11-19 20:43:44 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:43:44 - app - INFO - [audit_logger.py:48] - AUDIT: sql_delete_failure - user=100, role=student, ip=127.0.0.1
+2025-11-19 20:43:44 - app - INFO - [api_handler.py:601] - Delete request: user_id=100, role=student, table=students; DROP TABLE students; --, ip=127.0.0.1
+2025-11-19 20:43:44 - app - WARNING - [api_handler.py:607] - Invalid table name in delete: user_id=100, role=student, table=students; DROP TABLE students; --, ip=127.0.0.1
+2025-11-19 20:43:44 - app - INFO - [api_handler.py:601] - Delete request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-19 20:44:10 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:10 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:10 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:10 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:10 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:10 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:10 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:11 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:11 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:11 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:11 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:11 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:11 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:11 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:11 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:11 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:11 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:11 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:11 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:11 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:11 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:11 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:11 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:11 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:11 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:11 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:11 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:44:11 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:44:11 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-19 20:44:11 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:44:11 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:11 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:11 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:11 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:11 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:11 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:11 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:11 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:12 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:12 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:12 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:12 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:12 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:44:12 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:44:12 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-19 20:44:12 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:44:12 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:12 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:12 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:12 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:12 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:44:12 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:44:12 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-19 20:44:12 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:44:12 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:12 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:12 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:12 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:12 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:44:12 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:44:12 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-19 20:44:12 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:44:12 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:12 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:12 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:12 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:12 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:12 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:13 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:44:13 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:44:13 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-19 20:44:13 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:44:13 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:13 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:13 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:13 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:13 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:13 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:13 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:13 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:13 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:13 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:13 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:44:13 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:44:13 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-19 20:44:13 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:44:13 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:13 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:13 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:13 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:13 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:13 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:13 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:13 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:13 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:13 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:13 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:13 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:13 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:14 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:14 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:44:14 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:44:14 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-19 20:44:14 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 20:44:14 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:44:14 - app - WARNING - [api_handler.py:181] - Login rejected: invalid password format, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:45:51 - app - INFO - [auth.py:333] - Session logged out: 3FYixGbC...
+2025-11-19 20:45:59 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:45:59 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:45:59 - app - INFO - [auth.py:115] - Login successful: user_id=100, role=student, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:45:59 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:45:59 - app - INFO - [audit_logger.py:48] - AUDIT: login_success - user=100, role=student, ip=127.0.0.1
+2025-11-19 20:45:59 - app - INFO - [auth.py:250] - Session created for user 100 with role student
+2025-11-19 20:45:59 - app - INFO - [api_handler.py:202] - Session created for login: user_id=100, role=student, ip=127.0.0.1
+2025-11-19 20:46:31 - app - INFO - [api_handler.py:131] - Login request received: email=admin' OR '1'='1, ip=127.0.0.1
+2025-11-19 20:46:31 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin' OR '1'='1, ip=127.0.0.1
+2025-11-19 20:46:32 - app - INFO - [api_handler.py:131] - Login request received: email=admin' OR '1'='1'--, ip=127.0.0.1
+2025-11-19 20:46:32 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin' OR '1'='1'--, ip=127.0.0.1
+2025-11-19 20:46:32 - app - INFO - [api_handler.py:131] - Login request received: email=admin' OR '1'='1'#, ip=127.0.0.1
+2025-11-19 20:46:32 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin' OR '1'='1'#, ip=127.0.0.1
+2025-11-19 20:46:32 - app - INFO - [api_handler.py:131] - Login request received: email=admin' OR '1'='1'/*, ip=127.0.0.1
+2025-11-19 20:46:32 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin' OR '1'='1'/*, ip=127.0.0.1
+2025-11-19 20:46:32 - app - INFO - [api_handler.py:131] - Login request received: email=' OR 1=1--, ip=127.0.0.1
+2025-11-19 20:46:32 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=' OR 1=1--, ip=127.0.0.1
+2025-11-19 20:46:32 - app - INFO - [api_handler.py:131] - Login request received: email=' OR '1'='1, ip=127.0.0.1
+2025-11-19 20:46:32 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=' OR '1'='1, ip=127.0.0.1
+2025-11-19 20:46:32 - app - INFO - [api_handler.py:131] - Login request received: email=' OR 1=1#, ip=127.0.0.1
+2025-11-19 20:46:32 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=' OR 1=1#, ip=127.0.0.1
+2025-11-19 20:46:32 - app - INFO - [api_handler.py:131] - Login request received: email=' OR 'a'='a, ip=127.0.0.1
+2025-11-19 20:46:32 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=' OR 'a'='a, ip=127.0.0.1
+2025-11-19 20:46:32 - app - INFO - [api_handler.py:131] - Login request received: email=' OR ''=', ip=127.0.0.1
+2025-11-19 20:46:32 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=' OR ''=', ip=127.0.0.1
+2025-11-19 20:46:32 - app - INFO - [api_handler.py:131] - Login request received: email=admin' UNION SELECT NULL--, ip=127.0.0.1
+2025-11-19 20:46:32 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin' UNION SELECT NULL--, ip=127.0.0.1
+2025-11-19 20:46:32 - app - INFO - [api_handler.py:131] - Login request received: email=' UNION SELECT * FROM users--, ip=127.0.0.1
+2025-11-19 20:46:32 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=' UNION SELECT * FROM users--, ip=127.0.0.1
+2025-11-19 20:46:32 - app - INFO - [api_handler.py:131] - Login request received: email=' OR '1'='1' AND '1'='1, ip=127.0.0.1
+2025-11-19 20:46:32 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=' OR '1'='1' AND '1'='1, ip=127.0.0.1
+2025-11-19 20:46:32 - app - INFO - [api_handler.py:131] - Login request received: email=' OR '1'='1' AND '1'='2, ip=127.0.0.1
+2025-11-19 20:46:32 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=' OR '1'='1' AND '1'='2, ip=127.0.0.1
+2025-11-19 20:46:33 - app - INFO - [api_handler.py:131] - Login request received: email=admin'; WAITFOR DELAY '00:00:05'--, ip=127.0.0.1
+2025-11-19 20:46:33 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin'; WAITFOR DELAY '00:00:05'--, ip=127.0.0.1
+2025-11-19 20:46:33 - app - INFO - [api_handler.py:131] - Login request received: email=admin'; SLEEP(5)--, ip=127.0.0.1
+2025-11-19 20:46:33 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin'; SLEEP(5)--, ip=127.0.0.1
+2025-11-19 20:46:33 - app - INFO - [api_handler.py:131] - Login request received: email=' OR SLEEP(5)--, ip=127.0.0.1
+2025-11-19 20:46:33 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=' OR SLEEP(5)--, ip=127.0.0.1
+2025-11-19 20:46:33 - app - INFO - [api_handler.py:131] - Login request received: email=admin'; DROP TABLE users--, ip=127.0.0.1
+2025-11-19 20:46:33 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin'; DROP TABLE users--, ip=127.0.0.1
+2025-11-19 20:46:33 - app - INFO - [api_handler.py:131] - Login request received: email='; DELETE FROM users--, ip=127.0.0.1
+2025-11-19 20:46:33 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email='; DELETE FROM users--, ip=127.0.0.1
+2025-11-19 20:46:33 - app - INFO - [api_handler.py:131] - Login request received: email=admin'/**/OR/**/1=1--, ip=127.0.0.1
+2025-11-19 20:46:33 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin'/**/OR/**/1=1--, ip=127.0.0.1
+2025-11-19 20:46:33 - app - INFO - [api_handler.py:131] - Login request received: email=admin'/*comment*/OR/*comment*/1=1--, ip=127.0.0.1
+2025-11-19 20:46:33 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin'/*comment*/OR/*comment*/1=1--, ip=127.0.0.1
+2025-11-19 20:46:33 - app - INFO - [api_handler.py:131] - Login request received: email=admin%27%20OR%20%271%27%3D%271, ip=127.0.0.1
+2025-11-19 20:46:33 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin%27%20OR%20%271%27%3D%271, ip=127.0.0.1
+2025-11-19 20:46:33 - app - INFO - [api_handler.py:131] - Login request received: email=admin' OR CHAR(49)=CHAR(49)--, ip=127.0.0.1
+2025-11-19 20:46:33 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin' OR CHAR(49)=CHAR(49)--, ip=127.0.0.1
+2025-11-19 20:46:33 - app - INFO - [api_handler.py:131] - Login request received: email=admin') OR ('1'='1, ip=127.0.0.1
+2025-11-19 20:46:33 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin') OR ('1'='1, ip=127.0.0.1
+2025-11-19 20:46:33 - app - INFO - [api_handler.py:131] - Login request received: email=admin' OR 1=1 LIMIT 1--, ip=127.0.0.1
+2025-11-19 20:46:33 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin' OR 1=1 LIMIT 1--, ip=127.0.0.1
+2025-11-19 20:46:33 - app - INFO - [api_handler.py:131] - Login request received: email=' OR 1=1 LIMIT 1--, ip=127.0.0.1
+2025-11-19 20:46:33 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=' OR 1=1 LIMIT 1--, ip=127.0.0.1
+2025-11-19 20:46:34 - app - INFO - [api_handler.py:131] - Login request received: email=admin' OR 'x'='x, ip=127.0.0.1
+2025-11-19 20:46:34 - app - WARNING - [api_handler.py:148] - Login rejected: invalid email format, email=admin' OR 'x'='x, ip=127.0.0.1
+2025-11-19 20:48:42 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-19 20:48:42 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:48:42 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-19 20:48:42 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:48:42 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-19 20:48:42 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=students, rows=1, ip=127.0.0.1
+2025-11-19 20:48:45 - app - INFO - [api_handler.py:497] - Update request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-19 20:48:45 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:48:45 - app - INFO - [audit_logger.py:48] - AUDIT: sql_update_success - user=100, role=student, ip=127.0.0.1
+2025-11-19 20:48:45 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:48:45 - app - INFO - [audit_logger.py:48] - AUDIT: update - user=100, role=student, ip=127.0.0.1
+2025-11-19 20:48:45 - app - INFO - [api_handler.py:571] - Update executed successfully: user_id=100, role=student, table=students, rows_affected=1, ip=127.0.0.1
+2025-11-19 20:48:45 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-19 20:48:45 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:48:46 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-19 20:48:46 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:48:46 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-19 20:48:46 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=students, rows=1, ip=127.0.0.1
+2025-11-19 20:50:56 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-19 20:50:56 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:50:56 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-19 20:50:56 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:50:56 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-19 20:50:56 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=students, rows=1, ip=127.0.0.1
+2025-11-19 20:51:01 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=grades, ip=127.0.0.1
+2025-11-19 20:51:01 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:51:01 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-19 20:51:01 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:51:01 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-19 20:51:01 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=grades, rows=3, ip=127.0.0.1
+2025-11-19 20:51:08 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=disciplinary_records, ip=127.0.0.1
+2025-11-19 20:51:08 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:51:08 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-19 20:51:08 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:51:08 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-19 20:51:08 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=disciplinary_records, rows=2, ip=127.0.0.1
+2025-11-19 20:51:10 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-19 20:51:10 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:51:10 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-19 20:51:10 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:51:10 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-19 20:51:10 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=students, rows=1, ip=127.0.0.1
+2025-11-19 20:51:20 - app - INFO - [api_handler.py:497] - Update request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-19 20:51:20 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:51:20 - app - INFO - [audit_logger.py:48] - AUDIT: sql_update_success - user=100, role=student, ip=127.0.0.1
+2025-11-19 20:51:20 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:51:20 - app - INFO - [audit_logger.py:48] - AUDIT: update - user=100, role=student, ip=127.0.0.1
+2025-11-19 20:51:20 - app - INFO - [api_handler.py:571] - Update executed successfully: user_id=100, role=student, table=students, rows_affected=1, ip=127.0.0.1
+2025-11-19 20:51:20 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-19 20:51:20 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:51:20 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-19 20:51:20 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:51:20 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-19 20:51:20 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=students, rows=1, ip=127.0.0.1
+2025-11-19 20:52:19 - app - INFO - [auth.py:333] - Session logged out: iCQMnJ1D...
+2025-11-19 20:52:46 - app - INFO - [api_handler.py:131] - Login request received: email=test_staff@example.com, ip=127.0.0.1
+2025-11-19 20:52:46 - app - INFO - [auth.py:90] - Login attempt: email=test_staff@example.com, ip=127.0.0.1
+2025-11-19 20:52:46 - app - INFO - [auth.py:190] - Login successful: user_id=5001, role=aro, email=test_staff@example.com, ip=127.0.0.1
+2025-11-19 20:52:46 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:52:46 - app - INFO - [audit_logger.py:48] - AUDIT: login_success - user=5001, role=aro, ip=127.0.0.1
+2025-11-19 20:52:46 - app - INFO - [auth.py:250] - Session created for user 5001 with role aro
+2025-11-19 20:52:46 - app - INFO - [api_handler.py:202] - Session created for login: user_id=5001, role=aro, ip=127.0.0.1
+2025-11-19 20:52:53 - app - INFO - [auth.py:333] - Session logged out: 1e6t2XpY...
+2025-11-19 20:53:11 - app - INFO - [api_handler.py:131] - Login request received: email=test_staff@example.com, ip=127.0.0.1
+2025-11-19 20:53:11 - app - INFO - [auth.py:90] - Login attempt: email=test_staff@example.com, ip=127.0.0.1
+2025-11-19 20:53:11 - app - INFO - [auth.py:190] - Login successful: user_id=5001, role=aro, email=test_staff@example.com, ip=127.0.0.1
+2025-11-19 20:53:11 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:53:11 - app - INFO - [audit_logger.py:48] - AUDIT: login_success - user=5001, role=aro, ip=127.0.0.1
+2025-11-19 20:53:11 - app - INFO - [auth.py:250] - Session created for user 5001 with role aro
+2025-11-19 20:53:11 - app - INFO - [api_handler.py:202] - Session created for login: user_id=5001, role=aro, ip=127.0.0.1
+2025-11-19 20:53:17 - app - INFO - [api_handler.py:256] - Query request: user_id=5001, role=aro, table=grades, ip=127.0.0.1
+2025-11-19 20:53:17 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:53:17 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=5001, role=aro, ip=127.0.0.1
+2025-11-19 20:53:17 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:53:17 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=5001, role=aro, ip=127.0.0.1
+2025-11-19 20:53:17 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=5001, role=aro, table=grades, rows=5, ip=127.0.0.1
+2025-11-19 20:53:36 - app - INFO - [api_handler.py:497] - Update request: user_id=5001, role=aro, table=grades, ip=127.0.0.1
+2025-11-19 20:53:36 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:53:36 - app - INFO - [audit_logger.py:48] - AUDIT: sql_update_success - user=5001, role=aro, ip=127.0.0.1
+2025-11-19 20:53:36 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:53:36 - app - INFO - [audit_logger.py:48] - AUDIT: update - user=5001, role=aro, ip=127.0.0.1
+2025-11-19 20:53:36 - app - INFO - [api_handler.py:571] - Update executed successfully: user_id=5001, role=aro, table=grades, rows_affected=1, ip=127.0.0.1
+2025-11-19 20:53:36 - app - INFO - [api_handler.py:256] - Query request: user_id=5001, role=aro, table=grades, ip=127.0.0.1
+2025-11-19 20:53:36 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:53:36 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=5001, role=aro, ip=127.0.0.1
+2025-11-19 20:53:36 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:53:36 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=5001, role=aro, ip=127.0.0.1
+2025-11-19 20:53:36 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=5001, role=aro, table=grades, rows=5, ip=127.0.0.1
+2025-11-19 20:53:42 - app - INFO - [api_handler.py:601] - Delete request: user_id=5001, role=aro, table=grades, ip=127.0.0.1
+2025-11-19 20:53:42 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:53:42 - app - INFO - [audit_logger.py:48] - AUDIT: sql_delete_success - user=5001, role=aro, ip=127.0.0.1
+2025-11-19 20:53:42 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:53:42 - app - INFO - [audit_logger.py:48] - AUDIT: delete - user=5001, role=aro, ip=127.0.0.1
+2025-11-19 20:53:42 - app - INFO - [api_handler.py:650] - Delete executed successfully: user_id=5001, role=aro, table=grades, rows_affected=1, ip=127.0.0.1
+2025-11-19 20:53:42 - app - INFO - [api_handler.py:256] - Query request: user_id=5001, role=aro, table=grades, ip=127.0.0.1
+2025-11-19 20:53:42 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:53:42 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=5001, role=aro, ip=127.0.0.1
+2025-11-19 20:53:42 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:53:42 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=5001, role=aro, ip=127.0.0.1
+2025-11-19 20:53:42 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=5001, role=aro, table=grades, rows=4, ip=127.0.0.1
+2025-11-19 20:54:50 - app - INFO - [api_handler.py:681] - Insert request: user_id=5001, role=aro, table=grades, ip=127.0.0.1
+2025-11-19 20:54:50 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:54:50 - app - INFO - [audit_logger.py:48] - AUDIT: sql_insert_success - user=5001, role=aro, ip=127.0.0.1
+2025-11-19 20:54:50 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:54:50 - app - INFO - [audit_logger.py:48] - AUDIT: insert - user=5001, role=aro, ip=127.0.0.1
+2025-11-19 20:54:51 - app - INFO - [api_handler.py:750] - Insert executed successfully: user_id=5001, role=aro, table=grades, rows_affected=1, ip=127.0.0.1
+2025-11-19 20:54:51 - app - INFO - [api_handler.py:256] - Query request: user_id=5001, role=aro, table=grades, ip=127.0.0.1
+2025-11-19 20:54:51 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:54:51 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=5001, role=aro, ip=127.0.0.1
+2025-11-19 20:54:51 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:54:51 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=5001, role=aro, ip=127.0.0.1
+2025-11-19 20:54:51 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=5001, role=aro, table=grades, rows=5, ip=127.0.0.1
+2025-11-19 20:57:39 - app - INFO - [api_handler.py:256] - Query request: user_id=5001, role=aro, table=grades, ip=127.0.0.1
+2025-11-19 20:57:39 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:57:39 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=5001, role=aro, ip=127.0.0.1
+2025-11-19 20:57:39 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:57:39 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=5001, role=aro, ip=127.0.0.1
+2025-11-19 20:57:39 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=5001, role=aro, table=grades, rows=5, ip=127.0.0.1
+2025-11-19 20:57:42 - app - INFO - [auth.py:333] - Session logged out: 8BvKEaWo...
+2025-11-19 20:57:47 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:57:47 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:57:47 - app - INFO - [auth.py:115] - Login successful: user_id=100, role=student, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 20:57:47 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:57:47 - app - INFO - [audit_logger.py:48] - AUDIT: login_success - user=100, role=student, ip=127.0.0.1
+2025-11-19 20:57:47 - app - INFO - [auth.py:250] - Session created for user 100 with role student
+2025-11-19 20:57:47 - app - INFO - [api_handler.py:202] - Session created for login: user_id=100, role=student, ip=127.0.0.1
+2025-11-19 20:57:51 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-19 20:57:51 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:57:51 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-19 20:57:51 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 20:57:51 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-19 20:57:51 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=students, rows=1, ip=127.0.0.1
+2025-11-19 21:06:30 - app - ERROR - [db_connector.py:72] - Error creating database connection for role student: (1049, "Unknown database 'ComputingU'")
+2025-11-19 21:06:38 - app - INFO - [auth.py:333] - Session logged out: o5PfUFCJ...
+2025-11-19 21:06:45 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 21:06:45 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 21:06:45 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 21:06:45 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 21:06:45 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-19 21:06:45 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-19 21:09:39 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 21:09:39 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 21:09:39 - app - INFO - [auth.py:115] - Login successful: user_id=100, role=student, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 21:09:39 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 21:09:39 - app - INFO - [audit_logger.py:48] - AUDIT: login_success - user=100, role=student, ip=127.0.0.1
+2025-11-19 21:09:39 - app - INFO - [auth.py:250] - Session created for user 100 with role student
+2025-11-19 21:09:39 - app - INFO - [api_handler.py:202] - Session created for login: user_id=100, role=student, ip=127.0.0.1
+2025-11-19 21:09:40 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-19 21:09:40 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 21:09:41 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-19 21:09:41 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 21:09:41 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-19 21:09:41 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=students, rows=1, ip=127.0.0.1
+2025-11-19 21:12:32 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 21:12:32 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 21:12:32 - app - INFO - [auth.py:115] - Login successful: user_id=100, role=student, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 21:12:32 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 21:12:33 - app - INFO - [audit_logger.py:48] - AUDIT: login_success - user=100, role=student, ip=127.0.0.1
+2025-11-19 21:12:33 - app - INFO - [auth.py:250] - Session created for user 100 with role student
+2025-11-19 21:12:33 - app - INFO - [api_handler.py:202] - Session created for login: user_id=100, role=student, ip=127.0.0.1
+2025-11-19 21:12:34 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-19 21:12:34 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 21:12:34 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-19 21:12:34 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 21:12:34 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-19 21:12:34 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=students, rows=1, ip=127.0.0.1
+2025-11-19 21:19:39 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-19 21:19:39 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 21:19:39 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-19 21:19:39 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 21:19:39 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-19 21:19:39 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=students, rows=1, ip=127.0.0.1
+2025-11-19 21:30:27 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-19 21:30:27 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 21:30:27 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-19 21:30:27 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 21:30:27 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-19 21:30:27 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=students, rows=1, ip=127.0.0.1
+2025-11-19 21:37:15 - app - WARNING - [api_handler.py:241] - Unauthorized query attempt: ip=127.0.0.1, token=invalid_token: C701NGc1LX3Pw7Cv66i4...
+2025-11-19 21:37:32 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 21:37:32 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-19 21:37:32 - app - INFO - [auth.py:115] - Login successful: user_id=100, role=student, email=test_student@example.com, ip=127.0.0.1
+2025-11-19 21:37:32 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 21:37:32 - app - INFO - [audit_logger.py:48] - AUDIT: login_success - user=100, role=student, ip=127.0.0.1
+2025-11-19 21:37:32 - app - INFO - [auth.py:250] - Session created for user 100 with role student
+2025-11-19 21:37:32 - app - INFO - [api_handler.py:202] - Session created for login: user_id=100, role=student, ip=127.0.0.1
+2025-11-19 21:37:34 - app - INFO - [api_handler.py:256] - Query request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-19 21:37:34 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 21:37:34 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-19 21:37:34 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-19 21:37:34 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-19 21:37:34 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=100, role=student, table=students, rows=1, ip=127.0.0.1
+2025-11-20 11:08:31 - app - INFO - [api_handler.py:131] - Login request received: email=test_staff@example.com, ip=127.0.0.1
+2025-11-20 11:08:31 - app - INFO - [auth.py:90] - Login attempt: email=test_staff@example.com, ip=127.0.0.1
+2025-11-20 11:08:31 - app - WARNING - [auth.py:197] - Login failed: email=test_staff@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-20 11:08:31 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-20 11:08:31 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-20 11:08:31 - app - WARNING - [api_handler.py:217] - Login failed: email=test_staff@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-20 11:08:54 - app - INFO - [api_handler.py:131] - Login request received: email=test_staff@example.com, ip=127.0.0.1
+2025-11-20 11:08:54 - app - INFO - [auth.py:90] - Login attempt: email=test_staff@example.com, ip=127.0.0.1
+2025-11-20 11:08:54 - app - INFO - [auth.py:190] - Login successful: user_id=5001, role=aro, email=test_staff@example.com, ip=127.0.0.1
+2025-11-20 11:08:54 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-20 11:08:54 - app - INFO - [audit_logger.py:48] - AUDIT: login_success - user=5001, role=aro, ip=127.0.0.1
+2025-11-20 11:08:54 - app - INFO - [auth.py:250] - Session created for user 5001 with role aro
+2025-11-20 11:08:54 - app - INFO - [api_handler.py:202] - Session created for login: user_id=5001, role=aro, ip=127.0.0.1
+2025-11-20 11:08:55 - app - INFO - [api_handler.py:256] - Query request: user_id=5001, role=aro, table=grades, ip=127.0.0.1
+2025-11-20 11:08:55 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-20 11:08:56 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=5001, role=aro, ip=127.0.0.1
+2025-11-20 11:08:56 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-20 11:08:56 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=5001, role=aro, ip=127.0.0.1
+2025-11-20 11:08:56 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=5001, role=aro, table=grades, rows=5, ip=127.0.0.1
+2025-11-20 11:09:40 - app - INFO - [api_handler.py:601] - Delete request: user_id=5001, role=aro, table=grades, ip=127.0.0.1
+2025-11-20 11:09:40 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-20 11:09:40 - app - INFO - [audit_logger.py:48] - AUDIT: sql_delete_success - user=5001, role=aro, ip=127.0.0.1
+2025-11-20 11:09:40 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-20 11:09:40 - app - INFO - [audit_logger.py:48] - AUDIT: delete - user=5001, role=aro, ip=127.0.0.1
+2025-11-20 11:09:40 - app - INFO - [api_handler.py:650] - Delete executed successfully: user_id=5001, role=aro, table=grades, rows_affected=1, ip=127.0.0.1
+2025-11-20 11:09:40 - app - INFO - [api_handler.py:256] - Query request: user_id=5001, role=aro, table=grades, ip=127.0.0.1
+2025-11-20 11:09:40 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-20 11:09:40 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=5001, role=aro, ip=127.0.0.1
+2025-11-20 11:09:40 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-20 11:09:40 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=5001, role=aro, ip=127.0.0.1
+2025-11-20 11:09:40 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=5001, role=aro, table=grades, rows=4, ip=127.0.0.1
+2025-11-20 11:09:54 - app - INFO - [api_handler.py:497] - Update request: user_id=5001, role=aro, table=grades, ip=127.0.0.1
+2025-11-20 11:09:54 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-20 11:09:54 - app - INFO - [audit_logger.py:48] - AUDIT: sql_update_success - user=5001, role=aro, ip=127.0.0.1
+2025-11-20 11:09:54 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-20 11:09:54 - app - INFO - [audit_logger.py:48] - AUDIT: update - user=5001, role=aro, ip=127.0.0.1
+2025-11-20 11:09:54 - app - INFO - [api_handler.py:571] - Update executed successfully: user_id=5001, role=aro, table=grades, rows_affected=1, ip=127.0.0.1
+2025-11-20 11:09:54 - app - INFO - [api_handler.py:256] - Query request: user_id=5001, role=aro, table=grades, ip=127.0.0.1
+2025-11-20 11:09:54 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-20 11:09:54 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=5001, role=aro, ip=127.0.0.1
+2025-11-20 11:09:54 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-20 11:09:54 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=5001, role=aro, ip=127.0.0.1
+2025-11-20 11:09:54 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=5001, role=aro, table=grades, rows=4, ip=127.0.0.1
+2025-11-20 11:10:37 - app - INFO - [api_handler.py:256] - Query request: user_id=5001, role=aro, table=grades, ip=127.0.0.1
+2025-11-20 11:10:37 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-20 11:10:37 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=5001, role=aro, ip=127.0.0.1
+2025-11-20 11:10:37 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-20 11:10:37 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=5001, role=aro, ip=127.0.0.1
+2025-11-20 11:10:37 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=5001, role=aro, table=grades, rows=0, ip=127.0.0.1
+2025-11-20 11:10:45 - app - INFO - [api_handler.py:256] - Query request: user_id=5001, role=aro, table=grades, ip=127.0.0.1
+2025-11-20 11:10:45 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-20 11:10:45 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=5001, role=aro, ip=127.0.0.1
+2025-11-20 11:10:45 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-20 11:10:45 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=5001, role=aro, ip=127.0.0.1
+2025-11-20 11:10:45 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=5001, role=aro, table=grades, rows=4, ip=127.0.0.1
+2025-11-20 11:11:15 - app - INFO - [api_handler.py:681] - Insert request: user_id=5001, role=aro, table=grades, ip=127.0.0.1
+2025-11-20 11:11:15 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-20 11:11:15 - app - INFO - [audit_logger.py:48] - AUDIT: sql_insert_success - user=5001, role=aro, ip=127.0.0.1
+2025-11-20 11:11:15 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-20 11:11:15 - app - INFO - [audit_logger.py:48] - AUDIT: insert - user=5001, role=aro, ip=127.0.0.1
+2025-11-20 11:11:15 - app - INFO - [api_handler.py:750] - Insert executed successfully: user_id=5001, role=aro, table=grades, rows_affected=1, ip=127.0.0.1
+2025-11-20 11:11:15 - app - INFO - [api_handler.py:256] - Query request: user_id=5001, role=aro, table=grades, ip=127.0.0.1
+2025-11-20 11:11:15 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-20 11:11:15 - app - INFO - [audit_logger.py:48] - AUDIT: sql_select_success - user=5001, role=aro, ip=127.0.0.1
+2025-11-20 11:11:15 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-20 11:11:15 - app - INFO - [audit_logger.py:48] - AUDIT: query - user=5001, role=aro, ip=127.0.0.1
+2025-11-20 11:11:15 - app - INFO - [api_handler.py:476] - Query executed successfully: user_id=5001, role=aro, table=grades, rows=5, ip=127.0.0.1
+2025-11-20 20:27:14 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-20 20:27:14 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-20 20:27:14 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-20 20:27:14 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-20 20:27:14 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-20 20:27:14 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-20 20:28:13 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-20 20:28:13 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-20 20:28:13 - app - WARNING - [auth.py:197] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-20 20:28:13 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-20 20:28:13 - app - INFO - [audit_logger.py:48] - AUDIT: login_failed - user=None, role=None, ip=127.0.0.1
+2025-11-20 20:28:13 - app - WARNING - [api_handler.py:217] - Login failed: email=test_student@example.com, reason=invalid_credentials, ip=127.0.0.1
+2025-11-20 20:31:47 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-20 20:31:47 - app - INFO - [auth.py:90] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-20 20:31:47 - app - INFO - [auth.py:115] - Login successful: user_id=100, role=student, email=test_student@example.com, ip=127.0.0.1
+2025-11-20 20:31:47 - app - WARNING - [db_connector.py:42] - Invalid role provided, defaulting to 'student'
+2025-11-20 20:31:47 - app - INFO - [audit_logger.py:48] - AUDIT: login_success - user=100, role=student, ip=127.0.0.1
+2025-11-20 20:31:47 - app - INFO - [auth.py:250] - Session created for user 100 with role student
+2025-11-20 20:31:47 - app - INFO - [api_handler.py:202] - Session created for login: user_id=100, role=student, ip=127.0.0.1
+2025-11-21 20:39:44 - app - INFO - [api_handler.py:131] - Login request received: email=test_student@example.com, ip=127.0.0.1
+2025-11-21 20:39:44 - app - INFO - [auth.py:85] - Login attempt: email=test_student@example.com, ip=127.0.0.1
+2025-11-21 20:39:44 - app - INFO - [auth.py:110] - Login successful: user_id=100, role=student, email=test_student@example.com, ip=127.0.0.1
+2025-11-21 20:39:44 - app - WARNING - [db_connector.py:41] - Invalid role provided, defaulting to 'student'
+2025-11-21 20:39:45 - app - INFO - [audit_logger.py:46] - AUDIT: login_success - user=100, role=student, ip=127.0.0.1
+2025-11-21 20:39:45 - app - INFO - [auth.py:244] - Session created for user 100 with role student
+2025-11-21 20:39:45 - app - INFO - [api_handler.py:201] - Session created for login: user_id=100, role=student, ip=127.0.0.1
+2025-11-21 20:39:46 - app - INFO - [api_handler.py:255] - Query request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-21 20:39:46 - app - WARNING - [db_connector.py:41] - Invalid role provided, defaulting to 'student'
+2025-11-21 20:39:46 - app - INFO - [audit_logger.py:46] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-21 20:39:46 - app - WARNING - [db_connector.py:41] - Invalid role provided, defaulting to 'student'
+2025-11-21 20:39:46 - app - INFO - [audit_logger.py:46] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-21 20:39:46 - app - INFO - [api_handler.py:475] - Query executed successfully: user_id=100, role=student, table=students, rows=1, ip=127.0.0.1
+2025-11-21 20:39:50 - app - INFO - [api_handler.py:496] - Update request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-21 20:39:50 - app - WARNING - [db_connector.py:41] - Invalid role provided, defaulting to 'student'
+2025-11-21 20:39:50 - app - INFO - [audit_logger.py:46] - AUDIT: sql_update_success - user=100, role=student, ip=127.0.0.1
+2025-11-21 20:39:50 - app - WARNING - [db_connector.py:41] - Invalid role provided, defaulting to 'student'
+2025-11-21 20:39:50 - app - INFO - [audit_logger.py:46] - AUDIT: update - user=100, role=student, ip=127.0.0.1
+2025-11-21 20:39:50 - app - INFO - [api_handler.py:570] - Update executed successfully: user_id=100, role=student, table=students, rows_affected=1, ip=127.0.0.1
+2025-11-21 20:39:50 - app - INFO - [api_handler.py:255] - Query request: user_id=100, role=student, table=students, ip=127.0.0.1
+2025-11-21 20:39:50 - app - WARNING - [db_connector.py:41] - Invalid role provided, defaulting to 'student'
+2025-11-21 20:39:50 - app - INFO - [audit_logger.py:46] - AUDIT: sql_select_success - user=100, role=student, ip=127.0.0.1
+2025-11-21 20:39:50 - app - WARNING - [db_connector.py:41] - Invalid role provided, defaulting to 'student'
+2025-11-21 20:39:51 - app - INFO - [audit_logger.py:46] - AUDIT: query - user=100, role=student, ip=127.0.0.1
+2025-11-21 20:39:51 - app - INFO - [api_handler.py:475] - Query executed successfully: user_id=100, role=student, table=students, rows=1, ip=127.0.0.1
