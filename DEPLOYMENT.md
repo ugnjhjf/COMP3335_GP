@@ -144,8 +144,14 @@ Open a new terminal and change directory to `<project_root>/security`,generate d
 ```bash
 mkcert -cert-file localhost-cert.pem -key-file localhost-key.pem localhost 127.0.0.1 ::1
 ```
-
 replace the cert.pem and key.pem with the content in localhost-cert.pem and localhost-key.pem correspondingly
+
+
+### Troubleshooting: Access denined on `mkcert -install`
+1(a): Try to grant administration permission (PolyU machines).
+1(b): If you cannot install local cert, you need to manual trust the cert and covert the import the self-signed cert.
+
+
 
 ### 9. Start Backend Server
 
